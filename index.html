@@ -1,0 +1,1636 @@
+<!doctype html>
+<html lang="tr" data-theme="natural">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Villa Pinecone — Fethiye Üzümlü · Kızılbel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=Sora:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   VillaPinecone — villa tanıtım sitesi
+   Tema sistemi: [data-theme] ile 4 estetik (natural / luxe / minimal / akdeniz)
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+:root {
+  /* defaults overridden per theme */
+  --bg: #f4efe6;
+  --surface: #fbf8f2;
+  --surface-2: #efe8db;
+  --ink: #2b2a24;
+  --ink-soft: #6a655a;
+  --line: #e0d8c8;
+  --accent: #b05a3c;
+  --accent-ink: #8a4128;
+  --accent-2: #41573f;
+  --on-accent: #fbf8f2;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --font-head: "Marcellus", Georgia, serif;
+  --font-body: "Hanken Grotesk", system-ui, sans-serif;
+  --head-spacing: -0.01em;
+  --head-transform: none;
+  --eyebrow-spacing: 0.22em;
+  --maxw: 1240px;
+  --shadow: 0 18px 50px -28px rgba(40,34,22,.55);
+  --shadow-soft: 0 10px 30px -20px rgba(40,34,22,.4);
+}
+
+/* ---- 1. Sıcak Doğal ---- */
+[data-theme="natural"] {
+  --bg:#f4efe6; --surface:#fbf8f2; --surface-2:#efe8db; --ink:#2b2a24; --ink-soft:#6a655a;
+  --line:#e3dccc; --accent:#b05a3c; --accent-ink:#8a4128; --accent-2:#41573f; --on-accent:#fbf8f2;
+  --radius:14px; --radius-lg:22px;
+  --font-head:"Marcellus", Georgia, serif; --font-body:"Hanken Grotesk", system-ui, sans-serif;
+  --head-spacing:-0.005em; --head-transform:none;
+}
+/* ---- 2. Lüks Sakin ---- */
+[data-theme="luxe"] {
+  --bg:#11201a; --surface:#16271f; --surface-2:#1d322a; --ink:#ede7da; --ink-soft:#a9b3a6;
+  --line:#2c4339; --accent:#c7a35c; --accent-ink:#d8b974; --accent-2:#86a890; --on-accent:#11201a;
+  --radius:6px; --radius-lg:10px;
+  --font-head:"Cormorant Garamond", Georgia, serif; --font-body:"Hanken Grotesk", system-ui, sans-serif;
+  --head-spacing:0; --head-transform:none;
+  --shadow:0 24px 60px -28px rgba(0,0,0,.7); --shadow-soft:0 12px 34px -22px rgba(0,0,0,.6);
+}
+[data-theme="luxe"] .eyebrow { color: var(--accent-ink); }
+/* ---- 3. Modern Minimal ---- */
+[data-theme="minimal"] {
+  --bg:#f6f6f4; --surface:#ffffff; --surface-2:#f0f0ec; --ink:#1a1a18; --ink-soft:#6f6f68;
+  --line:#e6e6e1; --accent:#1a1a18; --accent-ink:#000; --accent-2:#8a8a80; --on-accent:#ffffff;
+  --radius:2px; --radius-lg:2px;
+  --font-head:"Sora", system-ui, sans-serif; --font-body:"Manrope", system-ui, sans-serif;
+  --head-spacing:-0.03em; --head-transform:none; --eyebrow-spacing:0.3em;
+  --shadow:0 18px 50px -30px rgba(0,0,0,.3); --shadow-soft:0 8px 24px -18px rgba(0,0,0,.25);
+}
+/* ---- 4. Akdeniz ---- */
+[data-theme="akdeniz"] {
+  --bg:#f3f6f7; --surface:#ffffff; --surface-2:#e8eff1; --ink:#1f3540; --ink-soft:#5e7682;
+  --line:#dde7ea; --accent:#2f7ca0; --accent-ink:#225f7b; --accent-2:#cf9a4a; --on-accent:#ffffff;
+  --radius:18px; --radius-lg:30px;
+  --font-head:"Marcellus", Georgia, serif; --font-body:"Hanken Grotesk", system-ui, sans-serif;
+  --head-spacing:0; --head-transform:none;
+}
+
+body {
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--font-body); font-size:17px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  transition: background .4s ease, color .4s ease;
+}
+img { max-width:100%; display:block; }
+a { color:inherit; text-decoration:none; }
+h1,h2,h3 { font-family:var(--font-head); font-weight:500; letter-spacing:var(--head-spacing); line-height:1.08; margin:0; }
+[data-theme="luxe"] h1, [data-theme="luxe"] h2 { font-weight:600; }
+p { margin:0; }
+
+.wrap { max-width:var(--maxw); margin:0 auto; padding:0 32px; }
+@media (max-width:720px){ .wrap { padding:0 20px; } }
+
+.eyebrow {
+  font-family:var(--font-body); font-size:12.5px; font-weight:600;
+  letter-spacing:var(--eyebrow-spacing); text-transform:uppercase; color:var(--accent);
+  display:inline-flex; align-items:center; gap:10px; margin:0 0 18px;
+}
+.eyebrow::before { content:""; width:26px; height:1.5px; background:currentColor; opacity:.7; }
+
+.section { padding:120px 0; }
+.section-sm { padding:88px 0; }
+@media (max-width:720px){ .section { padding:76px 0; } .section-sm{padding:60px 0;} }
+
+.section-head { max-width:680px; margin-bottom:56px; }
+.section-head h2 { font-size:clamp(30px, 4.4vw, 50px); }
+.section-head p { color:var(--ink-soft); font-size:18px; margin-top:18px; }
+
+/* ---------- NAV ---------- */
+.nav {
+  position:fixed; top:0; left:0; right:0; z-index:60;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 40px; transition:padding .35s ease, background .35s ease, box-shadow .35s ease, border-color .35s;
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled {
+  background:color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter:blur(14px) saturate(1.2); padding:13px 40px;
+  border-bottom:1px solid var(--line); box-shadow:var(--shadow-soft);
+}
+.brand { display:flex; align-items:center; gap:11px; font-family:var(--font-head); font-size:22px; letter-spacing:.01em; }
+.brand .mark {
+  width:34px; height:34px; border-radius:50%; display:grid; place-items:center;
+  background:var(--accent); color:var(--on-accent); flex:none;
+}
+.brand .mark svg { width:19px; height:19px; }
+.brand b { font-weight:500; }
+.brand .b2 { color:var(--accent); }
+.nav-links { display:flex; align-items:center; gap:30px; }
+.nav-links a { font-size:14.5px; color:var(--ink-soft); transition:color .2s; position:relative; }
+.nav-links a:hover { color:var(--ink); }
+.nav-right { display:flex; align-items:center; gap:16px; }
+
+.lang {
+  display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden;
+  font-size:12.5px; font-weight:600; background:var(--surface);
+}
+.lang button { border:0; background:transparent; color:var(--ink-soft); padding:7px 13px; cursor:pointer; font:inherit; transition:.2s; }
+.lang button.on { background:var(--accent); color:var(--on-accent); }
+
+.btn {
+  display:inline-flex; align-items:center; gap:9px; cursor:pointer; border:0; font:inherit;
+  font-size:14.5px; font-weight:600; padding:12px 22px; border-radius:999px;
+  background:var(--accent); color:var(--on-accent); transition:transform .2s, filter .2s, box-shadow .2s;
+  white-space:nowrap;
+}
+.btn:hover { transform:translateY(-2px); filter:brightness(1.06); box-shadow:var(--shadow-soft); }
+.btn.ghost { background:transparent; color:var(--ink); border:1px solid var(--line); }
+.btn.ghost:hover { border-color:var(--accent); color:var(--accent); }
+.btn.lg { padding:16px 30px; font-size:15.5px; }
+.btn svg { width:16px; height:16px; }
+
+.nav-burger { display:none; background:none; border:0; cursor:pointer; flex-direction:column; gap:5px; padding:6px; }
+.nav-burger span { width:24px; height:2px; background:var(--ink); display:block; transition:.3s; }
+
+@media (max-width:980px){
+  .nav-links { position:fixed; inset:0 0 0 auto; width:min(82vw,340px); flex-direction:column;
+    align-items:flex-start; justify-content:center; gap:26px; padding:0 40px;
+    background:var(--surface); transform:translateX(100%); transition:transform .4s cubic-bezier(.4,0,.2,1);
+    box-shadow:var(--shadow); }
+  .nav-links.open { transform:translateX(0); }
+  .nav-links a { font-size:22px; font-family:var(--font-head); color:var(--ink); }
+  .nav-burger { display:flex; z-index:70; }
+  body.menu-open .nav-burger span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  body.menu-open .nav-burger span:nth-child(2){ opacity:0; }
+  body.menu-open .nav-burger span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  .nav { padding:16px 20px; }
+  .nav.scrolled { padding:12px 20px; }
+}
+
+/* ---------- HERO ---------- */
+.hero { position:relative; min-height:100vh; min-height:100svh; display:flex; align-items:flex-end; overflow:hidden; }
+.hero-bg { position:absolute; inset:0; z-index:0; }
+.hero-bg img { width:100%; height:100%; object-fit:cover; }
+.hero-bg::after {
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(10,12,10,.45) 0%, rgba(10,12,10,.1) 38%, rgba(10,12,10,.78) 100%);
+}
+.hero-inner { position:relative; z-index:2; width:100%; padding-bottom:84px; }
+.hero .eyebrow { color:#f0e7d8; }
+.hero h1 { color:#fff; font-size:clamp(44px, 8vw, 104px); line-height:.98; max-width:14ch; }
+.hero .lede { color:rgba(255,255,255,.9); font-size:clamp(17px,2vw,21px); max-width:52ch; margin-top:24px; }
+.hero-cta { display:flex; gap:16px; margin-top:38px; flex-wrap:wrap; }
+.hero-cta .btn.ghost { color:#fff; border-color:rgba(255,255,255,.55); background:rgba(255,255,255,.08); backdrop-filter:blur(6px); }
+.hero-cta .btn.ghost:hover { background:rgba(255,255,255,.2); border-color:#fff; color:#fff; }
+.hero-meta { display:flex; gap:34px; flex-wrap:wrap; margin-top:46px; padding-top:30px; border-top:1px solid rgba(255,255,255,.22); }
+.hero-meta .hm { color:#fff; }
+.hero-meta .hm .v { font-family:var(--font-head); font-size:26px; }
+.hero-meta .hm .k { font-size:12.5px; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.7); margin-top:4px; }
+.scroll-cue { position:absolute; left:50%; bottom:26px; transform:translateX(-50%); z-index:3; color:rgba(255,255,255,.8); display:grid; place-items:center; gap:8px; font-size:11px; letter-spacing:.2em; text-transform:uppercase; }
+.scroll-cue .line { width:1px; height:42px; background:linear-gradient(rgba(255,255,255,.7), transparent); animation:cue 2s ease-in-out infinite; }
+@keyframes cue { 0%,100%{ transform:scaleY(.4); transform-origin:top; opacity:.4;} 50%{ transform:scaleY(1); opacity:1;} }
+
+/* ---------- INTRO ---------- */
+.intro-grid { display:grid; grid-template-columns:1.05fr 1fr; gap:72px; align-items:center; }
+.intro-copy h2 { font-size:clamp(30px,4vw,46px); }
+.intro-copy p { color:var(--ink-soft); margin-top:22px; font-size:18px; }
+.intro-sign { margin-top:30px; font-family:var(--font-head); font-size:20px; color:var(--accent); }
+.intro-media { position:relative; }
+.intro-media img { width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:var(--radius-lg); box-shadow:var(--shadow); }
+.intro-media .badge {
+  position:absolute; bottom:-26px; left:-26px; background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--radius); padding:20px 24px; box-shadow:var(--shadow-soft); max-width:230px;
+}
+.intro-media .badge .v { font-family:var(--font-head); font-size:34px; color:var(--accent); }
+.intro-media .badge .k { font-size:13px; color:var(--ink-soft); margin-top:2px; }
+@media (max-width:880px){ .intro-grid{ grid-template-columns:1fr; gap:48px; } .intro-media .badge{ left:0; } }
+
+/* ---------- FEATURES ---------- */
+.feat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+.feat {
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg);
+  padding:32px 30px; transition:transform .3s, box-shadow .3s, border-color .3s;
+}
+.feat:hover { transform:translateY(-5px); box-shadow:var(--shadow); border-color:color-mix(in srgb, var(--accent) 40%, var(--line)); }
+.feat .ic { width:50px; height:50px; border-radius:13px; display:grid; place-items:center; background:var(--surface-2); color:var(--accent); margin-bottom:20px; }
+.feat .ic svg { width:25px; height:25px; }
+.feat h3 { font-size:21px; }
+.feat p { color:var(--ink-soft); margin-top:10px; font-size:15.5px; }
+@media (max-width:880px){ .feat-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:560px){ .feat-grid{ grid-template-columns:1fr; } }
+
+/* ---------- ROOMS + STATS ---------- */
+.rooms-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-bottom:60px; }
+.room {
+  display:flex; gap:20px; align-items:flex-start; padding:26px 28px;
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg);
+}
+.room .ic { flex:none; width:46px; height:46px; border-radius:50%; display:grid; place-items:center; background:var(--accent); color:var(--on-accent); }
+.room .ic svg { width:22px; height:22px; }
+.room h3 { font-size:19px; }
+.room p { color:var(--ink-soft); font-size:15px; margin-top:5px; }
+@media (max-width:720px){ .rooms-grid{ grid-template-columns:1fr; } }
+
+.stats { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; }
+.stat { background:var(--surface); padding:30px 24px; text-align:center; }
+.stat .v { font-family:var(--font-head); font-size:clamp(32px,4vw,46px); color:var(--accent); line-height:1; }
+.stat .k { font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft); margin-top:10px; }
+@media (max-width:720px){ .stats{ grid-template-columns:1fr 1fr; } }
+
+/* ---------- AMENITIES ---------- */
+.amen-wrap { display:grid; grid-template-columns:.85fr 1.15fr; gap:60px; align-items:start; }
+.amen-cols { columns:2; column-gap:46px; }
+@media (max-width:560px){ .amen-cols{ columns:1; } }
+.amen-cols li {
+  list-style:none; display:flex; align-items:center; gap:12px; padding:11px 0;
+  border-bottom:1px solid var(--line); font-size:15.5px; break-inside:avoid;
+}
+.amen-cols { padding:0; margin:0; }
+.amen-cols li svg { width:17px; height:17px; color:var(--accent); flex:none; }
+@media (max-width:880px){ .amen-wrap{ grid-template-columns:1fr; gap:36px; } }
+
+/* ---------- GALLERY ---------- */
+.gallery { display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:230px; gap:14px; }
+.gitem { overflow:hidden; border-radius:var(--radius); cursor:pointer; position:relative; background:var(--surface-2); }
+.gitem img { width:100%; height:100%; object-fit:cover; transition:transform .7s cubic-bezier(.2,.8,.2,1); }
+.gitem:hover img { transform:scale(1.07); }
+.gitem::after { content:""; position:absolute; inset:0; background:linear-gradient(0deg, rgba(20,16,8,.4), transparent 55%); opacity:0; transition:.3s; }
+.gitem:hover::after { opacity:1; }
+.gitem.tall { grid-row:span 2; }
+.gitem.wide { grid-column:span 2; }
+@media (max-width:880px){ .gallery{ grid-template-columns:repeat(2,1fr); grid-auto-rows:180px; } .gitem.wide{ grid-column:span 2; } }
+@media (max-width:560px){ .gitem.wide{ grid-column:span 1; } .gitem.tall{ grid-row:span 1; } }
+
+/* lightbox */
+.lb { position:fixed; inset:0; z-index:200; background:rgba(8,8,6,.94); display:none; align-items:center; justify-content:center; }
+.lb.open { display:flex; }
+.lb img { max-width:90vw; max-height:84vh; object-fit:contain; border-radius:6px; box-shadow:0 30px 80px rgba(0,0,0,.6); }
+.lb-close, .lb-nav { position:absolute; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); color:#fff; cursor:pointer; border-radius:50%; display:grid; place-items:center; transition:.2s; }
+.lb-close { top:24px; right:24px; width:48px; height:48px; }
+.lb-nav { top:50%; transform:translateY(-50%); width:54px; height:54px; }
+.lb-nav.prev { left:24px; } .lb-nav.next { right:24px; }
+.lb-close:hover, .lb-nav:hover { background:rgba(255,255,255,.28); }
+.lb-nav svg, .lb-close svg { width:22px; height:22px; }
+.lb-count { position:absolute; bottom:24px; left:50%; transform:translateX(-50%); color:rgba(255,255,255,.8); font-size:14px; letter-spacing:.1em; }
+
+/* ---------- VIDEO ---------- */
+.video-band { position:relative; border-radius:var(--radius-lg); overflow:hidden; min-height:460px; display:grid; place-items:center; box-shadow:var(--shadow); }
+.video-band img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.video-band::after { content:""; position:absolute; inset:0; background:rgba(12,14,10,.42); }
+.play-btn { position:relative; z-index:2; width:88px; height:88px; border-radius:50%; border:0; cursor:pointer; background:var(--accent); color:var(--on-accent); display:grid; place-items:center; box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 60%, transparent); animation:pulse 2.6s infinite; }
+.play-btn svg { width:30px; height:30px; margin-left:4px; }
+@keyframes pulse { 0%{ box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%, transparent);} 70%{ box-shadow:0 0 0 26px transparent;} 100%{ box-shadow:0 0 0 0 transparent;} }
+.video-cap { position:absolute; z-index:2; bottom:30px; left:32px; color:#fff; }
+.video-cap .v { font-family:var(--font-head); font-size:24px; }
+
+/* ---------- LOCATION ---------- */
+.loc-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+.dist-list { display:grid; gap:0; }
+.dist {
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:17px 0; border-bottom:1px solid var(--line);
+}
+.dist .name { display:flex; align-items:center; gap:13px; font-size:16px; }
+.dist .name svg { width:18px; height:18px; color:var(--accent); flex:none; }
+.dist .val { font-family:var(--font-head); font-size:18px; color:var(--accent); white-space:nowrap; }
+.loc-map { border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow); aspect-ratio:1/1; border:1px solid var(--line); }
+.loc-map iframe { width:100%; height:100%; border:0; display:block; filter:grayscale(.2); }
+@media (max-width:880px){ .loc-grid{ grid-template-columns:1fr; gap:40px; } .loc-map{ aspect-ratio:16/11; } }
+
+/* ---------- RESERVATION / AVAILABILITY ---------- */
+.resv {
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg);
+  padding:48px; box-shadow:var(--shadow-soft); display:grid; grid-template-columns:1fr 1.15fr; gap:54px; align-items:center;
+}
+.resv-info h2 { font-size:clamp(28px,3.6vw,42px); }
+.resv-info p { color:var(--ink-soft); margin-top:18px; }
+.partner { display:inline-flex; align-items:center; gap:10px; margin-top:22px; font-size:14px; color:var(--ink-soft); }
+.partner b { color:var(--ink); }
+.resv-cta { margin-top:30px; display:flex; gap:14px; flex-wrap:wrap; }
+
+.cal { background:var(--surface-2); border:1px solid var(--line); border-radius:var(--radius); padding:24px; }
+.cal-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+.cal-head .m { font-family:var(--font-head); font-size:20px; }
+.cal-head button { width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer; display:grid; place-items:center; transition:.2s; }
+.cal-head button:hover { border-color:var(--accent); color:var(--accent); }
+.cal-head button svg { width:15px; height:15px; }
+.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:5px; }
+.cal-grid .dow { text-align:center; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); padding-bottom:6px; }
+.cal-day { aspect-ratio:1; display:grid; place-items:center; font-size:14px; border-radius:8px; color:var(--ink); position:relative; }
+.cal-day.empty { visibility:hidden; }
+.cal-day.free { background:var(--surface); cursor:default; }
+.cal-day.booked { background:color-mix(in srgb, var(--accent) 16%, var(--surface)); color:var(--accent-ink); text-decoration:line-through; opacity:.85; }
+.cal-day.past { color:color-mix(in srgb,var(--ink-soft) 50%, transparent); }
+.cal-legend { display:flex; gap:18px; margin-top:16px; font-size:12.5px; color:var(--ink-soft); flex-wrap:wrap; }
+.cal-legend span { display:inline-flex; align-items:center; gap:7px; }
+.cal-legend i { width:12px; height:12px; border-radius:3px; display:inline-block; }
+.dot-free { background:var(--surface); border:1px solid var(--line); }
+.dot-booked { background:color-mix(in srgb, var(--accent) 35%, var(--surface)); }
+@media (max-width:820px){ .resv{ grid-template-columns:1fr; gap:36px; padding:30px; } }
+
+/* ---------- CONTACT ---------- */
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; }
+.contact-card .ci { display:flex; align-items:center; gap:16px; padding:18px 0; border-bottom:1px solid var(--line); }
+.contact-card .ci .ic { width:46px; height:46px; border-radius:50%; background:var(--surface-2); color:var(--accent); display:grid; place-items:center; flex:none; }
+.contact-card .ci .ic svg { width:20px; height:20px; }
+.contact-card .ci .k { font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft); }
+.contact-card .ci .v { font-size:17px; margin-top:2px; }
+.socials { display:flex; gap:12px; margin-top:26px; }
+.socials a { width:46px; height:46px; border-radius:50%; border:1px solid var(--line); display:grid; place-items:center; color:var(--ink); transition:.2s; }
+.socials a:hover { background:var(--accent); color:var(--on-accent); border-color:var(--accent); transform:translateY(-3px); }
+.socials svg { width:19px; height:19px; }
+
+form.cform { display:grid; gap:16px; }
+.cform .row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.cform label { font-size:13px; color:var(--ink-soft); display:block; margin-bottom:7px; }
+.cform input, .cform textarea {
+  width:100%; font:inherit; font-size:15px; padding:13px 15px; border:1px solid var(--line);
+  border-radius:var(--radius); background:var(--surface); color:var(--ink); transition:border-color .2s;
+}
+.cform input:focus, .cform textarea:focus { outline:none; border-color:var(--accent); }
+.cform textarea { resize:vertical; min-height:120px; }
+.cform .ok { display:none; color:var(--accent); font-size:14px; }
+.cform.sent .ok { display:block; }
+@media (max-width:820px){ .contact-grid{ grid-template-columns:1fr; gap:40px; } .cform .row{ grid-template-columns:1fr; } }
+
+/* ---------- FOOTER ---------- */
+.foot { background:var(--surface); border-top:1px solid var(--line); padding:60px 0 30px; }
+.foot-top { display:flex; align-items:flex-start; justify-content:space-between; gap:40px; flex-wrap:wrap; padding-bottom:40px; border-bottom:1px solid var(--line); }
+.foot-brand { max-width:340px; }
+.foot-brand p { color:var(--ink-soft); margin-top:14px; font-size:14.5px; }
+.foot-cols { display:flex; gap:64px; flex-wrap:wrap; }
+.foot-col h4 { font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 16px; font-family:var(--font-body); font-weight:700; }
+.foot-col a { display:block; padding:5px 0; font-size:14.5px; color:var(--ink); opacity:.8; transition:.2s; }
+.foot-col a:hover { opacity:1; color:var(--accent); }
+.foot-bottom { display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; padding-top:24px; font-size:13px; color:var(--ink-soft); }
+
+/* reveal on scroll */
+.reveal { opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; } .scroll-cue,.play-btn{ animation:none; } }
+
+[lang-hide] { display:none !important; }
+
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav">
+  <a class="brand" href="#top">
+    <span class="mark" data-ic="pine"></span>
+    <span><b>Villa</b><b class="b2">Pinecone</b></span>
+  </a>
+  <nav class="nav-links" id="navLinks">
+    <a href="#hakkinda" data-i18n="nav.about">Villa</a>
+    <a href="#ozellikler" data-i18n="nav.features">Özellikler</a>
+    <a href="#odalar" data-i18n="nav.rooms">Odalar</a>
+    <a href="#galeri" data-i18n="nav.gallery">Galeri</a>
+    <a href="#konum" data-i18n="nav.location">Konum</a>
+    <a href="#iletisim" data-i18n="nav.contact">İletişim</a>
+  </nav>
+  <div class="nav-right">
+    <div class="lang">
+      <button data-l="tr" class="on">TR</button>
+      <button data-l="en">EN</button>
+    </div>
+    <a class="btn" href="#rezervasyon" data-i18n="nav.reserve">Rezervasyon</a>
+    <button class="nav-burger" id="burger" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="hero-bg"><img id="heroImg" alt="Villa Pinecone"></div>
+  <div class="hero-inner wrap">
+    <p class="eyebrow" data-i18n="hero.eyebrow">Fethiye · Üzümlü — Kızılbel</p>
+    <h1 data-i18n="hero.title">Çam ağaçlarının arasında, size özel bir huzur</h1>
+    <p class="lede" data-i18n="hero.lede">Özel ve korunaklı havuzu, yemyeşil bahçesiyle doğayla baş başa bir tatil.</p>
+    <div class="hero-cta">
+      <a class="btn lg" href="#rezervasyon"><span data-i18n="hero.cta1">Müsaitliğe Bak</span><span data-ic="arrow"></span></a>
+      <a class="btn lg ghost" href="#galeri" data-i18n="hero.cta2">Galeriyi Gör</a>
+    </div>
+    <div class="hero-meta">
+      <div class="hm"><div class="v" data-i18n="hero.m1v">4</div><div class="k" data-i18n="hero.m1k">Kişi kapasite</div></div>
+      <div class="hm"><div class="v" data-i18n="hero.m2v">2</div><div class="k" data-i18n="hero.m2k">Yatak odası</div></div>
+      <div class="hm"><div class="v" data-i18n="hero.m3v">70 m²</div><div class="k" data-i18n="hero.m3k">Kullanım alanı</div></div>
+      <div class="hm"><div class="v" data-i18n="hero.m4v">Özel</div><div class="k" data-i18n="hero.m4k">Korunaklı havuz</div></div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span class="line"></span><span data-i18n="scroll">Keşfet</span></div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="section" id="hakkinda">
+  <div class="wrap intro-grid">
+    <div class="intro-copy reveal">
+      <p class="eyebrow" data-i18n="about.eyebrow">Hoş geldiniz</p>
+      <h2 data-i18n="about.title">Doğayla iç içe, gözlerden uzak bir kaçamak</h2>
+      <p data-i18n="about.p1">Villa Pinecone, Fethiye'nin Üzümlü bölgesi Kızılbel'de yer alır.</p>
+      <p data-i18n="about.p2">İki yatak odası ve dört kişiye kadar kapasite.</p>
+      <p class="intro-sign" data-i18n="about.sign">— Sizi ağırlamaktan mutluluk duyarız</p>
+    </div>
+    <div class="intro-media reveal">
+      <img loading="lazy" id="aboutImg" alt="Villa">
+      <div class="badge">
+        <div class="v" data-i18n="about.badgev">100%</div>
+        <div class="k" data-i18n="about.badgek">Özel kullanım — sadece siz</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEATURES ===================== -->
+<section class="section" id="ozellikler" style="background:var(--surface)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" data-i18n="feat.eyebrow">Öne çıkanlar</p>
+      <h2 data-i18n="feat.title">Neden Villa Pinecone?</h2>
+      <p data-i18n="feat.sub">Konforu, mahremiyeti ve doğayı bir arada sunan ayrıntılar.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat reveal"><div class="ic" data-ic="pool"></div><h3 data-i18n="feat.1t"></h3><p data-i18n="feat.1d"></p></div>
+      <div class="feat reveal"><div class="ic" data-ic="leaf"></div><h3 data-i18n="feat.2t"></h3><p data-i18n="feat.2d"></p></div>
+      <div class="feat reveal"><div class="ic" data-ic="swing"></div><h3 data-i18n="feat.3t"></h3><p data-i18n="feat.3d"></p></div>
+      <div class="feat reveal"><div class="ic" data-ic="quiet"></div><h3 data-i18n="feat.4t"></h3><p data-i18n="feat.4d"></p></div>
+      <div class="feat reveal"><div class="ic" data-ic="home"></div><h3 data-i18n="feat.5t"></h3><p data-i18n="feat.5d"></p></div>
+      <div class="feat reveal"><div class="ic" data-ic="shield"></div><h3 data-i18n="feat.6t"></h3><p data-i18n="feat.6d"></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ROOMS ===================== -->
+<section class="section" id="odalar">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" data-i18n="rooms.eyebrow">İç mekan</p>
+      <h2 data-i18n="rooms.title">Odalar & yaşam alanı</h2>
+      <p data-i18n="rooms.sub">İki yatak odası, ferah bir salon ve bağımsız mutfak.</p>
+    </div>
+    <div class="rooms-grid">
+      <div class="room reveal"><div class="ic" data-ic="sofa"></div><div><h3 data-i18n="rooms.1t"></h3><p data-i18n="rooms.1d"></p></div></div>
+      <div class="room reveal"><div class="ic" data-ic="bed"></div><div><h3 data-i18n="rooms.2t"></h3><p data-i18n="rooms.2d"></p></div></div>
+      <div class="room reveal"><div class="ic" data-ic="beds"></div><div><h3 data-i18n="rooms.3t"></h3><p data-i18n="rooms.3d"></p></div></div>
+      <div class="room reveal"><div class="ic" data-ic="bath"></div><div><h3 data-i18n="rooms.4t"></h3><p data-i18n="rooms.4d"></p></div></div>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><div class="v" data-i18n="stat.1v">4 kişi</div><div class="k" data-i18n="stat.1k">Maks. kapasite</div></div>
+      <div class="stat"><div class="v" data-i18n="stat.2v">70 m²</div><div class="k" data-i18n="stat.2k">Villa büyüklüğü</div></div>
+      <div class="stat"><div class="v" data-i18n="stat.3v">2 / 1</div><div class="k" data-i18n="stat.3k">Yatak odası / banyo</div></div>
+      <div class="stat"><div class="v" data-i18n="stat.4v">Özel</div><div class="k" data-i18n="stat.4k">Havuz tipi</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AMENITIES ===================== -->
+<section class="section" id="olanaklar" style="background:var(--surface)">
+  <div class="wrap amen-wrap">
+    <div class="reveal">
+      <p class="eyebrow" data-i18n="amen.eyebrow">Donanım</p>
+      <h2 style="font-size:clamp(28px,3.6vw,42px)" data-i18n="amen.title">İhtiyacınız olan her şey</h2>
+      <p style="color:var(--ink-soft);margin-top:18px" data-i18n="amen.sub"></p>
+    </div>
+    <ul class="amen-cols reveal" id="amenList"></ul>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section class="section" id="galeri">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" data-i18n="gallery.eyebrow">Galeri</p>
+      <h2 data-i18n="gallery.title">Villadan kareler</h2>
+      <p data-i18n="gallery.sub">Büyütmek için fotoğrafa tıklayın.</p>
+    </div>
+    <div class="gallery reveal" id="galleryGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== VIDEO ===================== -->
+<section class="section-sm" id="video" style="background:var(--surface)">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-bottom:36px">
+      <p class="eyebrow" data-i18n="video.eyebrow">Video turu</p>
+      <h2 data-i18n="video.title">Villa Pinecone'u yakından görün</h2>
+    </div>
+    <a class="video-band reveal" href="https://www.villapinecone.com/video" target="_blank" rel="noopener">
+      <img id="videoImg" alt="Video">
+      <span class="play-btn" data-ic="play"></span>
+      <span class="video-cap"><span class="v" data-i18n="video.cap">Villa turu</span></span>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== LOCATION ===================== -->
+<section class="section" id="konum">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" data-i18n="loc.eyebrow">Konum</p>
+      <h2 data-i18n="loc.title">Nereye, ne kadar uzakta?</h2>
+      <p data-i18n="loc.sub"></p>
+    </div>
+    <div class="loc-grid">
+      <div class="dist-list reveal" id="distList"></div>
+      <div class="loc-map reveal">
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=%C3%9Cz%C3%BCml%C3%BC%20Fethiye%20Mu%C4%9Fla&z=11&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RESERVATION ===================== -->
+<section class="section" id="rezervasyon" style="background:var(--surface)">
+  <div class="wrap">
+    <div class="resv reveal">
+      <div class="resv-info">
+        <p class="eyebrow" data-i18n="resv.eyebrow">Rezervasyon & müsaitlik</p>
+        <h2 data-i18n="resv.title">Tarihlerinizi şimdi ayırtın</h2>
+        <p data-i18n="resv.p"></p>
+        <p class="partner"><span data-i18n="resv.partner">Rezervasyon ortağımız</span> · <b>Villasepeti</b></p>
+        <div class="resv-cta">
+          <a class="btn lg" href="https://www.villasepeti.com/home/fethiye/villa-pinecone" target="_blank" rel="noopener"><span data-i18n="resv.cta1">Villasepeti'nde Rezervasyon Yap</span><span data-ic="ext"></span></a>
+          <a class="btn lg ghost" href="https://wa.me/905323506828" target="_blank" rel="noopener" data-i18n="resv.cta2">WhatsApp ile Sor</a>
+        </div>
+      </div>
+      <div class="cal" id="cal"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="section" id="iletisim">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" data-i18n="contact.eyebrow">İletişim</p>
+      <h2 data-i18n="contact.title">Bize ulaşın</h2>
+      <p data-i18n="contact.sub"></p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <a class="ci" href="tel:+905323506828"><span class="ic" data-ic="phone"></span><span><span class="k" data-i18n="contact.phonek">Telefon</span><span class="v">0 532 350 68 28</span></span></a>
+        <a class="ci" href="/cdn-cgi/l/email-protection#1d6b7471717c6d7473787e7273785d7a707c7471337e7270"><span class="ic" data-ic="mail"></span><span><span class="k" data-i18n="contact.emailk">E-posta</span><span class="v"><span class="__cf_email__" data-cfemail="dbadb2b7b7baabb2b5beb8b4b5be9bbcb6bab2b7f5b8b4b6">[email&#160;protected]</span></span></span></a>
+        <div class="ci"><span class="ic" data-ic="pin"></span><span><span class="k" data-i18n="contact.addrk">Adres</span><span class="v" data-i18n="contact.addrv">Kızılbel Mah. Merkez Sok. No:124, Fethiye / Muğla</span></span></div>
+        <div class="socials">
+          <a href="https://www.instagram.com/villapinecone/?hl=tr" target="_blank" rel="noopener" aria-label="Instagram" data-ic="ig"></a>
+          <a href="https://www.facebook.com/profile.php?id=100070019826375" target="_blank" rel="noopener" aria-label="Facebook" data-ic="fb"></a>
+          <a href="https://wa.me/905323506828" target="_blank" rel="noopener" aria-label="WhatsApp" data-ic="wa"></a>
+        </div>
+      </div>
+      <form class="cform reveal" id="cform">
+        <div class="row">
+          <div><label data-i18n="form.name">Adınız</label><input type="text" required></div>
+          <div><label data-i18n="form.email">E-posta</label><input type="email" required></div>
+        </div>
+        <div><label data-i18n="form.subject">Konu</label><input type="text"></div>
+        <div><label data-i18n="form.msg">Mesajınız</label><textarea required></textarea></div>
+        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+          <button class="btn lg" type="submit"><span data-i18n="form.send">Gönder</span><span data-ic="arrow"></span></button>
+          <span class="ok" data-i18n="form.ok"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="#top"><span class="mark" data-ic="pine"></span><span><b>Villa</b><b class="b2">Pinecone</b></span></a>
+        <p data-i18n="foot.tag"></p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4 data-i18n="foot.explore">Keşfet</h4>
+          <a href="#hakkinda" data-i18n="nav.about">Villa</a>
+          <a href="#ozellikler" data-i18n="nav.features">Özellikler</a>
+          <a href="#galeri" data-i18n="nav.gallery">Galeri</a>
+          <a href="#konum" data-i18n="nav.location">Konum</a>
+        </div>
+        <div class="foot-col">
+          <h4 data-i18n="foot.contact">İletişim</h4>
+          <a href="tel:+905323506828">0 532 350 68 28</a>
+          <a href="/cdn-cgi/l/email-protection#3046595c5c5140595e55535f5e5570575d51595c1e535f5d"><span class="__cf_email__" data-cfemail="1167787d7d7061787f74727e7f7451767c70787d3f727e7c">[email&#160;protected]</span></a>
+          <a href="https://www.villasepeti.com/home/fethiye/villa-pinecone" target="_blank" rel="noopener" data-i18n="foot.reserve">Villasepeti'nde Rezervasyon</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot.legal">© 2026 Villa Pinecone</span>
+      <span>Fethiye · Üzümlü — Kızılbel</span>
+    </div>
+  </div>
+</footer>
+
+<!-- lightbox -->
+<div class="lb" id="lb">
+  <button class="lb-close" id="lbClose" data-ic="x"></button>
+  <button class="lb-nav prev" id="lbPrev" data-ic="chevL"></button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav next" id="lbNext" data-ic="chevR"></button>
+  <div class="lb-count" id="lbCount"></div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ============================================================
+   VillaPinecone — veri + i18n (TR/EN)
+   ============================================================ */
+
+// --- Fotoğraflar (Villa Pinecone CDN) ---
+const WIX = "https://static.wixstatic.com/media/f4ff34_";
+function img(id, w, h, ext){ ext = ext || "jpg";
+  return `${WIX}${id}~mv2.${ext}/v1/fill/w_${w},h_${h},al_c,q_88,enc_auto/f4ff34_${id}~mv2.${ext}`; }
+
+const PHOTOS = [
+  { id:"6a042e4393ce4f2a9a637a875dbd144b", tr:"Gece aydınlatmalı havuz",   en:"Pool lit at night",        cls:"wide tall" },
+  { id:"d5bf17f5d19f4da288e2a2210799dab9", tr:"Dağ manzaralı havuz",        en:"Pool with mountain view",  cls:"" },
+  { id:"ad6fc61d83354d0baebe6eaf7cd78396", tr:"Villa dış görünüm",          en:"Villa exterior",           cls:"" },
+  { id:"21b7c92be79443e48f4e434ead21c1fa", tr:"Havuz başı akşam",           en:"Poolside evening",         cls:"" },
+  { id:"fc7d1c56389f4058b694bf4c954f4a46", tr:"Çift kişilik yatak odası",   en:"Double bedroom",           cls:"" },
+  { id:"04d856a46a184ea4bcc5747769e53393", tr:"Bahçe oturma alanı",         en:"Garden lounge",            cls:"tall" },
+  { id:"9268e90d4e00440085061fdc9c874305", tr:"Havuz ve şezlonglar",        en:"Pool & sunbeds",           cls:"" },
+  { id:"8ecd791923904941a05ae3dc4ac067b7", tr:"İki kişilik oda",            en:"Twin bedroom",             cls:"" },
+  { id:"eda6a7e45bdb40788bdf8242aa387c38", tr:"Bahçede hamak",              en:"Garden hammock",           cls:"" },
+  { id:"da642b470cbb40e59657c5da71c6bc19", tr:"Akşam yemeği keyfi",         en:"Alfresco dining",          cls:"wide" },
+  { id:"6064760d59794a24abecbef958d4917c", tr:"Bağımsız mutfak",            en:"Kitchen",                  cls:"" },
+  { id:"396592e7ed78441d8aef75c5417dcb99", tr:"Havuz ve şemsiyeler",        en:"Pool & parasols",          cls:"" },
+];
+
+const VILLASEPETI = "https://www.villasepeti.com/home/fethiye/villa-pinecone";
+
+// dolu tarihler — villasepeti ile güncellenir (YYYY-M-D, ay 0-indeksli DEĞİL gerçek ay)
+const BOOKED = [
+  "2026-6-7","2026-6-8","2026-6-9","2026-6-10",
+  "2026-6-20","2026-6-21","2026-6-22",
+  "2026-7-3","2026-7-4","2026-7-5","2026-7-6","2026-7-7",
+  "2026-7-18","2026-7-19","2026-7-20","2026-7-21",
+  "2026-8-1","2026-8-2","2026-8-3","2026-8-8","2026-8-9","2026-8-10","2026-8-15","2026-8-16","2026-8-17",
+];
+
+// --- Çeviri sözlüğü ---
+const I18N = {
+  tr: {
+    "nav.about":"Villa", "nav.features":"Özellikler", "nav.rooms":"Odalar",
+    "nav.gallery":"Galeri", "nav.location":"Konum", "nav.contact":"İletişim",
+    "nav.reserve":"Rezervasyon",
+
+    "hero.eyebrow":"Fethiye · Üzümlü — Kızılbel",
+    "hero.title":"Çam ağaçlarının arasında, size özel bir huzur",
+    "hero.lede":"Özel ve korunaklı havuzu, yemyeşil bahçesi ve sessiz konumuyla; doğayla baş başa, mahremiyeti yüksek bir tatil için Villa Pinecone.",
+    "hero.cta1":"Müsaitliğe Bak", "hero.cta2":"Galeriyi Gör",
+    "hero.m1v":"4", "hero.m1k":"Kişi kapasite",
+    "hero.m2v":"2", "hero.m2k":"Yatak odası",
+    "hero.m3v":"70 m²", "hero.m3k":"Kullanım alanı",
+    "hero.m4v":"Özel", "hero.m4k":"Korunaklı havuz",
+    "scroll":"Keşfet",
+
+    "about.eyebrow":"Hoş geldiniz",
+    "about.title":"Doğayla iç içe, gözlerden uzak bir kaçamak",
+    "about.p1":"Villa Pinecone, Fethiye'nin Üzümlü bölgesi Kızılbel'de, çam ağaçlarıyla çevrili sakin bir noktada yer alır. Oldukça korunaklı özel havuzu ve yemyeşil bahçesiyle, kalabalıktan uzak gerçek bir dinlenme sunar.",
+    "about.p2":"İki yatak odası ve dört kişiye kadar kapasitesiyle aileler ve çiftler için ideal; bahçedeki hamak, salıncak ve çocuk oyun alanıyla her yaşa hitap eder. Her misafirden sonra ev dezenfekte edilir.",
+    "about.sign":"— Sizi ağırlamaktan mutluluk duyarız",
+    "about.badgev":"100%", "about.badgek":"Özel kullanım — sadece siz",
+
+    "feat.eyebrow":"Öne çıkanlar",
+    "feat.title":"Neden Villa Pinecone?",
+    "feat.sub":"Konforu, mahremiyeti ve doğayı bir arada sunan ayrıntılar.",
+    "feat.1t":"Korunaklı özel havuz", "feat.1d":"7,2 × 3,2 m boyutlarında, 1,5 m derinliğinde tamamen size özel, gözlerden uzak havuz.",
+    "feat.2t":"Yemyeşil bahçe", "feat.2d":"Geniş, bakımlı bahçede oturma alanı, hamak ve salıncakla doğanın içinde dinlenin.",
+    "feat.3t":"Çocuk oyun alanı", "feat.3d":"Salıncak ve kaydırakla çocuklar için güvenli, eğlenceli bir alan.",
+    "feat.4t":"Sessiz & sakin konum", "feat.4d":"Şehrin gürültüsünden uzak, yalnızca kuş seslerinin eşlik ettiği bir huzur.",
+    "feat.5t":"Tam donanımlı", "feat.5d":"Klima, bağımsız mutfak, beyaz eşya ve ücretsiz internetle her şey hazır.",
+    "feat.6t":"Hijyen güvencesi", "feat.6d":"Her misafir sonrası villa baştan sona dezenfekte edilir.",
+
+    "rooms.eyebrow":"İç mekan",
+    "rooms.title":"Odalar & yaşam alanı",
+    "rooms.sub":"İki yatak odası, ferah bir salon ve bağımsız mutfak.",
+    "rooms.1t":"Salon", "rooms.1d":"Oturma grubu, klima ve televizyon.",
+    "rooms.2t":"1. Yatak Odası", "rooms.2d":"Çift kişilik yatak, klima ve elbise dolabı.",
+    "rooms.3t":"2. Yatak Odası", "rooms.3d":"İki adet tek kişilik yatak ve elbise dolabı.",
+    "rooms.4t":"Banyo", "rooms.4d":"Duşakabin, WC, termosifon ve lavabo.",
+    "stat.1v":"4 kişi", "stat.1k":"Maks. kapasite",
+    "stat.2v":"70 m²", "stat.2k":"Villa büyüklüğü",
+    "stat.3v":"2 / 1", "stat.3k":"Yatak odası / banyo",
+    "stat.4v":"Özel", "stat.4k":"Havuz tipi",
+
+    "amen.eyebrow":"Donanım",
+    "amen.title":"İhtiyacınız olan her şey",
+    "amen.sub":"Konaklamanız boyunca evinizdeki konforu aratmayan tam donanım.",
+    "amen.list":["Buzluklu buzdolabı","Çamaşır makinesi","Bulaşık makinesi","Barbekü / Mangal","Tost makinesi","Mikrodalga fırın","Normal fırın","Termosifon","Ütü & ütü masası","Saç kurutma makinesi","Ücretsiz internet","Uydu TV","Klima","Bağımsız mutfak"],
+
+    "gallery.eyebrow":"Galeri",
+    "gallery.title":"Villadan kareler",
+    "gallery.sub":"Büyütmek için fotoğrafa tıklayın.",
+
+    "video.eyebrow":"Video turu",
+    "video.title":"Villa Pinecone'u yakından görün",
+    "video.cap":"Villa turu — 2 dk",
+
+    "loc.eyebrow":"Konum",
+    "loc.title":"Nereye, ne kadar uzakta?",
+    "loc.sub":"Fethiye Üzümlü — Kızılbel Mah. Merkez Sok. No:124, Muğla.",
+    "loc.d":[["Fethiye merkez","20 km"],["Dalaman Havalimanı","70 km"],["En yakın plaj (Kumsal-Çakıl)","25 km"],["En yakın restoran","5,5 km"],["En yakın market","5,5 km"],["En yakın dolmuş durağı","4,5 km"]],
+
+    "resv.eyebrow":"Rezervasyon & müsaitlik",
+    "resv.title":"Tarihlerinizi şimdi ayırtın",
+    "resv.p":"Güncel doluluk ve birebir online rezervasyon, anlaşmalı olduğumuz Villasepeti üzerinden yapılır. Aşağıdaki takvim güncel duruma göre işaretlenmiştir; kesin müsaitlik ve fiyat için Villasepeti sayfasına göz atın.",
+    "resv.partner":"Rezervasyon ortağımız",
+    "resv.cta1":"Villasepeti'nde Rezervasyon Yap",
+    "resv.cta2":"WhatsApp ile Sor",
+    "resv.legendfree":"Müsait", "resv.legendbooked":"Dolu",
+
+    "contact.eyebrow":"İletişim",
+    "contact.title":"Bize ulaşın",
+    "contact.sub":"Sorularınız için telefon, e-posta veya formdan yazabilirsiniz.",
+    "contact.phonek":"Telefon", "contact.emailk":"E-posta", "contact.addrk":"Adres",
+    "contact.addrv":"Kızılbel Mah. Merkez Sok. No:124, Fethiye / Muğla",
+    "form.name":"Adınız", "form.email":"E-posta", "form.subject":"Konu", "form.msg":"Mesajınız",
+    "form.send":"Gönder", "form.ok":"Teşekkürler! Mesajınız alındı, en kısa sürede dönüş yapacağız.",
+
+    "foot.tag":"Fethiye Üzümlü — Kızılbel'de, çam ağaçları arasında özel havuzlu kiralık villa.",
+    "foot.explore":"Keşfet", "foot.contact":"İletişim", "foot.legal":"© 2026 Villa Pinecone · Tüm hakları saklıdır.",
+    "foot.reserve":"Villasepeti'nde Rezervasyon",
+  },
+  en: {
+    "nav.about":"Villa", "nav.features":"Features", "nav.rooms":"Rooms",
+    "nav.gallery":"Gallery", "nav.location":"Location", "nav.contact":"Contact",
+    "nav.reserve":"Book Now",
+
+    "hero.eyebrow":"Fethiye · Üzümlü — Kızılbel",
+    "hero.title":"Your private calm among the pine trees",
+    "hero.lede":"With its private, sheltered pool, lush garden and quiet setting, Villa Pinecone offers a secluded retreat in the heart of nature.",
+    "hero.cta1":"Check Availability", "hero.cta2":"View Gallery",
+    "hero.m1v":"4", "hero.m1k":"Guest capacity",
+    "hero.m2v":"2", "hero.m2k":"Bedrooms",
+    "hero.m3v":"70 m²", "hero.m3k":"Living area",
+    "hero.m4v":"Private", "hero.m4k":"Sheltered pool",
+    "scroll":"Explore",
+
+    "about.eyebrow":"Welcome",
+    "about.title":"A secluded escape, surrounded by nature",
+    "about.p1":"Villa Pinecone sits in a peaceful pine-clad corner of Kızılbel in the Üzümlü region of Fethiye. With its highly sheltered private pool and lush garden, it offers a genuine retreat away from the crowds.",
+    "about.p2":"With two bedrooms and capacity for up to four guests, it is ideal for families and couples. The garden hammock, swing and children's play area suit every age, and the villa is disinfected after every stay.",
+    "about.sign":"— We'd be delighted to host you",
+    "about.badgev":"100%", "about.badgek":"Private use — only you",
+
+    "feat.eyebrow":"Highlights",
+    "feat.title":"Why Villa Pinecone?",
+    "feat.sub":"The details that bring comfort, privacy and nature together.",
+    "feat.1t":"Sheltered private pool", "feat.1d":"A fully private, secluded pool measuring 7.2 × 3.2 m with a depth of 1.5 m.",
+    "feat.2t":"Lush garden", "feat.2d":"Relax in nature with a seating area, hammock and swing in the spacious, well-kept garden.",
+    "feat.3t":"Children's play area", "feat.3d":"A safe, fun area for children with a swing and slide.",
+    "feat.4t":"Quiet & peaceful setting", "feat.4d":"A calm away from the city noise, accompanied only by birdsong.",
+    "feat.5t":"Fully equipped", "feat.5d":"Air conditioning, a separate kitchen, appliances and free internet — everything is ready.",
+    "feat.6t":"Hygiene assured", "feat.6d":"The villa is thoroughly disinfected after every guest.",
+
+    "rooms.eyebrow":"Interior",
+    "rooms.title":"Rooms & living space",
+    "rooms.sub":"Two bedrooms, a bright living room and a separate kitchen.",
+    "rooms.1t":"Living room", "rooms.1d":"Lounge seating, air conditioning and a TV.",
+    "rooms.2t":"Bedroom 1", "rooms.2d":"Double bed, air conditioning and a wardrobe.",
+    "rooms.3t":"Bedroom 2", "rooms.3d":"Two single beds and a wardrobe.",
+    "rooms.4t":"Bathroom", "rooms.4d":"Shower cabin, WC, water heater and basin.",
+    "stat.1v":"4 guests", "stat.1k":"Max capacity",
+    "stat.2v":"70 m²", "stat.2k":"Villa size",
+    "stat.3v":"2 / 1", "stat.3k":"Bedrooms / bath",
+    "stat.4v":"Private", "stat.4k":"Pool type",
+
+    "amen.eyebrow":"Amenities",
+    "amen.title":"Everything you need",
+    "amen.sub":"A full set of amenities so you never miss the comforts of home during your stay.",
+    "amen.list":["Fridge with freezer","Washing machine","Dishwasher","Barbecue / Grill","Toaster","Microwave","Oven","Water heater","Iron & ironing board","Hair dryer","Free internet","Satellite TV","Air conditioning","Separate kitchen"],
+
+    "gallery.eyebrow":"Gallery",
+    "gallery.title":"Moments from the villa",
+    "gallery.sub":"Click a photo to enlarge.",
+
+    "video.eyebrow":"Video tour",
+    "video.title":"See Villa Pinecone up close",
+    "video.cap":"Villa tour — 2 min",
+
+    "loc.eyebrow":"Location",
+    "loc.title":"What's nearby?",
+    "loc.sub":"Fethiye Üzümlü — Kızılbel Mah. Merkez Sok. No:124, Muğla.",
+    "loc.d":[["Fethiye centre","20 km"],["Dalaman Airport","70 km"],["Nearest beach (Kumsal-Çakıl)","25 km"],["Nearest restaurant","5.5 km"],["Nearest grocery","5.5 km"],["Nearest minibus stop","4.5 km"]],
+
+    "resv.eyebrow":"Booking & availability",
+    "resv.title":"Reserve your dates now",
+    "resv.p":"Live availability and direct online booking are handled through our partner Villasepeti. The calendar below reflects the current status; for confirmed availability and pricing, visit the Villasepeti page.",
+    "resv.partner":"Our booking partner",
+    "resv.cta1":"Book on Villasepeti",
+    "resv.cta2":"Ask via WhatsApp",
+    "resv.legendfree":"Available", "resv.legendbooked":"Booked",
+
+    "contact.eyebrow":"Contact",
+    "contact.title":"Get in touch",
+    "contact.sub":"Reach us by phone, email or the form for any questions.",
+    "contact.phonek":"Phone", "contact.emailk":"Email", "contact.addrk":"Address",
+    "contact.addrv":"Kızılbel Mah. Merkez Sok. No:124, Fethiye / Muğla",
+    "form.name":"Your name", "form.email":"Email", "form.subject":"Subject", "form.msg":"Your message",
+    "form.send":"Send", "form.ok":"Thank you! Your message has been received, we'll get back to you shortly.",
+
+    "foot.tag":"A private-pool villa to rent among the pine trees in Kızılbel, Üzümlü — Fethiye.",
+    "foot.explore":"Explore", "foot.contact":"Contact", "foot.legal":"© 2026 Villa Pinecone · All rights reserved.",
+    "foot.reserve":"Book on Villasepeti",
+  }
+};
+
+const MONTHS = {
+  tr:["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"],
+  en:["January","February","March","April","May","June","July","August","September","October","November","December"]
+};
+const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th","Fr","Sa","Su"] };
+
+</script>
+<script>
+/* ============================================================
+   VillaPinecone — uygulama mantığı
+   ============================================================ */
+(function(){
+  let LANG = localStorage.getItem("vp_lang") || "tr";
+  const $  = (s,r=document)=>r.querySelector(s);
+  const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
+  const t = (k)=> (I18N[LANG] && I18N[LANG][k]!==undefined) ? I18N[LANG][k] : k;
+
+  /* ---------- ICONS ---------- */
+  const I = {
+    pine:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 7 9h3l-3 5h3l-3 5h12l-3-5h3l-3-5h3z"/><path d="M12 21v-3"/></svg>',
+    pool:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/><path d="M2 14c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/><path d="M8 15V5a2 2 0 0 1 4 0"/><path d="M16 15V5a2 2 0 0 0-4 0"/></svg>',
+    leaf:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 4 13c0-6 5-9 16-9 0 9-4 16-9 16Z"/><path d="M4 20c2-4 5-7 9-9"/></svg>',
+    swing:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16"/><path d="M8 4v9"/><path d="M16 4v9"/><rect x="7" y="13" width="10" height="3" rx="1"/><path d="M12 16v4"/><circle cx="12" cy="21" r="1"/></svg>',
+    quiet:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-7v14l-3-7"/><path d="M16 9a4 4 0 0 1 0 6"/><path d="M19 6a8 8 0 0 1 0 12"/></svg>',
+    home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10 12 3l9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></svg>',
+    shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg>',
+    sofa:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3"/><path d="M2 13a2 2 0 0 1 2-2 2 2 0 0 1 2 2v3h12v-3a2 2 0 0 1 4 0v5H2z"/><path d="M6 19v2M18 19v2"/></svg>',
+    bed:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18V8m18 10v-4a3 3 0 0 0-3-3H3"/><path d="M3 14h18"/><path d="M7 11V9a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2"/><path d="M3 21v-3m18 3v-3"/></svg>',
+    beds:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="7" height="7" rx="1"/><rect x="14" y="9" width="7" height="7" rx="1"/><path d="M2 16h20M3 20v-4m18 4v-4"/></svg>',
+    bath:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12V6a2 2 0 0 1 4 0"/><path d="M2 12h20v3a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4z"/><path d="M6 19l-1 2m13-2 1 2"/></svg>',
+    check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg>',
+    pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',
+    phone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>',
+    mail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7L22 6"/></svg>',
+    play:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>',
+    chevL:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>',
+    chevR:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>',
+    x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>',
+    arrow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+    ext:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>',
+    wa:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M.5 23.5l1.6-5.9a11.4 11.4 0 1 1 4.3 4.2L.5 23.5zM6.6 20l.4.2a9.5 9.5 0 1 0-3.3-3.3l.2.4-1 3.6 3.7-.9zM17 14.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a7.7 7.7 0 0 1-2.3-1.4 8.6 8.6 0 0 1-1.6-2c-.2-.3 0-.4.1-.5l.4-.5.3-.4v-.4c0-.1-.5-1.4-.7-1.9s-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.6 4c2.1.8 2.1.5 2.5.5a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg>',
+    ig:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
+    fb:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V5h-3a4 4 0 0 0-4 4v2H7v4h3v6h4v-6h3l1-4h-4V9a1 1 0 0 1 1-1z"/></svg>',
+  };
+
+  /* ---------- RENDER LISTS ---------- */
+  function renderGallery(){
+    const g = $("#galleryGrid"); if(!g) return;
+    g.innerHTML = PHOTOS.map((p,i)=>(
+      `<figure class="gitem ${p.cls}" data-i="${i}">
+        <img loading="lazy" src="${img(p.id,800,640)}" alt="${p[LANG]}">
+      </figure>`
+    )).join("");
+    $$(".gitem",g).forEach(el=> el.addEventListener("click",()=>openLB(+el.dataset.i)));
+  }
+  function renderAmenities(){
+    const ul = $("#amenList"); if(!ul) return;
+    ul.innerHTML = t("amen.list").map(a=>`<li>${I.check}${a}</li>`).join("");
+  }
+  function renderDistances(){
+    const w = $("#distList"); if(!w) return;
+    w.innerHTML = t("loc.d").map(d=>(
+      `<div class="dist"><span class="name">${I.pin}${d[0]}</span><span class="val">${d[1]}</span></div>`
+    )).join("");
+  }
+
+  /* ---------- LIGHTBOX ---------- */
+  let lbi = 0;
+  function openLB(i){ lbi=i; const lb=$("#lb"); $("#lbImg").src=img(PHOTOS[i].id,1600,1100); $("#lbCount").textContent=`${i+1} / ${PHOTOS.length}`; lb.classList.add("open"); document.body.style.overflow="hidden"; }
+  function closeLB(){ $("#lb").classList.remove("open"); document.body.style.overflow=""; }
+  function stepLB(d){ lbi=(lbi+d+PHOTOS.length)%PHOTOS.length; openLB(lbi); }
+
+  /* ---------- CALENDAR ---------- */
+  let calBase = new Date(2026,5,1); // Haziran 2026
+  function renderCal(){
+    const host = $("#cal"); if(!host) return;
+    const y=calBase.getFullYear(), m=calBase.getMonth();
+    const first=new Date(y,m,1); let startDow=(first.getDay()+6)%7; // Mon=0
+    const days=new Date(y,m+1,0).getDate();
+    const today=new Date(); today.setHours(0,0,0,0);
+    let cells="";
+    for(let i=0;i<startDow;i++) cells+=`<div class="cal-day empty"></div>`;
+    for(let d=1;d<=days;d++){
+      const key=`${y}-${m+1}-${d}`;
+      const dt=new Date(y,m,d);
+      let cls="free";
+      if(dt<today) cls="past";
+      else if(BOOKED.includes(key)) cls="booked";
+      cells+=`<div class="cal-day ${cls}">${d}</div>`;
+    }
+    host.innerHTML = `
+      <div class="cal-head">
+        <button id="calPrev" aria-label="prev">${I.chevL}</button>
+        <span class="m">${MONTHS[LANG][m]} ${y}</span>
+        <button id="calNext" aria-label="next">${I.chevR}</button>
+      </div>
+      <div class="cal-grid">
+        ${DOW[LANG].map(d=>`<div class="dow">${d}</div>`).join("")}
+        ${cells}
+      </div>
+      <div class="cal-legend">
+        <span><i class="dot-free"></i>${t("resv.legendfree")}</span>
+        <span><i class="dot-booked"></i>${t("resv.legendbooked")}</span>
+      </div>`;
+    $("#calPrev").onclick=()=>{ calBase=new Date(y,m-1,1); renderCal(); };
+    $("#calNext").onclick=()=>{ calBase=new Date(y,m+1,1); renderCal(); };
+  }
+
+  /* ---------- I18N ---------- */
+  function applyLang(){
+    document.documentElement.lang = LANG;
+    $$("[data-i18n]").forEach(el=>{ el.textContent = t(el.dataset.i18n); });
+    $$("[data-i18n-ph]").forEach(el=>{ el.placeholder = t(el.dataset.i18nPh); });
+    $$(".lang button").forEach(b=> b.classList.toggle("on", b.dataset.l===LANG));
+    renderGallery(); renderAmenities(); renderDistances(); renderCal();
+  }
+  function setLang(l){ LANG=l; localStorage.setItem("vp_lang",l); applyLang(); }
+
+  /* ---------- THEME (Tweaks köprüsü) ---------- */
+  window.VP = window.VP || {};
+  window.VP.applyTheme = function(theme){
+    document.documentElement.setAttribute("data-theme", theme || "natural");
+  };
+  window.VP.applyAccent = function(c){
+    if(c) document.documentElement.style.setProperty("--accent", c);
+  };
+  window.VP.applyRadius = function(px){
+    if(px==null) return;
+    document.documentElement.style.setProperty("--radius", px+"px");
+    document.documentElement.style.setProperty("--radius-lg", (px*1.5+4)+"px");
+  };
+  window.VP.applyHero = function(id){
+    const el=$("#heroImg"); if(el&&id) el.src=img(id,2000,1200);
+  };
+
+  /* ---------- NAV + REVEAL ---------- */
+  function initNav(){
+    const nav=$(".nav");
+    const onScroll=()=> nav.classList.toggle("scrolled", window.scrollY>40);
+    onScroll(); window.addEventListener("scroll", onScroll, {passive:true});
+    const burger=$("#burger"), links=$("#navLinks");
+    burger.addEventListener("click",()=>{ links.classList.toggle("open"); document.body.classList.toggle("menu-open"); });
+    $$("#navLinks a").forEach(a=> a.addEventListener("click",()=>{ links.classList.remove("open"); document.body.classList.remove("menu-open"); }));
+  }
+  function initReveal(){
+    const io=new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} }); },{threshold:.12});
+    $$(".reveal").forEach(el=>io.observe(el));
+  }
+  function initForm(){
+    const f=$("#cform"); if(!f) return;
+    f.addEventListener("submit",(e)=>{ e.preventDefault(); f.classList.add("sent"); f.reset(); });
+  }
+  function initLB(){
+    $("#lbClose").onclick=closeLB; $("#lbPrev").onclick=()=>stepLB(-1); $("#lbNext").onclick=()=>stepLB(1);
+    $("#lb").addEventListener("click",e=>{ if(e.target.id==="lb") closeLB(); });
+    document.addEventListener("keydown",e=>{ if(!$("#lb").classList.contains("open"))return; if(e.key==="Escape")closeLB(); if(e.key==="ArrowLeft")stepLB(-1); if(e.key==="ArrowRight")stepLB(1); });
+  }
+
+  /* ---------- ICON INJECTION (static) ---------- */
+  function injectIcons(){
+    $$("[data-ic]").forEach(el=>{ el.innerHTML = I[el.dataset.ic] || ""; });
+  }
+
+  /* ---------- BOOT ---------- */
+  document.addEventListener("DOMContentLoaded",()=>{
+    window.VP.applyHero(PHOTOS[0].id);
+    injectIcons();
+    applyLang();
+    initNav(); initReveal(); initForm(); initLB();
+    $$(".lang button").forEach(b=> b.addEventListener("click",()=>setLang(b.dataset.l)));
+  });
+})();
+
+</script>
+<script>
+  // about + video posterlerini ayarla
+  document.addEventListener("DOMContentLoaded",()=>{
+    document.getElementById("aboutImg").src = img("21b7c92be79443e48f4e434ead21c1fa",900,1125);
+    document.getElementById("videoImg").src = img("d5bf17f5d19f4da288e2a2210799dab9",1600,900);
+  });
+</script>
+
+<!-- ===================== TWEAKS ===================== -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel">
+// @ds-adherence-ignore -- omelette starter scaffold (raw elements/hex/px by design)
+
+/* BEGIN USAGE */
+// tweaks-panel.jsx
+// Reusable Tweaks shell + form-control helpers.
+// Exports (to window): useTweaks, TweaksPanel, TweakSection, TweakRow, TweakSlider,
+//   TweakToggle, TweakRadio, TweakSelect, TweakText, TweakNumber, TweakColor, TweakButton.
+//
+// Owns the host protocol (listens for __activate_edit_mode / __deactivate_edit_mode,
+// posts __edit_mode_available / __edit_mode_set_keys / __edit_mode_dismissed) so
+// individual prototypes don't re-roll it. Ships a consistent set of controls so you
+// don't hand-draw <input type="range">, segmented radios, steppers, etc.
+//
+// Usage (in an HTML file that loads React + Babel):
+//
+//   const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+//     "primaryColor": "#D97757",
+//     "palette": ["#D97757", "#29261b", "#f6f4ef"],
+//     "fontSize": 16,
+//     "density": "regular",
+//     "dark": false
+//   }/*EDITMODE-END*/;
+//
+//   function App() {
+//     const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+//     return (
+//       <div style={{ fontSize: t.fontSize, color: t.primaryColor }}>
+//         Hello
+//         <TweaksPanel>
+//           <TweakSection label="Typography" />
+//           <TweakSlider label="Font size" value={t.fontSize} min={10} max={32} unit="px"
+//                        onChange={(v) => setTweak('fontSize', v)} />
+//           <TweakRadio  label="Density" value={t.density}
+//                        options={['compact', 'regular', 'comfy']}
+//                        onChange={(v) => setTweak('density', v)} />
+//           <TweakSection label="Theme" />
+//           <TweakColor  label="Primary" value={t.primaryColor}
+//                        options={['#D97757', '#2A6FDB', '#1F8A5B', '#7A5AE0']}
+//                        onChange={(v) => setTweak('primaryColor', v)} />
+//           <TweakColor  label="Palette" value={t.palette}
+//                        options={[['#D97757', '#29261b', '#f6f4ef'],
+//                                  ['#475569', '#0f172a', '#f1f5f9']]}
+//                        onChange={(v) => setTweak('palette', v)} />
+//           <TweakToggle label="Dark mode" value={t.dark}
+//                        onChange={(v) => setTweak('dark', v)} />
+//         </TweaksPanel>
+//       </div>
+//     );
+//   }
+//
+// TweakRadio is the segmented control for 2–3 short options (auto-falls-back to
+// TweakSelect past ~16/~10 chars per label); reach for TweakSelect directly when
+// options are many or long. For color tweaks always curate 3-4 options rather than
+// a free picker; an option can also be a whole 2–5 color palette (the stored value
+// is the array). The Tweak* controls are a floor, not a ceiling — build custom
+// controls inside the panel if a tweak calls for UI they don't cover.
+/* END USAGE */
+// ─────────────────────────────────────────────────────────────────────────────
+
+const __TWEAKS_STYLE = `
+  .twk-panel{position:fixed;right:16px;bottom:16px;z-index:2147483646;width:280px;
+    max-height:calc(100vh - 32px);display:flex;flex-direction:column;
+    transform:scale(var(--dc-inv-zoom,1));transform-origin:bottom right;
+    background:rgba(250,249,247,.78);color:#29261b;
+    -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+    border:.5px solid rgba(255,255,255,.6);border-radius:14px;
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 12px 40px rgba(0,0,0,.18);
+    font:11.5px/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;overflow:hidden}
+  .twk-hd{display:flex;align-items:center;justify-content:space-between;
+    padding:10px 8px 10px 14px;cursor:move;user-select:none}
+  .twk-hd b{font-size:12px;font-weight:600;letter-spacing:.01em}
+  .twk-x{appearance:none;border:0;background:transparent;color:rgba(41,38,27,.55);
+    width:22px;height:22px;border-radius:6px;cursor:default;font-size:13px;line-height:1}
+  .twk-x:hover{background:rgba(0,0,0,.06);color:#29261b}
+  .twk-body{padding:2px 14px 14px;display:flex;flex-direction:column;gap:10px;
+    overflow-y:auto;overflow-x:hidden;min-height:0;
+    scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
+  .twk-body::-webkit-scrollbar{width:8px}
+  .twk-body::-webkit-scrollbar-track{background:transparent;margin:2px}
+  .twk-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:4px;
+    border:2px solid transparent;background-clip:content-box}
+  .twk-body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.25);
+    border:2px solid transparent;background-clip:content-box}
+  .twk-row{display:flex;flex-direction:column;gap:5px}
+  .twk-row-h{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+  .twk-lbl{display:flex;justify-content:space-between;align-items:baseline;
+    color:rgba(41,38,27,.72)}
+  .twk-lbl>span:first-child{font-weight:500}
+  .twk-val{color:rgba(41,38,27,.5);font-variant-numeric:tabular-nums}
+
+  .twk-sect{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(41,38,27,.45);padding:10px 0 0}
+  .twk-sect:first-child{padding-top:0}
+
+  .twk-field{appearance:none;box-sizing:border-box;width:100%;min-width:0;height:26px;padding:0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;
+    background:rgba(255,255,255,.6);color:inherit;font:inherit;outline:none}
+  .twk-field:focus{border-color:rgba(0,0,0,.25);background:rgba(255,255,255,.85)}
+  select.twk-field{padding-right:22px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>");
+    background-repeat:no-repeat;background-position:right 8px center}
+
+  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:6px 0;
+    border-radius:999px;background:rgba(0,0,0,.12);outline:none}
+  .twk-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+    width:14px;height:14px;border-radius:50%;background:#fff;
+    border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  .twk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
+    background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+
+  .twk-seg{position:relative;display:flex;padding:2px;border-radius:8px;
+    background:rgba(0,0,0,.06);user-select:none}
+  .twk-seg-thumb{position:absolute;top:2px;bottom:2px;border-radius:6px;
+    background:rgba(255,255,255,.9);box-shadow:0 1px 2px rgba(0,0,0,.12);
+    transition:left .15s cubic-bezier(.3,.7,.4,1),width .15s}
+  .twk-seg.dragging .twk-seg-thumb{transition:none}
+  .twk-seg button{appearance:none;position:relative;z-index:1;flex:1;border:0;
+    background:transparent;color:inherit;font:inherit;font-weight:500;min-height:22px;
+    border-radius:6px;cursor:default;padding:4px 6px;line-height:1.2;
+    overflow-wrap:anywhere}
+
+  .twk-toggle{position:relative;width:32px;height:18px;border:0;border-radius:999px;
+    background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding:0}
+  .twk-toggle[data-on="1"]{background:#34c759}
+  .twk-toggle i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+  .twk-toggle[data-on="1"] i{transform:translateX(14px)}
+
+  .twk-num{display:flex;align-items:center;box-sizing:border-box;min-width:0;height:26px;padding:0 0 0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;background:rgba(255,255,255,.6)}
+  .twk-num-lbl{font-weight:500;color:rgba(41,38,27,.6);cursor:ew-resize;
+    user-select:none;padding-right:8px}
+  .twk-num input{flex:1;min-width:0;height:100%;border:0;background:transparent;
+    font:inherit;font-variant-numeric:tabular-nums;text-align:right;padding:0 8px 0 0;
+    outline:none;color:inherit;-moz-appearance:textfield}
+  .twk-num input::-webkit-inner-spin-button,.twk-num input::-webkit-outer-spin-button{
+    -webkit-appearance:none;margin:0}
+  .twk-num-unit{padding-right:8px;color:rgba(41,38,27,.45)}
+
+  .twk-btn{appearance:none;height:26px;padding:0 12px;border:0;border-radius:7px;
+    background:rgba(0,0,0,.78);color:#fff;font:inherit;font-weight:500;cursor:default}
+  .twk-btn:hover{background:rgba(0,0,0,.88)}
+  .twk-btn.secondary{background:rgba(0,0,0,.06);color:inherit}
+  .twk-btn.secondary:hover{background:rgba(0,0,0,.1)}
+
+  .twk-swatch{appearance:none;-webkit-appearance:none;width:56px;height:22px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:6px;padding:0;cursor:default;
+    background:transparent;flex-shrink:0}
+  .twk-swatch::-webkit-color-swatch-wrapper{padding:0}
+  .twk-swatch::-webkit-color-swatch{border:0;border-radius:5.5px}
+  .twk-swatch::-moz-color-swatch{border:0;border-radius:5.5px}
+
+  .twk-chips{display:flex;gap:6px}
+  .twk-chip{position:relative;appearance:none;flex:1;min-width:0;height:46px;
+    padding:0;border:0;border-radius:6px;overflow:hidden;cursor:default;
+    box-shadow:0 0 0 .5px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.06);
+    transition:transform .12s cubic-bezier(.3,.7,.4,1),box-shadow .12s}
+  .twk-chip:hover{transform:translateY(-1px);
+    box-shadow:0 0 0 .5px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.12)}
+  .twk-chip[data-on="1"]{box-shadow:0 0 0 1.5px rgba(0,0,0,.85),
+    0 2px 6px rgba(0,0,0,.15)}
+  .twk-chip>span{position:absolute;top:0;bottom:0;right:0;width:34%;
+    display:flex;flex-direction:column;box-shadow:-1px 0 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i{flex:1;box-shadow:0 -1px 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i:first-child{box-shadow:none}
+  .twk-chip svg{position:absolute;top:6px;left:6px;width:13px;height:13px;
+    filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
+`;
+
+// ── useTweaks ───────────────────────────────────────────────────────────────
+// Single source of truth for tweak values. setTweak persists via the host
+// (__edit_mode_set_keys → host rewrites the EDITMODE block on disk).
+function useTweaks(defaults) {
+  const [values, setValues] = React.useState(defaults);
+  // Accepts either setTweak('key', value) or setTweak({ key: value, ... }) so a
+  // useState-style call doesn't write a "[object Object]" key into the persisted
+  // JSON block.
+  const setTweak = React.useCallback((keyOrEdits, val) => {
+    const edits = typeof keyOrEdits === 'object' && keyOrEdits !== null
+      ? keyOrEdits : { [keyOrEdits]: val };
+    setValues((prev) => ({ ...prev, ...edits }));
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*');
+    // Same-window signal so in-page listeners (deck-stage rail thumbnails)
+    // can react — the parent message only reaches the host, not peers.
+    window.dispatchEvent(new CustomEvent('tweakchange', { detail: edits }));
+  }, []);
+  return [values, setTweak];
+}
+
+// ── TweaksPanel ─────────────────────────────────────────────────────────────
+// Floating shell. Registers the protocol listener BEFORE announcing
+// availability — if the announce ran first, the host's activate could land
+// before our handler exists and the toolbar toggle would silently no-op.
+// The close button posts __edit_mode_dismissed so the host's toolbar toggle
+// flips off in lockstep; the host echoes __deactivate_edit_mode back which
+// is what actually hides the panel.
+function TweaksPanel({ title = 'Tweaks', children }) {
+  const [open, setOpen] = React.useState(false);
+  const dragRef = React.useRef(null);
+  const offsetRef = React.useRef({ x: 16, y: 16 });
+  const PAD = 16;
+
+  const clampToViewport = React.useCallback(() => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const w = panel.offsetWidth, h = panel.offsetHeight;
+    const maxRight = Math.max(PAD, window.innerWidth - w - PAD);
+    const maxBottom = Math.max(PAD, window.innerHeight - h - PAD);
+    offsetRef.current = {
+      x: Math.min(maxRight, Math.max(PAD, offsetRef.current.x)),
+      y: Math.min(maxBottom, Math.max(PAD, offsetRef.current.y)),
+    };
+    panel.style.right = offsetRef.current.x + 'px';
+    panel.style.bottom = offsetRef.current.y + 'px';
+  }, []);
+
+  React.useEffect(() => {
+    if (!open) return;
+    clampToViewport();
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', clampToViewport);
+      return () => window.removeEventListener('resize', clampToViewport);
+    }
+    const ro = new ResizeObserver(clampToViewport);
+    ro.observe(document.documentElement);
+    return () => ro.disconnect();
+  }, [open, clampToViewport]);
+
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      const t = e?.data?.type;
+      if (t === '__activate_edit_mode') setOpen(true);
+      else if (t === '__deactivate_edit_mode') setOpen(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  const dismiss = () => {
+    setOpen(false);
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  };
+
+  const onDragStart = (e) => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const r = panel.getBoundingClientRect();
+    const sx = e.clientX, sy = e.clientY;
+    const startRight = window.innerWidth - r.right;
+    const startBottom = window.innerHeight - r.bottom;
+    const move = (ev) => {
+      offsetRef.current = {
+        x: startRight - (ev.clientX - sx),
+        y: startBottom - (ev.clientY - sy),
+      };
+      clampToViewport();
+    };
+    const up = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', up);
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  };
+
+  if (!open) return null;
+  return (
+    <>
+      <style>{__TWEAKS_STYLE}</style>
+      <div ref={dragRef} className="twk-panel" data-omelette-chrome=""
+           style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
+        <div className="twk-hd" onMouseDown={onDragStart}>
+          <b>{title}</b>
+          <button className="twk-x" aria-label="Close tweaks"
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={dismiss}>✕</button>
+        </div>
+        <div className="twk-body">
+          {children}
+        </div>
+      </div>
+    </>
+  );
+}
+
+// ── Layout helpers ──────────────────────────────────────────────────────────
+
+function TweakSection({ label, children }) {
+  return (
+    <>
+      <div className="twk-sect">{label}</div>
+      {children}
+    </>
+  );
+}
+
+function TweakRow({ label, value, children, inline = false }) {
+  return (
+    <div className={inline ? 'twk-row twk-row-h' : 'twk-row'}>
+      <div className="twk-lbl">
+        <span>{label}</span>
+        {value != null && <span className="twk-val">{value}</span>}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+// ── Controls ────────────────────────────────────────────────────────────────
+
+function TweakSlider({ label, value, min = 0, max = 100, step = 1, unit = '', onChange }) {
+  return (
+    <TweakRow label={label} value={`${value}${unit}`}>
+      <input type="range" className="twk-slider" min={min} max={max} step={step}
+             value={value} onChange={(e) => onChange(Number(e.target.value))} />
+    </TweakRow>
+  );
+}
+
+function TweakToggle({ label, value, onChange }) {
+  return (
+    <div className="twk-row twk-row-h">
+      <div className="twk-lbl"><span>{label}</span></div>
+      <button type="button" className="twk-toggle" data-on={value ? '1' : '0'}
+              role="switch" aria-checked={!!value}
+              onClick={() => onChange(!value)}><i /></button>
+    </div>
+  );
+}
+
+function TweakRadio({ label, value, options, onChange }) {
+  const trackRef = React.useRef(null);
+  const [dragging, setDragging] = React.useState(false);
+  // The active value is read by pointer-move handlers attached for the lifetime
+  // of a drag — ref it so a stale closure doesn't fire onChange for every move.
+  const valueRef = React.useRef(value);
+  valueRef.current = value;
+
+  // Segments wrap mid-word once per-segment width runs out. The track is
+  // ~248px (280 panel − 28 body pad − 4 seg pad), each button loses 12px
+  // to its own padding, and 11.5px system-ui averages ~6.3px/char — so 2
+  // options fit ~16 chars each, 3 fit ~10. Past that (or >3 options), fall
+  // back to a dropdown rather than wrap.
+  const labelLen = (o) => String(typeof o === 'object' ? o.label : o).length;
+  const maxLen = options.reduce((m, o) => Math.max(m, labelLen(o)), 0);
+  const fitsAsSegments = maxLen <= ({ 2: 16, 3: 10 }[options.length] ?? 0);
+  if (!fitsAsSegments) {
+    // <select> emits strings — map back to the original option value so the
+    // fallback stays type-preserving (numbers, booleans) like the segment path.
+    const resolve = (s) => {
+      const m = options.find((o) => String(typeof o === 'object' ? o.value : o) === s);
+      return m === undefined ? s : typeof m === 'object' ? m.value : m;
+    };
+    return <TweakSelect label={label} value={value} options={options}
+                        onChange={(s) => onChange(resolve(s))} />;
+  }
+  const opts = options.map((o) => (typeof o === 'object' ? o : { value: o, label: o }));
+  const idx = Math.max(0, opts.findIndex((o) => o.value === value));
+  const n = opts.length;
+
+  const segAt = (clientX) => {
+    const r = trackRef.current.getBoundingClientRect();
+    const inner = r.width - 4;
+    const i = Math.floor(((clientX - r.left - 2) / inner) * n);
+    return opts[Math.max(0, Math.min(n - 1, i))].value;
+  };
+
+  const onPointerDown = (e) => {
+    setDragging(true);
+    const v0 = segAt(e.clientX);
+    if (v0 !== valueRef.current) onChange(v0);
+    const move = (ev) => {
+      if (!trackRef.current) return;
+      const v = segAt(ev.clientX);
+      if (v !== valueRef.current) onChange(v);
+    };
+    const up = () => {
+      setDragging(false);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  return (
+    <TweakRow label={label}>
+      <div ref={trackRef} role="radiogroup" onPointerDown={onPointerDown}
+           className={dragging ? 'twk-seg dragging' : 'twk-seg'}>
+        <div className="twk-seg-thumb"
+             style={{ left: `calc(2px + ${idx} * (100% - 4px) / ${n})`,
+                      width: `calc((100% - 4px) / ${n})` }} />
+        {opts.map((o) => (
+          <button key={o.value} type="button" role="radio" aria-checked={o.value === value}>
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakSelect({ label, value, options, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <select className="twk-field" value={value} onChange={(e) => onChange(e.target.value)}>
+        {options.map((o) => {
+          const v = typeof o === 'object' ? o.value : o;
+          const l = typeof o === 'object' ? o.label : o;
+          return <option key={v} value={v}>{l}</option>;
+        })}
+      </select>
+    </TweakRow>
+  );
+}
+
+function TweakText({ label, value, placeholder, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <input className="twk-field" type="text" value={value} placeholder={placeholder}
+             onChange={(e) => onChange(e.target.value)} />
+    </TweakRow>
+  );
+}
+
+function TweakNumber({ label, value, min, max, step = 1, unit = '', onChange }) {
+  const clamp = (n) => {
+    if (min != null && n < min) return min;
+    if (max != null && n > max) return max;
+    return n;
+  };
+  const startRef = React.useRef({ x: 0, val: 0 });
+  const onScrubStart = (e) => {
+    e.preventDefault();
+    startRef.current = { x: e.clientX, val: value };
+    const decimals = (String(step).split('.')[1] || '').length;
+    const move = (ev) => {
+      const dx = ev.clientX - startRef.current.x;
+      const raw = startRef.current.val + dx * step;
+      const snapped = Math.round(raw / step) * step;
+      onChange(clamp(Number(snapped.toFixed(decimals))));
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+  return (
+    <div className="twk-num">
+      <span className="twk-num-lbl" onPointerDown={onScrubStart}>{label}</span>
+      <input type="number" value={value} min={min} max={max} step={step}
+             onChange={(e) => onChange(clamp(Number(e.target.value)))} />
+      {unit && <span className="twk-num-unit">{unit}</span>}
+    </div>
+  );
+}
+
+// Relative-luminance contrast pick — checkmarks drawn over a swatch need to
+// read on both #111 and #fafafa without per-option configuration. Hex input
+// only (#rgb / #rrggbb); named or rgb()/hsl() colors fall through to "light".
+function __twkIsLight(hex) {
+  const h = String(hex).replace('#', '');
+  const x = h.length === 3 ? h.replace(/./g, (c) => c + c) : h.padEnd(6, '0');
+  const n = parseInt(x.slice(0, 6), 16);
+  if (Number.isNaN(n)) return true;
+  const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+  return r * 299 + g * 587 + b * 114 > 148000;
+}
+
+const __TwkCheck = ({ light }) => (
+  <svg viewBox="0 0 14 14" aria-hidden="true">
+    <path d="M3 7.2 5.8 10 11 4.2" fill="none" strokeWidth="2.2"
+          strokeLinecap="round" strokeLinejoin="round"
+          stroke={light ? 'rgba(0,0,0,.78)' : '#fff'} />
+  </svg>
+);
+
+// TweakColor — curated color/palette picker. Each option is either a single
+// hex string or an array of 1-5 hex strings; the card adapts — a lone color
+// renders solid, a palette renders colors[0] as the hero (left ~2/3) with the
+// rest stacked in a sharp column on the right. onChange emits the
+// option in the shape it was passed (string stays string, array stays array).
+// Without options it falls back to the native color input for back-compat.
+function TweakColor({ label, value, options, onChange }) {
+  if (!options || !options.length) {
+    return (
+      <div className="twk-row twk-row-h">
+        <div className="twk-lbl"><span>{label}</span></div>
+        <input type="color" className="twk-swatch" value={value}
+               onChange={(e) => onChange(e.target.value)} />
+      </div>
+    );
+  }
+  // Native <input type=color> emits lowercase hex per the HTML spec, so
+  // compare case-insensitively. String() guards JSON.stringify(undefined),
+  // which returns the primitive undefined (no .toLowerCase).
+  const key = (o) => String(JSON.stringify(o)).toLowerCase();
+  const cur = key(value);
+  return (
+    <TweakRow label={label}>
+      <div className="twk-chips" role="radiogroup">
+        {options.map((o, i) => {
+          const colors = Array.isArray(o) ? o : [o];
+          const [hero, ...rest] = colors;
+          const sup = rest.slice(0, 4);
+          const on = key(o) === cur;
+          return (
+            <button key={i} type="button" className="twk-chip" role="radio"
+                    aria-checked={on} data-on={on ? '1' : '0'}
+                    aria-label={colors.join(', ')} title={colors.join(' · ')}
+                    style={{ background: hero }}
+                    onClick={() => onChange(o)}>
+              {sup.length > 0 && (
+                <span>
+                  {sup.map((c, j) => <i key={j} style={{ background: c }} />)}
+                </span>
+              )}
+              {on && <__TwkCheck light={__twkIsLight(hero)} />}
+            </button>
+          );
+        })}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakButton({ label, onClick, secondary = false }) {
+  return (
+    <button type="button" className={secondary ? 'twk-btn secondary' : 'twk-btn'}
+            onClick={onClick}>{label}</button>
+  );
+}
+
+Object.assign(window, {
+  useTweaks, TweaksPanel, TweakSection, TweakRow,
+  TweakSlider, TweakToggle, TweakRadio, TweakSelect,
+  TweakText, TweakNumber, TweakColor, TweakButton,
+});
+
+</script>
+<div id="tweaks-root"></div>
+<script type="text/babel">
+const VP_TWEAK_DEFAULTS = {
+  theme: "natural",
+  accent: "__theme",
+  radius: 14,
+  hero: "6a042e4393ce4f2a9a637a875dbd144b"
+};
+const THEME_OPTS = [
+  ["natural","Sıcak Doğal"], ["luxe","Lüks Sakin"], ["minimal","Modern Minimal"], ["akdeniz","Akdeniz"]
+];
+const HERO_OPTS = [
+  ["6a042e4393ce4f2a9a637a875dbd144b","Gece havuz"],
+  ["d5bf17f5d19f4da288e2a2210799dab9","Dağ manzaralı"],
+  ["ad6fc61d83354d0baebe6eaf7cd78396","Dış görünüm"],
+  ["396592e7ed78441d8aef75c5417dcb99","Havuz & şemsiye"]
+];
+function VPTweaks(){
+  const [t, setTweak] = useTweaks(VP_TWEAK_DEFAULTS);
+  React.useEffect(()=>{ window.VP && window.VP.applyTheme(t.theme); }, [t.theme]);
+  React.useEffect(()=>{ if(window.VP) window.VP.applyAccent(t.accent==="__theme" ? null : t.accent); }, [t.accent, t.theme]);
+  React.useEffect(()=>{ window.VP && window.VP.applyRadius(t.radius); }, [t.radius]);
+  React.useEffect(()=>{ window.VP && window.VP.applyHero(t.hero); }, [t.hero]);
+  return (
+    <TweaksPanel>
+      <TweakSection label="Estetik tema" />
+      <TweakSelect label="Tema" value={t.theme}
+        options={THEME_OPTS.map(o=>({value:o[0], label:o[1]}))}
+        onChange={(v)=>setTweak('theme', v)} />
+      <TweakSelect label="Vurgu rengi" value={t.accent}
+        options={[
+          {value:"__theme", label:"Temaya uy"},
+          {value:"#b05a3c", label:"Terrakotta"},
+          {value:"#2f7ca0", label:"Deniz mavisi"},
+          {value:"#c7a35c", label:"Altın"},
+          {value:"#5a7d54", label:"Zeytin"},
+          {value:"#9c6b8e", label:"Erik"}
+        ]}
+        onChange={(v)=>setTweak('accent', v)} />
+      <TweakSlider label="Köşe yuvarlaklığı" value={t.radius} min={0} max={26} step={2} unit="px"
+        onChange={(v)=>setTweak('radius', v)} />
+      <TweakSection label="Görsel" />
+      <TweakSelect label="Hero fotoğrafı" value={t.hero}
+        options={HERO_OPTS.map(o=>({value:o[0], label:o[1]}))}
+        onChange={(v)=>setTweak('hero', v)} />
+    </TweaksPanel>
+  );
+}
+function mountVP(){
+  if(!window.useTweaks || !window.React || !window.ReactDOM){ return setTimeout(mountVP, 60); }
+  ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<VPTweaks/>);
+}
+mountVP();
+</script>
+
+<template id="__bundler_thumbnail">
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<rect width="100" height="100" fill="#41573f"/>
+<path d="M50 24 38 46h7l-9 16h9l-7 12h38l-7-12h9l-9-16h7z" fill="#f4efe6"/>
+<rect x="46" y="74" width="8" height="8" fill="#b05a3c"/>
+</svg>
+</template>
+
+</body>
+</html>
