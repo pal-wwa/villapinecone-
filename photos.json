@@ -4,14 +4,14 @@
     "tr": "Gece aydınlatmalı havuz",
     "en": "Pool lit at night",
     "cls": "wide tall",
-    "category": "bahce"
+    "category": "havuz"
   },
   {
     "id": "d5bf17f5d19f4da288e2a2210799dab9",
     "tr": "Dağ manzaralı havuz",
     "en": "Pool with mountain view",
     "cls": "",
-    "category": "bahce"
+    "category": "havuz"
   },
   {
     "id": "ad6fc61d83354d0baebe6eaf7cd78396",
@@ -25,14 +25,14 @@
     "tr": "Havuz başı akşam",
     "en": "Poolside evening",
     "cls": "",
-    "category": "bahce"
+    "category": "dis_gorunum"
   },
   {
     "id": "fc7d1c56389f4058b694bf4c954f4a46",
     "tr": "Çift kişilik yatak odası",
     "en": "Double bedroom",
     "cls": "",
-    "category": "bahce"
+    "category": "ic_mekan"
   },
   {
     "id": "04d856a46a184ea4bcc5747769e53393",
@@ -53,7 +53,7 @@
     "tr": "İki kişilik oda",
     "en": "Twin bedroom",
     "cls": "",
-    "category": "bahce"
+    "category": "ic_mekan"
   },
   {
     "id": "eda6a7e45bdb40788bdf8242aa387c38",
@@ -74,19 +74,12 @@
     "tr": "Bağımsız mutfak",
     "en": "Kitchen",
     "cls": "",
-    "category": "bahce"
+    "category": "ic_mekan"
   },
   {
     "id": "396592e7ed78441d8aef75c5417dcb99",
     "tr": "Havuz ve şemsiyeler",
     "en": "Pool & parasols",
-    "cls": "",
-    "category": "bahce"
-  },
-  {
-    "url": "https://pub-8944ca5b59df4a32b3fc893f6e1a855b.r2.dev/1781644449398_cardakresim.jpeg",
-    "tr": "Bahçe",
-    "en": "",
     "cls": "",
     "category": "bahce"
   }
