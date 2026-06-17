@@ -1107,9 +1107,6 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     const target = document.getElementById(anchorId);
     if (!target) return;
     const offset = target.getBoundingClientRect().top + window.scrollY;
-    // Önce kendi sayfada scroll et (overflow:hidden olmasa çalışır)
-    target.scrollIntoView({ behavior: 'smooth' });
-    // Wix parent'a mesaj gönder
     window.parent.postMessage({ type: 'scrollTo', anchor: anchorId, offset: offset }, '*');
   }
 
