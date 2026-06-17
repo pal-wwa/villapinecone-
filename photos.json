@@ -1,93 +1,15 @@
 [
-  {
-    "id": "6a042e4393ce4f2a9a637a875dbd144b",
-    "tr": "Gece aydınlatmalı havuz",
-    "en": "Pool lit at night",
-    "cls": "wide tall",
-    "category": "havuz"
-  },
-  {
-    "id": "d5bf17f5d19f4da288e2a2210799dab9",
-    "tr": "Dağ manzaralı havuz",
-    "en": "Pool with mountain view",
-    "cls": "",
-    "category": "havuz"
-  },
-  {
-    "id": "ad6fc61d83354d0baebe6eaf7cd78396",
-    "tr": "Villa dış görünüm",
-    "en": "Villa exterior",
-    "cls": "",
-    "category": "bahce"
-  },
-  {
-    "id": "fc7d1c56389f4058b694bf4c954f4a46",
-    "tr": "Çift kişilik yatak odası",
-    "en": "Double bedroom",
-    "cls": "",
-    "category": "ic_mekan"
-  },
-  {
-    "id": "04d856a46a184ea4bcc5747769e53393",
-    "tr": "Bahçe oturma alanı",
-    "en": "Garden lounge",
-    "cls": "tall",
-    "category": "bahce"
-  },
-  {
-    "id": "21b7c92be79443e48f4e434ead21c1fa",
-    "tr": "Havuz başı akşam",
-    "en": "Poolside evening",
-    "cls": "",
-    "category": "dis_gorunum"
-  },
-  {
-    "id": "9268e90d4e00440085061fdc9c874305",
-    "tr": "Havuz ve şezlonglar",
-    "en": "Pool & sunbeds",
-    "cls": "",
-    "category": "bahce"
-  },
-  {
-    "id": "8ecd791923904941a05ae3dc4ac067b7",
-    "tr": "İki kişilik oda",
-    "en": "Twin bedroom",
-    "cls": "",
-    "category": "ic_mekan"
-  },
-  {
-    "id": "eda6a7e45bdb40788bdf8242aa387c38",
-    "tr": "Bahçede hamak",
-    "en": "Garden hammock",
-    "cls": "",
-    "category": "bahce"
-  },
-  {
-    "id": "da642b470cbb40e59657c5da71c6bc19",
-    "tr": "Akşam yemeği keyfi",
-    "en": "Alfresco dining",
-    "cls": "wide",
-    "category": "bahce"
-  },
-  {
-    "id": "6064760d59794a24abecbef958d4917c",
-    "tr": "Bağımsız mutfak",
-    "en": "Kitchen",
-    "cls": "",
-    "category": "ic_mekan"
-  },
-  {
-    "id": "396592e7ed78441d8aef75c5417dcb99",
-    "tr": "Havuz ve şemsiyeler",
-    "en": "Pool & parasols",
-    "cls": "",
-    "category": "bahce"
-  },
-  {
-    "url": "https://pub-8944ca5b59df4a32b3fc893f6e1a855b.r2.dev/1781720889723_cardakresim.jpeg",
-    "tr": "ÇARDAK FOTOĞRAF",
-    "en": "ARDARK PHOTO",
-    "cls": "wide",
-    "category": "dis_gorunum"
-  }
+  { "id":"6a042e4393ce4f2a9a637a875dbd144b", "tr":"Gece aydınlatmalı havuz",  "en":"Pool lit at night",       "cls":"wide tall", "category":"havuz"      },
+  { "id":"d5bf17f5d19f4da288e2a2210799dab9", "tr":"Dağ manzaralı havuz",       "en":"Pool with mountain view", "cls":"",          "category":"havuz"      },
+  { "id":"ad6fc61d83354d0baebe6eaf7cd78396", "tr":"Villa dış görünüm",         "en":"Villa exterior",          "cls":"",          "category":"dis_gorunum"},
+  { "id":"fc7d1c56389f4058b694bf4c954f4a46", "tr":"Çift kişilik yatak odası",  "en":"Double bedroom",          "cls":"",          "category":"ic_mekan"   },
+  { "id":"04d856a46a184ea4bcc5747769e53393", "tr":"Bahçe oturma alanı",        "en":"Garden lounge",           "cls":"tall",      "category":"bahce"      },
+  { "id":"21b7c92be79443e48f4e434ead21c1fa", "tr":"Havuz başı akşam",          "en":"Poolside evening",        "cls":"",          "category":"havuz"      },
+  { "id":"9268e90d4e00440085061fdc9c874305", "tr":"Havuz ve şezlonglar",       "en":"Pool & sunbeds",          "cls":"",          "category":"havuz"      },
+  { "id":"8ecd791923904941a05ae3dc4ac067b7", "tr":"İki kişilik oda",           "en":"Twin bedroom",            "cls":"",          "category":"ic_mekan"   },
+  { "id":"eda6a7e45bdb40788bdf8242aa387c38", "tr":"Bahçede hamak",             "en":"Garden hammock",          "cls":"",          "category":"bahce"      },
+  { "id":"da642b470cbb40e59657c5da71c6bc19", "tr":"Akşam yemeği keyfi",        "en":"Alfresco dining",         "cls":"wide",      "category":"bahce"      },
+  { "id":"6064760d59794a24abecbef958d4917c", "tr":"Bağımsız mutfak",           "en":"Kitchen",                 "cls":"",          "category":"ic_mekan"   },
+  { "id":"396592e7ed78441d8aef75c5417dcb99", "tr":"Havuz ve şemsiyeler",       "en":"Pool & parasols",         "cls":"",          "category":"havuz"      },
+  { "url":"https://pub-8944ca5b59df4a32b3fc893f6e1a855b.r2.dev/1781720889723_cardakresim.jpeg", "tr":"Çardak", "en":"Pergola", "cls":"wide", "category":"dis_gorunum" }
 ]
