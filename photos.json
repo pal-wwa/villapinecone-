@@ -21,13 +21,6 @@
     "category": "bahce"
   },
   {
-    "id": "21b7c92be79443e48f4e434ead21c1fa",
-    "tr": "Havuz başı akşam",
-    "en": "Poolside evening",
-    "cls": "",
-    "category": "dis_gorunum"
-  },
-  {
     "id": "fc7d1c56389f4058b694bf4c954f4a46",
     "tr": "Çift kişilik yatak odası",
     "en": "Double bedroom",
@@ -40,6 +33,13 @@
     "en": "Garden lounge",
     "cls": "tall",
     "category": "bahce"
+  },
+  {
+    "id": "21b7c92be79443e48f4e434ead21c1fa",
+    "tr": "Havuz başı akşam",
+    "en": "Poolside evening",
+    "cls": "",
+    "category": "dis_gorunum"
   },
   {
     "id": "9268e90d4e00440085061fdc9c874305",
@@ -82,5 +82,12 @@
     "en": "Pool & parasols",
     "cls": "",
     "category": "bahce"
+  },
+  {
+    "url": "https://pub-8944ca5b59df4a32b3fc893f6e1a855b.r2.dev/1781720889723_cardakresim.jpeg",
+    "tr": "ÇARDAK FOTOĞRAF",
+    "en": "ARDARK PHOTO",
+    "cls": "wide",
+    "category": "dis_gorunum"
   }
 ]
