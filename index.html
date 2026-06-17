@@ -10,7 +10,7 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-html, body { overflow-x: hidden; max-width: 100%; overflow: hidden; /* mevcut satırlara ekle */}
+html, body { overflow-x: hidden; max-width: 100%; overflow: hidden; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 :root {
@@ -263,95 +263,36 @@ p { margin:0; }
 .amen-cols li svg { width:17px; height:17px; color:var(--accent); flex:none; }
 @media (max-width:880px){ .amen-wrap{ grid-template-columns:1fr; gap:36px; } }
 
-/* ============================================================
-   GALERİ — kategori filtreleri + sahne + şerit
-   ============================================================ */
-
-/* Kategori sekmeleri */
+/* GALLERY */
 .g-filters { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px; }
 .g-f { border:1px solid var(--line); background:transparent; color:var(--ink-soft); font-size:14px; font-weight:600; padding:9px 18px; border-radius:999px; cursor:pointer; transition:.2s; }
 .g-f:hover { border-color:var(--accent); color:var(--accent); }
 .g-f.on { background:var(--accent); color:var(--on-accent); border-color:var(--accent); }
 @media (max-width:560px){ .g-f{ font-size:13px; padding:8px 14px; } }
 
-/* Sahne + şerit grid */
-.g-stage {
-  display: grid;
-  grid-template-columns: 1fr 220px;
-  gap: 16px;
-}
+.g-stage { display:grid; grid-template-columns:1fr 220px; gap:16px; }
 @media (max-width:760px){ .g-stage{ grid-template-columns:1fr; } }
 
-/* Sol: büyük fotoğraf */
-.g-main {
-  position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  background: var(--surface-2);
-  cursor: pointer;
-  min-height: 460px;
-  box-shadow: var(--shadow);
-}
+.g-main { position:relative; border-radius:var(--radius-lg); overflow:hidden; background:var(--surface-2); cursor:pointer; min-height:460px; box-shadow:var(--shadow); }
 @media (max-width:760px){ .g-main{ min-height:280px; } }
 @media (max-width:400px){ .g-main{ min-height:220px; } }
 
-.g-main-img {
-  position: absolute; inset:0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: opacity .3s ease, filter .35s ease;
-}
-.g-main:hover .g-main-img { transform: scale(1.03); transition: opacity .3s ease, filter .35s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
-.g-main::after {
-  content:""; position:absolute; inset:0;
-  background:linear-gradient(0deg, rgba(8,8,6,.65) 0%, rgba(8,8,6,.0) 45%);
-  pointer-events:none;
-}
+.g-main-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity .3s ease, filter .35s ease; }
+.g-main:hover .g-main-img { transform:scale(1.03); transition:opacity .3s ease, filter .35s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+.g-main::after { content:""; position:absolute; inset:0; background:linear-gradient(0deg, rgba(8,8,6,.65) 0%, rgba(8,8,6,.0) 45%); pointer-events:none; }
 
-/* Alt bilgi */
-.g-main-info {
-  position:absolute; bottom:0; left:0; right:0; z-index:2;
-  padding:20px 22px;
-  display:flex; align-items:flex-end; justify-content:space-between;
-}
+.g-main-info { position:absolute; bottom:0; left:0; right:0; z-index:2; padding:20px 22px; display:flex; align-items:flex-end; justify-content:space-between; }
 .g-main-info .meta .v { font-family:var(--font-head); font-size:20px; color:#fff; }
 .g-main-info .meta .d { font-size:11px; letter-spacing:.1em; color:rgba(255,255,255,.6); margin-top:3px; font-weight:600; }
 
-/* Büyüt butonu */
-.g-main-expand {
-  width:42px; height:42px; border-radius:50%;
-  background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.35);
-  color:#fff; display:grid; place-items:center; flex:none; cursor:pointer;
-  transition:background .2s;
-}
+.g-main-expand { width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.35); color:#fff; display:grid; place-items:center; flex:none; cursor:pointer; transition:background .2s; }
 .g-main-expand:hover { background:rgba(255,255,255,.32); }
 .g-main-expand svg { width:18px; height:18px; }
 
-/* Sayaç */
-.g-counter {
-  position:absolute; top:16px; left:16px; z-index:3;
-  background:rgba(0,0,0,.45); backdrop-filter:blur(6px);
-  color:#fff; font-size:12px; font-weight:700; letter-spacing:.08em;
-  padding:5px 12px; border-radius:999px;
-}
+.g-counter { position:absolute; top:16px; left:16px; z-index:3; background:rgba(0,0,0,.45); backdrop-filter:blur(6px); color:#fff; font-size:12px; font-weight:700; letter-spacing:.08em; padding:5px 12px; border-radius:999px; }
+.g-cat-badge { position:absolute; top:16px; right:16px; z-index:3; background:var(--accent); color:var(--on-accent); font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; padding:4px 12px; border-radius:999px; }
 
-/* Kategori etiketi */
-.g-cat-badge {
-  position:absolute; top:16px; right:16px; z-index:3;
-  background:var(--accent); color:var(--on-accent);
-  font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
-  padding:4px 12px; border-radius:999px;
-}
-
-/* Sol/sağ oklar — hover'da belir */
-.g-arr {
-  position:absolute; top:50%; transform:translateY(-50%);
-  width:44px; height:44px; border-radius:50%; border:0;
-  background:rgba(8,8,6,.4); backdrop-filter:blur(6px);
-  color:#fff; display:grid; place-items:center; z-index:3;
-  cursor:pointer; transition:background .2s, opacity .2s;
-  opacity:0;
-}
+.g-arr { position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; border:0; background:rgba(8,8,6,.4); backdrop-filter:blur(6px); color:#fff; display:grid; place-items:center; z-index:3; cursor:pointer; transition:background .2s, opacity .2s; opacity:0; }
 .g-main:hover .g-arr { opacity:1; }
 .g-arr:hover { background:rgba(8,8,6,.65); }
 .g-arr svg { width:20px; height:20px; }
@@ -359,58 +300,25 @@ p { margin:0; }
 .g-arr.next { right:14px; }
 @media (max-width:760px){ .g-arr{ opacity:1; width:38px; height:38px; } }
 
-/* Sağ: thumbnail + başlık şeridi */
-.g-rail {
-  display:flex; flex-direction:column; gap:8px;
-  overflow-y:auto; max-height:460px;
-  padding-right:4px;
-}
+.g-rail { display:flex; flex-direction:column; gap:8px; overflow-y:auto; max-height:460px; padding-right:4px; }
 .g-rail::-webkit-scrollbar { width:4px; }
 .g-rail::-webkit-scrollbar-thumb { background:var(--line); border-radius:4px; }
+@media (max-width:760px){ .g-rail{ flex-direction:row; max-height:none; overflow-x:auto; overflow-y:hidden; padding:2px 0 6px; } }
 
-@media (max-width:760px){
-  .g-rail {
-    flex-direction:row; max-height:none;
-    overflow-x:auto; overflow-y:hidden;
-    padding:2px 0 6px;
-  }
-}
-
-.g-thumb {
-  flex:none; border:1px solid var(--line);
-  padding:10px 12px; border-radius:var(--radius);
-  overflow:hidden; display:flex; align-items:center; gap:12px;
-  background:var(--surface); cursor:pointer;
-  transition:border-color .2s, background .2s;
-  text-align:left; width:100%; outline:none;
-}
+.g-thumb { flex:none; border:1px solid var(--line); padding:10px 12px; border-radius:var(--radius); overflow:hidden; display:flex; align-items:center; gap:12px; background:var(--surface); cursor:pointer; transition:border-color .2s, background .2s; text-align:left; width:100%; outline:none; }
 .g-thumb:hover { border-color:var(--accent); }
-.g-thumb.on {
-  border-color:var(--accent);
-  background:color-mix(in srgb, var(--accent) 8%, var(--surface));
-}
+.g-thumb.on { border-color:var(--accent); background:color-mix(in srgb, var(--accent) 8%, var(--surface)); }
 @media (max-width:760px){ .g-thumb{ min-width:150px; padding:8px 10px; } }
 
-.g-thumb-img {
-  width:64px; height:46px; border-radius:8px;
-  overflow:hidden; flex:none; background:var(--surface-2);
-}
+.g-thumb-img { width:64px; height:46px; border-radius:8px; overflow:hidden; flex:none; background:var(--surface-2); }
 .g-thumb-img img { width:100%; height:100%; object-fit:cover; display:block; }
 @media (max-width:760px){ .g-thumb-img{ width:48px; height:36px; } }
 
 .g-thumb-info { flex:1; min-width:0; }
-.g-thumb-info .tt {
-  font-size:13px; font-weight:600; color:var(--ink);
-  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-}
+.g-thumb-info .tt { font-size:13px; font-weight:600; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .g-thumb-info .tn { font-size:11px; color:var(--ink-soft); margin-top:3px; }
 
-/* Boş kategori mesajı */
-.g-empty {
-  padding:48px 24px; text-align:center;
-  color:var(--ink-soft); font-family:var(--font-accent); font-style:italic;
-  font-size:17px; grid-column:1/-1;
-}
+.g-empty { padding:48px 24px; text-align:center; color:var(--ink-soft); font-family:var(--font-accent); font-style:italic; font-size:17px; grid-column:1/-1; }
 
 /* LIGHTBOX */
 .lb { position:fixed; inset:0; z-index:200; background:rgba(8,8,6,.94); display:none; align-items:center; justify-content:center; }
@@ -551,7 +459,6 @@ form.cform { display:grid; gap:16px; }
 [lang-hide] { display:none !important; }
 iframe, img, video, table { max-width:100%; }
 
-/* Küçük mobil */
 @media (max-width:360px){
   body { font-size:14px; } .wrap { padding:0 12px; }
   .hero-inner { padding-top:28px; padding-bottom:24px; }
@@ -577,7 +484,7 @@ iframe, img, video, table { max-width:100%; }
 <body>
 
 <header class="nav">
-  <a class="brand" href="#top">
+  <a class="brand" href="#top" data-anchor="top">
     <span class="mark" data-ic="pine"></span>
     <span><b>Villa</b><b class="b2">Pinecone</b></span>
   </a>
@@ -585,14 +492,14 @@ iframe, img, video, table { max-width:100%; }
     <button class="nav-burger" id="burger-close" aria-label="Menüyü kapat">
       <span></span><span></span><span></span>
     </button>
-    <a href="#hakkinda" data-i18n="nav.about">Villa</a>
-    <a href="#ozellikler" data-i18n="nav.features">Özellikler</a>
-    <a href="#odalar" data-i18n="nav.rooms">Odalar</a>
-    <a href="#galeri" data-i18n="nav.gallery">Galeri</a>
-    <a href="#konum" data-i18n="nav.location">Konum</a>
-    <a href="#iletisim" data-i18n="nav.contact">İletişim</a>
+    <a href="#hakkinda" data-anchor="hakkinda" data-i18n="nav.about">Villa</a>
+    <a href="#ozellikler" data-anchor="ozellikler" data-i18n="nav.features">Özellikler</a>
+    <a href="#odalar" data-anchor="odalar" data-i18n="nav.rooms">Odalar</a>
+    <a href="#galeri" data-anchor="galeri" data-i18n="nav.gallery">Galeri</a>
+    <a href="#konum" data-anchor="konum" data-i18n="nav.location">Konum</a>
+    <a href="#iletisim" data-anchor="iletisim" data-i18n="nav.contact">İletişim</a>
     <div class="nav-menu-extra">
-      <a class="btn" href="#rezervasyon" data-i18n="nav.reserve">Rezervasyon</a>
+      <a class="btn" href="#rezervasyon" data-anchor="rezervasyon" data-i18n="nav.reserve">Rezervasyon</a>
       <div class="lang">
         <button data-l="tr" class="on">TR</button>
         <button data-l="en">EN</button>
@@ -617,8 +524,8 @@ iframe, img, video, table { max-width:100%; }
     <h1 data-i18n="hero.title">Çam ağaçlarının arasında, size özel bir huzur</h1>
     <p class="lede" data-i18n="hero.lede">Özel ve korunaklı havuzu, yemyeşil bahçesiyle doğayla baş başa bir tatil.</p>
     <div class="hero-cta">
-      <a class="btn lg" href="#rezervasyon"><span data-i18n="hero.cta1">Müsaitliğe Bak</span><span data-ic="arrow"></span></a>
-      <a class="btn lg ghost" href="#galeri" data-i18n="hero.cta2">Galeriyi Gör</a>
+      <a class="btn lg" href="#rezervasyon" data-anchor="rezervasyon"><span data-i18n="hero.cta1">Müsaitliğe Bak</span><span data-ic="arrow"></span></a>
+      <a class="btn lg ghost" href="#galeri" data-anchor="galeri" data-i18n="hero.cta2">Galeriyi Gör</a>
     </div>
     <div class="hero-meta">
       <div class="hm"><div class="v" data-i18n="hero.m1v">4 + 2</div><div class="k" data-i18n="hero.m1k">Kişi kapasite</div></div>
@@ -700,22 +607,18 @@ iframe, img, video, table { max-width:100%; }
   </div>
 </section>
 
-<!-- GALERİ -->
 <section class="section" id="galeri">
   <div class="wrap">
     <div class="section-head reveal">
       <p class="eyebrow" data-i18n="gallery.eyebrow">Galeri</p>
       <h2 data-i18n="gallery.title">Villadan kareler</h2>
-      <p data-i18n="gallery.sub">Büyütmek için fotoğrafa tıklayın.</p>
+      <p data-i18n="gallery.sub">Kategoriye göre süzün; büyütmek için fotoğrafa tıklayın.</p>
     </div>
-    <!-- Kategori filtreleri — JS tarafından doldurulur -->
     <div class="g-filters reveal" id="gFilters"></div>
-    <!-- Sahne + şerit — JS tarafından doldurulur -->
     <div class="reveal" id="gStageWrap"></div>
   </div>
 </section>
 
-<!-- VIDEO -->
 <section class="section-sm" id="video" style="background:var(--surface)">
   <div class="wrap">
     <div class="section-head reveal" style="margin-bottom:36px">
@@ -810,16 +713,16 @@ iframe, img, video, table { max-width:100%; }
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
-        <a class="brand" href="#top"><span class="mark" data-ic="pine"></span><span><b>Villa</b><b class="b2">Pinecone</b></span></a>
+        <a class="brand" href="#top" data-anchor="top"><span class="mark" data-ic="pine"></span><span><b>Villa</b><b class="b2">Pinecone</b></span></a>
         <p data-i18n="foot.tag"></p>
       </div>
       <div class="foot-cols">
         <div class="foot-col">
           <h4 data-i18n="foot.explore">Keşfet</h4>
-          <a href="#hakkinda" data-i18n="nav.about">Villa</a>
-          <a href="#ozellikler" data-i18n="nav.features">Özellikler</a>
-          <a href="#galeri" data-i18n="nav.gallery">Galeri</a>
-          <a href="#konum" data-i18n="nav.location">Konum</a>
+          <a href="#hakkinda" data-anchor="hakkinda" data-i18n="nav.about">Villa</a>
+          <a href="#ozellikler" data-anchor="ozellikler" data-i18n="nav.features">Özellikler</a>
+          <a href="#galeri" data-anchor="galeri" data-i18n="nav.gallery">Galeri</a>
+          <a href="#konum" data-anchor="konum" data-i18n="nav.location">Konum</a>
         </div>
         <div class="foot-col">
           <h4 data-i18n="foot.contact">İletişim</h4>
@@ -836,7 +739,6 @@ iframe, img, video, table { max-width:100%; }
   </div>
 </footer>
 
-<!-- LIGHTBOX -->
 <div class="lb" id="lb">
   <button class="lb-close" id="lbClose" data-ic="x"></button>
   <button class="lb-nav prev" id="lbPrev" data-ic="chevL"></button>
@@ -848,7 +750,6 @@ iframe, img, video, table { max-width:100%; }
   </div>
 </div>
 
-<!-- VIDEO MODAL -->
 <div class="vmodal" id="vmodal">
   <div class="vmodal-inner">
     <button class="vmodal-close" id="vmodalClose" data-ic="x"></button>
@@ -857,65 +758,30 @@ iframe, img, video, table { max-width:100%; }
 </div>
 
 <script>
-/* ============================================================
-   MEDYA AYARLARI — sadece bu bloğu düzenle
-   ============================================================ */
-
 const WIX = "https://static.wixstatic.com/media/f4ff34_";
-
-// Hem Wix ID hem dış URL destekler
 function photoSrc(p, w, h) {
   if (p.url) return p.url;
   const ext = p.ext || "jpg";
   return `${WIX}${p.id}~mv2.${ext}/v1/fill/w_${w},h_${h},al_c,q_88,enc_auto/f4ff34_${p.id}~mv2.${ext}`;
 }
-
-/* ── FOTOĞRAFLAR — photos.json'dan çekilir ────────────────────
-   Yeni fotoğraf eklemek için sadece photos.json'u düzenle.
-   Formatı:
-     { "id":"WIX_ID",           "tr":"...", "en":"...", "cls":"", "category":"havuz" }
-     { "url":"https://tam-url", "tr":"...", "en":"...", "cls":"", "category":"bahce" }
-
-   category değerleri: havuz | bahce | ic_mekan | dis_gorunum
-   ──────────────────────────────────────────────────────────── */
-
-// JSON dosyaları — index.html ile aynı klasörde olmalı
 const PHOTOS_URL   = "photos.json";
 const SETTINGS_URL = "settings.json";
-
-// settings.json değerini src'ye çevir: tam URL ise direkt, Wix ID ise CDN'den
 function settingSrc(val, w, h) {
   if (!val) return "";
   if (val.startsWith("http")) return val;
   return photoSrc({ id: val }, w, h);
 }
-
-// Kategori slug → okunabilir etiket (TR / EN)
 const CAT_LABELS = {
   tr: { havuz:"Havuz", bahce:"Bahçe", ic_mekan:"İç Mekan", dis_gorunum:"Dış Görünüm" },
-  en: { havuz:"Pool",  bahce:"Garden", ic_mekan:"Interior", dis_gorunum:"Exterior"    }
+  en: { havuz:"Pool",  bahce:"Garden", ic_mekan:"Interior", dis_gorunum:"Exterior" }
 };
-
-// Kategori görünüm sırası (JSON'da olmayan kategori en sona düşer)
 const CAT_ORDER = ["havuz","bahce","ic_mekan","dis_gorunum"];
-
-// Başlangıçta boş — fetch sonrası doldurulur
 let PHOTOS = [];
 
-/* ── VİDEOLAR ──────────────────────────────────────────────── */
 const VIDEOS = [
-  {
-    type: "youtube",
-    src:  "x0fIj8cUnZM",
-    tr:   "Villa turu",
-    en:   "Villa tour",
-    dur:  "2:34"
-  },
-  // ── Yeni video eklemek için:
-  // { type:"youtube", src:"YOUTUBE_ID", tr:"Başlık TR", en:"Title EN", dur:"1:30" },
+  { type:"youtube", src:"x0fIj8cUnZM", tr:"Villa turu", en:"Villa tour", dur:"2:34" },
 ];
 
-/* ── DOLU TARİHLER ── */
 const BOOKED = [
   "2026-6-7","2026-6-8","2026-6-9","2026-6-10",
   "2026-6-20","2026-6-21","2026-6-22",
@@ -926,23 +792,17 @@ const BOOKED = [
 
 const I18N = {
   tr: {
-    "nav.about":"Villa","nav.features":"Özellikler","nav.rooms":"Odalar",
-    "nav.gallery":"Galeri","nav.location":"Konum","nav.contact":"İletişim","nav.reserve":"Rezervasyon",
-    "hero.eyebrow":"Fethiye · Üzümlü — Kızılbel",
-    "hero.title":"Çam ağaçlarının arasında, size özel bir huzur",
+    "nav.about":"Villa","nav.features":"Özellikler","nav.rooms":"Odalar","nav.gallery":"Galeri","nav.location":"Konum","nav.contact":"İletişim","nav.reserve":"Rezervasyon",
+    "hero.eyebrow":"Fethiye · Üzümlü — Kızılbel","hero.title":"Çam ağaçlarının arasında, size özel bir huzur",
     "hero.lede":"Özel ve korunaklı havuzu, yemyeşil bahçesi ve sessiz konumuyla; doğayla baş başa, mahremiyeti yüksek bir tatil için Villa Pinecone.",
     "hero.cta1":"Müsaitliğe Bak","hero.cta2":"Galeriyi Gör",
-    "hero.m1v":"4 + 2","hero.m1k":"Kişi kapasite","hero.m2v":"2","hero.m2k":"Yatak odası",
-    "hero.m3v":"70 m²","hero.m3k":"Kullanım alanı","hero.m4v":"Özel","hero.m4k":"Korunaklı havuz",
+    "hero.m1v":"4 + 2","hero.m1k":"Kişi kapasite","hero.m2v":"2","hero.m2k":"Yatak odası","hero.m3v":"70 m²","hero.m3k":"Kullanım alanı","hero.m4v":"Özel","hero.m4k":"Korunaklı havuz",
     "scroll":"Keşfet",
-    "about.eyebrow":"Hoş geldiniz",
-    "about.title":"Doğayla iç içe, gözlerden uzak bir kaçamak",
+    "about.eyebrow":"Hoş geldiniz","about.title":"Doğayla iç içe, gözlerden uzak bir kaçamak",
     "about.p1":"Villa Pinecone, Fethiye'nin Üzümlü bölgesi Kızılbel'de, çam ağaçlarıyla çevrili sakin bir noktada yer alır. Oldukça korunaklı özel havuzu ve yemyeşil bahçesiyle, kalabalıktan uzak gerçek bir dinlenme sunar.",
     "about.p2":"İki yatak odası ve dört kişiye kadar kapasitesiyle aileler ve çiftler için ideal; bahçedeki hamak, salıncak ve çocuk oyun alanıyla her yaşa hitap eder. Her misafirden sonra ev dezenfekte edilir.",
-    "about.sign":"— Sizi ağırlamaktan mutluluk duyarız",
-    "about.badgev":"100%","about.badgek":"Özel kullanım — sadece siz",
-    "feat.eyebrow":"Öne çıkanlar","feat.title":"Neden Villa Pinecone?",
-    "feat.sub":"Konforu, mahremiyeti ve doğayı bir arada sunan ayrıntılar.",
+    "about.sign":"— Sizi ağırlamaktan mutluluk duyarız","about.badgev":"100%","about.badgek":"Özel kullanım — sadece siz",
+    "feat.eyebrow":"Öne çıkanlar","feat.title":"Neden Villa Pinecone?","feat.sub":"Konforu, mahremiyeti ve doğayı bir arada sunan ayrıntılar.",
     "feat.1t":"Korunaklı özel havuz","feat.1d":"7,2 × 3,2 m boyutlarında, 1,5 m derinliğinde tamamen size özel, gözlerden uzak havuz.",
     "feat.2t":"Yemyeşil bahçe","feat.2d":"Geniş, bakımlı bahçede oturma alanı, hamak ve salıncakla doğanın içinde dinlenin.",
     "feat.3t":"Çocuk oyun alanı","feat.3d":"Salıncak ve kaydırakla çocuklar için güvenli, eğlenceli bir alan.",
@@ -954,47 +814,33 @@ const I18N = {
     "rooms.2t":"1. Yatak Odası","rooms.2d":"Çift kişilik yatak, klima ve elbise dolabı.",
     "rooms.3t":"2. Yatak Odası","rooms.3d":"İki adet tek kişilik yatak, klima ve elbise dolabı.",
     "rooms.4t":"Banyo","rooms.4d":"Duşakabin, WC, termosifon ve lavabo.",
-    "stat.1v":"4 + 2 kişi","stat.1k":"Maks. kapasite","stat.2v":"70 m²","stat.2k":"Villa büyüklüğü",
-    "stat.3v":"2 / 1","stat.3k":"Yatak odası / banyo","stat.4v":"Özel","stat.4k":"Havuz tipi",
-    "amen.eyebrow":"Donanım","amen.title":"İhtiyacınız olan her şey",
-    "amen.sub":"Konaklamanız boyunca evinizdeki konforu aratmayan tam donanım.",
+    "stat.1v":"4 + 2 kişi","stat.1k":"Maks. kapasite","stat.2v":"70 m²","stat.2k":"Villa büyüklüğü","stat.3v":"2 / 1","stat.3k":"Yatak odası / banyo","stat.4v":"Özel","stat.4k":"Havuz tipi",
+    "amen.eyebrow":"Donanım","amen.title":"İhtiyacınız olan her şey","amen.sub":"Konaklamanız boyunca evinizdeki konforu aratmayan tam donanım.",
     "amen.list":["Buzluklu buzdolabı","Çamaşır makinesi","Bulaşık makinesi","Barbekü / Mangal","Tost makinesi","Mikrodalga fırın","Normal fırın","Termosifon","Ütü & ütü masası","Saç kurutma makinesi","Ücretsiz internet","Uydu TV","Klima","Bağımsız mutfak"],
-    "gallery.eyebrow":"Galeri","gallery.title":"Villadan kareler","gallery.sub":"Kategoriye göre süzün; büyütmek için fotoğrafa tıklayın.",
-    "gallery.all":"Tümü",
+    "gallery.eyebrow":"Galeri","gallery.title":"Villadan kareler","gallery.sub":"Kategoriye göre süzün; büyütmek için fotoğrafa tıklayın.","gallery.all":"Tümü",
     "video.eyebrow":"Video turu","video.title":"Villa Pinecone'u yakından görün",
-    "loc.eyebrow":"Konum","loc.title":"Nereye, ne kadar uzakta?",
-    "loc.sub":"Fethiye Üzümlü — Kızılbel, Merkez Sok No:130 B, 48350 Fethiye / Muğla",
+    "loc.eyebrow":"Konum","loc.title":"Nereye, ne kadar uzakta?","loc.sub":"Fethiye Üzümlü — Kızılbel, Merkez Sok No:130 B, 48350 Fethiye / Muğla",
     "loc.d":[["Fethiye merkez","20 km"],["Dalaman Havalimanı","70 km"],["En yakın plaj (Kumsal-Çakıl)","25 km"],["En yakın restoran","5,5 km"],["En yakın market","5,5 km"],["En yakın dolmuş durağı","4,5 km"]],
     "resv.eyebrow":"Rezervasyon & müsaitlik","resv.title":"Tarihlerinizi şimdi ayırtın",
     "resv.p":"Güncel doluluk ve birebir online rezervasyon, anlaşmalı olduğumuz Villasepeti üzerinden yapılır. Aşağıdaki takvim güncel duruma göre işaretlenmiştir; kesin müsaitlik ve fiyat için Villasepeti sayfasına göz atın.",
-    "resv.partner":"Rezervasyon ortağımız","resv.cta1":"Villasepeti'nde Rezervasyon Yap","resv.cta2":"WhatsApp ile Sor",
-    "resv.legendfree":"Müsait","resv.legendbooked":"Dolu",
+    "resv.partner":"Rezervasyon ortağımız","resv.cta1":"Villasepeti'nde Rezervasyon Yap","resv.cta2":"WhatsApp ile Sor","resv.legendfree":"Müsait","resv.legendbooked":"Dolu",
     "contact.eyebrow":"İletişim","contact.title":"Bize ulaşın","contact.sub":"Sorularınız için telefon, e-posta veya formdan yazabilirsiniz.",
-    "contact.phonek":"Telefon","contact.emailk":"E-posta","contact.addrk":"Adres",
-    "contact.addrv":"Kızılbel, Merkez Sok No:130 B, 48350 Fethiye / Muğla",
-    "form.name":"Adınız","form.email":"E-posta","form.subject":"Konu","form.msg":"Mesajınız",
-    "form.send":"Gönder","form.ok":"Teşekkürler! Mesajınız alındı, en kısa sürede dönüş yapacağız.",
-    "foot.tag":"Fethiye Üzümlü — Kızılbel'de, çam ağaçları arasında özel havuzlu kiralık villa.",
-    "foot.explore":"Keşfet","foot.contact":"İletişim","foot.legal":"© 2026 Villa Pinecone · Tüm hakları saklıdır.",
-    "foot.reserve":"Villasepeti'nde Rezervasyon",
+    "contact.phonek":"Telefon","contact.emailk":"E-posta","contact.addrk":"Adres","contact.addrv":"Kızılbel, Merkez Sok No:130 B, 48350 Fethiye / Muğla",
+    "form.name":"Adınız","form.email":"E-posta","form.subject":"Konu","form.msg":"Mesajınız","form.send":"Gönder","form.ok":"Teşekkürler! Mesajınız alındı, en kısa sürede dönüş yapacağız.",
+    "foot.tag":"Fethiye Üzümlü — Kızılbel'de, çam ağaçları arasında özel havuzlu kiralık villa.","foot.explore":"Keşfet","foot.contact":"İletişim","foot.legal":"© 2026 Villa Pinecone · Tüm hakları saklıdır.","foot.reserve":"Villasepeti'nde Rezervasyon",
   },
   en: {
-    "nav.about":"Villa","nav.features":"Features","nav.rooms":"Rooms",
-    "nav.gallery":"Gallery","nav.location":"Location","nav.contact":"Contact","nav.reserve":"Book Now",
-    "hero.eyebrow":"Fethiye · Üzümlü — Kızılbel",
-    "hero.title":"Your private calm among the pine trees",
+    "nav.about":"Villa","nav.features":"Features","nav.rooms":"Rooms","nav.gallery":"Gallery","nav.location":"Location","nav.contact":"Contact","nav.reserve":"Book Now",
+    "hero.eyebrow":"Fethiye · Üzümlü — Kızılbel","hero.title":"Your private calm among the pine trees",
     "hero.lede":"With its private, sheltered pool, lush garden and quiet setting, Villa Pinecone offers a secluded retreat in the heart of nature.",
     "hero.cta1":"Check Availability","hero.cta2":"View Gallery",
-    "hero.m1v":"4","hero.m1k":"Guest capacity","hero.m2v":"2","hero.m2k":"Bedrooms",
-    "hero.m3v":"70 m²","hero.m3k":"Living area","hero.m4v":"Private","hero.m4k":"Sheltered pool",
+    "hero.m1v":"4","hero.m1k":"Guest capacity","hero.m2v":"2","hero.m2k":"Bedrooms","hero.m3v":"70 m²","hero.m3k":"Living area","hero.m4v":"Private","hero.m4k":"Sheltered pool",
     "scroll":"Explore",
     "about.eyebrow":"Welcome","about.title":"A secluded escape, surrounded by nature",
     "about.p1":"Villa Pinecone sits in a peaceful pine-clad corner of Kızılbel in the Üzümlü region of Fethiye. With its highly sheltered private pool and lush garden, it offers a genuine retreat away from the crowds.",
     "about.p2":"With two bedrooms and capacity for up to four guests, it is ideal for families and couples. The garden hammock, swing and children's play area suit every age, and the villa is disinfected after every stay.",
-    "about.sign":"— We'd be delighted to host you",
-    "about.badgev":"100%","about.badgek":"Private use — only you",
-    "feat.eyebrow":"Highlights","feat.title":"Why Villa Pinecone?",
-    "feat.sub":"The details that bring comfort, privacy and nature together.",
+    "about.sign":"— We'd be delighted to host you","about.badgev":"100%","about.badgek":"Private use — only you",
+    "feat.eyebrow":"Highlights","feat.title":"Why Villa Pinecone?","feat.sub":"The details that bring comfort, privacy and nature together.",
     "feat.1t":"Sheltered private pool","feat.1d":"A fully private, secluded pool measuring 7.2 × 3.2 m with a depth of 1.5 m.",
     "feat.2t":"Lush garden","feat.2d":"Relax in nature with a seating area, hammock and swing in the spacious, well-kept garden.",
     "feat.3t":"Children's play area","feat.3d":"A safe, fun area for children with a swing and slide.",
@@ -1006,29 +852,20 @@ const I18N = {
     "rooms.2t":"Bedroom 1","rooms.2d":"Double bed, air conditioning and a wardrobe.",
     "rooms.3t":"Bedroom 2","rooms.3d":"Two single beds and a wardrobe.",
     "rooms.4t":"Bathroom","rooms.4d":"Shower cabin, WC, water heater and basin.",
-    "stat.1v":"4 guests","stat.1k":"Max capacity","stat.2v":"70 m²","stat.2k":"Villa size",
-    "stat.3v":"2 / 1","stat.3k":"Bedrooms / bath","stat.4v":"Private","stat.4k":"Pool type",
-    "amen.eyebrow":"Amenities","amen.title":"Everything you need",
-    "amen.sub":"A full set of amenities so you never miss the comforts of home during your stay.",
+    "stat.1v":"4 guests","stat.1k":"Max capacity","stat.2v":"70 m²","stat.2k":"Villa size","stat.3v":"2 / 1","stat.3k":"Bedrooms / bath","stat.4v":"Private","stat.4k":"Pool type",
+    "amen.eyebrow":"Amenities","amen.title":"Everything you need","amen.sub":"A full set of amenities so you never miss the comforts of home during your stay.",
     "amen.list":["Fridge with freezer","Washing machine","Dishwasher","Barbecue / Grill","Toaster","Microwave","Oven","Water heater","Iron & ironing board","Hair dryer","Free internet","Satellite TV","Air conditioning","Separate kitchen"],
-    "gallery.eyebrow":"Gallery","gallery.title":"Moments from the villa","gallery.sub":"Filter by category; click a photo to enlarge.",
-    "gallery.all":"All",
+    "gallery.eyebrow":"Gallery","gallery.title":"Moments from the villa","gallery.sub":"Filter by category; click a photo to enlarge.","gallery.all":"All",
     "video.eyebrow":"Video tour","video.title":"See Villa Pinecone up close",
-    "loc.eyebrow":"Location","loc.title":"What's nearby?",
-    "loc.sub":"Fethiye Üzümlü — Kızılbel, Merkez Sok No:130 B, 48350 Fethiye / Muğla",
+    "loc.eyebrow":"Location","loc.title":"What's nearby?","loc.sub":"Fethiye Üzümlü — Kızılbel, Merkez Sok No:130 B, 48350 Fethiye / Muğla",
     "loc.d":[["Fethiye centre","20 km"],["Dalaman Airport","70 km"],["Nearest beach (Kumsal-Çakıl)","25 km"],["Nearest restaurant","5.5 km"],["Nearest grocery","5.5 km"],["Nearest minibus stop","4.5 km"]],
     "resv.eyebrow":"Booking & availability","resv.title":"Reserve your dates now",
     "resv.p":"Live availability and direct online booking are handled through our partner Villasepeti. The calendar below reflects the current status; for confirmed availability and pricing, visit the Villasepeti page.",
-    "resv.partner":"Our booking partner","resv.cta1":"Book on Villasepeti","resv.cta2":"Ask via WhatsApp",
-    "resv.legendfree":"Available","resv.legendbooked":"Booked",
+    "resv.partner":"Our booking partner","resv.cta1":"Book on Villasepeti","resv.cta2":"Ask via WhatsApp","resv.legendfree":"Available","resv.legendbooked":"Booked",
     "contact.eyebrow":"Contact","contact.title":"Get in touch","contact.sub":"Reach us by phone, email or the form for any questions.",
-    "contact.phonek":"Phone","contact.emailk":"Email","contact.addrk":"Address",
-    "contact.addrv":"Kızılbel, Merkez Sok No:130 B, 48350 Fethiye / Muğla",
-    "form.name":"Your name","form.email":"Email","form.subject":"Subject","form.msg":"Your message",
-    "form.send":"Send","form.ok":"Thank you! Your message has been received, we'll get back to you shortly.",
-    "foot.tag":"A private-pool villa to rent among the pine trees in Kızılbel, Üzümlü — Fethiye.",
-    "foot.explore":"Explore","foot.contact":"Contact","foot.legal":"© 2026 Villa Pinecone · All rights reserved.",
-    "foot.reserve":"Book on Villasepeti",
+    "contact.phonek":"Phone","contact.emailk":"Email","contact.addrk":"Address","contact.addrv":"Kızılbel, Merkez Sok No:130 B, 48350 Fethiye / Muğla",
+    "form.name":"Your name","form.email":"Email","form.subject":"Subject","form.msg":"Your message","form.send":"Send","form.ok":"Thank you! Your message has been received, we'll get back to you shortly.",
+    "foot.tag":"A private-pool villa to rent among the pine trees in Kızılbel, Üzümlü — Fethiye.","foot.explore":"Explore","foot.contact":"Contact","foot.legal":"© 2026 Villa Pinecone · All rights reserved.","foot.reserve":"Book on Villasepeti",
   }
 };
 
@@ -1046,7 +883,6 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
   const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
   const t = (k)=>(I18N[LANG]&&I18N[LANG][k]!==undefined)?I18N[LANG][k]:k;
 
-  /* ── İKONLAR ── */
   const I = {
     pine:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 7 9h3l-3 5h3l-3 5h12l-3-5h3l-3-5h3z"/><path d="M12 21v-3"/></svg>',
     pool:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/><path d="M2 14c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1"/><path d="M8 15V5a2 2 0 0 1 4 0"/><path d="M16 15V5a2 2 0 0 0-4 0"/></svg>',
@@ -1075,14 +911,11 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     fb:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V5h-3a4 4 0 0 0-4 4v2H7v4h3v6h4v-6h3l1-4h-4V9a1 1 0 0 1 1-1z"/></svg>',
   };
 
-  /* ============================================================
-     GALERİ — kategori filtreli, blur-up preload, sağda şerit
-     ============================================================ */
-  let gList = PHOTOS.slice(); // aktif listeye
+  /* ── GALERİ ── */
+  let gList = [];
   let gIdx  = 0;
 
   function preload(arr) {
-    // Tüm thumbnail'leri hemen önden yükle
     arr.forEach(p => { const i = new Image(); i.src = photoSrc(p, 200, 150); });
   }
 
@@ -1093,50 +926,32 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     const img = $(".g-main-img");
     const rail = $("#gRail");
     if (!img || !rail) return;
-
-    // Blur-up: önce küçük (cache'den anında), sonra büyük
     img.style.opacity = "0.55";
     img.style.filter  = "blur(10px)";
     img.src = photoSrc(p, 200, 150);
-
     const big = new Image();
     big.src = photoSrc(p, 1200, 820);
-    big.onload = () => {
-      img.src           = big.src;
-      img.style.opacity = "1";
-      img.style.filter  = "none";
-    };
-
+    big.onload = () => { img.src = big.src; img.style.opacity = "1"; img.style.filter = "none"; };
     img.alt = p[LANG] || p.tr || "";
-    $(".g-counter").textContent    = (gIdx + 1) + " / " + gList.length;
+    $(".g-counter").textContent = (gIdx + 1) + " / " + gList.length;
     $(".g-main-info .meta .v").textContent = p[LANG] || p.tr || "";
-    $(".g-cat-badge").textContent  = CAT_LABELS[LANG]?.[p.category] || p.category || "";
-
-    // Şeritte aktif öğeyi işaretle ve kaydır
+    $(".g-cat-badge").textContent = CAT_LABELS[LANG]?.[p.category] || p.category || "";
     $$(".g-thumb", rail).forEach((el, i) => el.classList.toggle("on", i === gIdx));
     const act = $$(".g-thumb", rail)[gIdx];
     if (act) rail.scrollTo({ top: act.offsetTop - 30, left: act.offsetLeft - 30, behavior: "smooth" });
-
-    // Sonraki + önceki büyük görseli arka planda yükle
     [-1, 1].forEach(d => {
       const nx = gList[(gIdx + d + gList.length) % gList.length];
       if (nx) { const pre = new Image(); pre.src = photoSrc(nx, 1200, 820); }
     });
-
-    // Lightbox için tam boyutu da yükle
-    const lb = new Image();
-    lb.src = photoSrc(p, 1600, 1100);
   }
 
   function renderGallery() {
     const wrap = $("#gStageWrap");
     if (!wrap) return;
-
     if (!gList.length) {
       wrap.innerHTML = `<div class="g-empty">${LANG === "tr" ? "Bu kategoride henüz fotoğraf yok." : "No photos in this category yet."}</div>`;
       return;
     }
-
     const p = gList[gIdx];
     wrap.innerHTML = `
       <div class="g-stage">
@@ -1145,21 +960,16 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
           <div class="g-counter">${gIdx + 1} / ${gList.length}</div>
           <span class="g-cat-badge">${CAT_LABELS[LANG]?.[p.category] || p.category || ""}</span>
           <div class="g-main-info">
-            <div class="meta">
-              <div class="v">${p[LANG] || p.tr || ""}</div>
-            </div>
+            <div class="meta"><div class="v">${p[LANG] || p.tr || ""}</div></div>
             <button class="g-main-expand" id="gExpand" aria-label="Büyüt">${I.expand}</button>
           </div>
           <button class="g-arr prev" id="gPrev" aria-label="Önceki">${I.chevL}</button>
           <button class="g-arr next" id="gNext" aria-label="Sonraki">${I.chevR}</button>
         </div>
-
         <div class="g-rail" id="gRail">
           ${gList.map((ph, i) => `
             <button class="g-thumb${i === gIdx ? " on" : ""}" data-i="${i}">
-              <div class="g-thumb-img">
-                <img loading="lazy" src="${photoSrc(ph, 160, 120)}" alt="${ph[LANG] || ph.tr || ""}">
-              </div>
+              <div class="g-thumb-img"><img loading="lazy" src="${photoSrc(ph, 160, 120)}" alt="${ph[LANG] || ph.tr || ""}"></div>
               <div class="g-thumb-info">
                 <div class="tt">${ph[LANG] || ph.tr || ""}</div>
                 <div class="tn">${i + 1} / ${gList.length}</div>
@@ -1169,11 +979,7 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
         </div>
       </div>
     `;
-
-    // Büyük görseli hemen yükle (blur-up ile)
     gSet(gIdx);
-
-    // Tıklama olayları
     $("#gMain").addEventListener("click", e => {
       if (e.target.closest(".g-arr") || e.target.closest(".g-main-expand")) return;
       openLB(gIdx);
@@ -1181,29 +987,18 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     $("#gExpand").onclick = e => { e.stopPropagation(); openLB(gIdx); };
     $("#gPrev").onclick   = e => { e.stopPropagation(); gSet(gIdx - 1); };
     $("#gNext").onclick   = e => { e.stopPropagation(); gSet(gIdx + 1); };
-    $$(".g-thumb", $("#gRail")).forEach(el =>
-      el.addEventListener("click", () => gSet(+el.dataset.i))
-    );
-
-    // Tüm thumbnail'leri preload
+    $$(".g-thumb", $("#gRail")).forEach(el => el.addEventListener("click", () => gSet(+el.dataset.i)));
     preload(gList);
   }
 
   function renderFilters() {
     const host = $("#gFilters");
     if (!host) return;
-
-    // JSON'daki kategorileri CAT_ORDER sırasına göre topla
     const seen = [];
     CAT_ORDER.forEach(c => { if(PHOTOS.some(p => p.category === c)) seen.push(c); });
-    // CAT_ORDER'da olmayan kategorileri sona ekle
     PHOTOS.forEach(p => { if(p.category && !seen.includes(p.category)) seen.push(p.category); });
-
     host.innerHTML = [`<button class="g-f on" data-c="__all__">${t("gallery.all")}</button>`]
-      .concat(seen.map(c =>
-        `<button class="g-f" data-c="${c}">${CAT_LABELS[LANG]?.[c] || c}</button>`
-      )).join("");
-
+      .concat(seen.map(c => `<button class="g-f" data-c="${c}">${CAT_LABELS[LANG]?.[c] || c}</button>`)).join("");
     $$(".g-f", host).forEach(btn => btn.addEventListener("click", () => {
       $$(".g-f", host).forEach(b => b.classList.remove("on"));
       btn.classList.add("on");
@@ -1218,25 +1013,18 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
   function openLB(i) {
     gIdx = i;
     const p = gList[i];
-    $("#lbImg").src          = photoSrc(p, 1920, 1280);
+    $("#lbImg").src = photoSrc(p, 1920, 1280);
     $("#lbTitle").textContent = p[LANG] || p.tr || "";
     $("#lbCount").textContent = `${i + 1} / ${gList.length}`;
     $("#lb").classList.add("open");
     document.body.style.overflow = "hidden";
   }
-  function closeLB() {
-    $("#lb").classList.remove("open");
-    document.body.style.overflow = "";
-  }
-  function stepLB(d) {
-    gIdx = (gIdx + d + gList.length) % gList.length;
-    openLB(gIdx);
-  }
+  function closeLB() { $("#lb").classList.remove("open"); document.body.style.overflow = ""; }
+  function stepLB(d) { gIdx = (gIdx + d + gList.length) % gList.length; openLB(gIdx); }
 
-  /* ── VİDEO GALERİSİ ── */
+  /* ── VİDEO ── */
   let vgIndex = 0;
   function ytThumb(id){ return `https://img.youtube.com/vi/${id}/mqdefault.jpg`; }
-
   function renderVideoGallery(){
     const host = $("#videoGallery");
     if(!host || !VIDEOS.length) return;
@@ -1246,38 +1034,18 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     const thumbSrc = v.type === "youtube" ? ytThumb(v.src) : "";
     host.innerHTML = `
       <div class="vg-main" id="vgMain">
-        ${thumbSrc
-          ? `<img class="vg-main-thumb" src="${thumbSrc}" alt="${v[LANG]||v.tr}">`
-          : `<div style="position:absolute;inset:0;background:#1a1a1a;display:grid;place-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" width="48" height="48"><path d="M7 4v16l13-8z"/></svg></div>`
-        }
+        ${thumbSrc ? `<img class="vg-main-thumb" src="${thumbSrc}" alt="${v[LANG]||v.tr}">` : `<div style="position:absolute;inset:0;background:#1a1a1a;display:grid;place-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" width="48" height="48"><path d="M7 4v16l13-8z"/></svg></div>`}
         <div class="vg-main-info">
-          <div class="meta">
-            <div class="v">${v[LANG]||v.tr}</div>
-            ${v.dur ? `<div class="d">${v.dur}</div>` : ""}
-          </div>
-          <div class="vg-main-play" id="vgPlayBtn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>
-          </div>
+          <div class="meta"><div class="v">${v[LANG]||v.tr}</div>${v.dur ? `<div class="d">${v.dur}</div>` : ""}</div>
+          <div class="vg-main-play" id="vgPlayBtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg></div>
         </div>
-        ${!single ? `
-        <div class="vg-main-nav">
-          <button class="vg-nav-btn" id="vgPrev" aria-label="Önceki video">${I.chevL}</button>
-          <button class="vg-nav-btn" id="vgNext" aria-label="Sonraki video">${I.chevR}</button>
-        </div>` : ""}
+        ${!single ? `<div class="vg-main-nav"><button class="vg-nav-btn" id="vgPrev">${I.chevL}</button><button class="vg-nav-btn" id="vgNext">${I.chevR}</button></div>` : ""}
       </div>
       <div class="vg-list" id="vgList">
         ${VIDEOS.map((vid, i) => `
           <div class="vg-item${i===vgIndex?" active":""}" data-vi="${i}">
-            <div class="vg-item-thumb">
-              ${vid.type==="youtube"
-                ? `<img src="${ytThumb(vid.src)}" alt="">`
-                : `<div class="no-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 4v16l13-8z"/></svg></div>`
-              }
-            </div>
-            <div class="vg-item-info">
-              <div class="t">${vid[LANG]||vid.tr}</div>
-              ${vid.dur ? `<div class="d">${vid.dur}</div>` : ""}
-            </div>
+            <div class="vg-item-thumb">${vid.type==="youtube" ? `<img src="${ytThumb(vid.src)}" alt="">` : `<div class="no-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 4v16l13-8z"/></svg></div>`}</div>
+            <div class="vg-item-info"><div class="t">${vid[LANG]||vid.tr}</div>${vid.dur ? `<div class="d">${vid.dur}</div>` : ""}</div>
           </div>
         `).join("")}
       </div>
@@ -1290,12 +1058,10 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     }
     $$(".vg-item").forEach(el => el.addEventListener("click", () => { vgIndex=+el.dataset.vi; renderVideoGallery(); }));
   }
-
   function vModalEmbedHTML(i){
     const v = VIDEOS[i];
     if(v.type==="youtube") return `<iframe src="https://www.youtube-nocookie.com/embed/${v.src}?autoplay=1&rel=0&modestbranding=1" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>`;
-    if(v.type==="vimeo")   return `<iframe src="https://player.vimeo.com/video/${v.src}?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
-    if(v.type==="drive")   return `<video src="https://drive.google.com/uc?export=download&id=${v.src}" controls autoplay playsinline style="width:100%;height:100%;background:#000"></video>`;
+    if(v.type==="vimeo") return `<iframe src="https://player.vimeo.com/video/${v.src}?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
     return `<video src="${v.src}" controls autoplay playsinline style="width:100%;height:100%;background:#000"></video>`;
   }
   function openVModal(i){ vgIndex=i; $("#vmodalSlot").innerHTML=vModalEmbedHTML(i); $("#vmodal").classList.add("open"); document.body.style.overflow="hidden"; }
@@ -1323,33 +1089,30 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     $("#calNext").onclick=()=>{ calBase=new Date(y,m+1,1); renderCal(); };
   }
 
-  /* ── OLANAK & MESAFE ── */
-  function renderAmenities(){
-    const ul=$("#amenList"); if(!ul) return;
-    ul.innerHTML=t("amen.list").map(a=>`<li>${I.check}${a}</li>`).join("");
-  }
-  function renderDistances(){
-    const w=$("#distList"); if(!w) return;
-    w.innerHTML=t("loc.d").map(d=>`<div class="dist"><span class="name">${I.pin}${d[0]}</span><span class="val">${d[1]}</span></div>`).join("");
-  }
+  function renderAmenities(){ const ul=$("#amenList"); if(!ul) return; ul.innerHTML=t("amen.list").map(a=>`<li>${I.check}${a}</li>`).join(""); }
+  function renderDistances(){ const w=$("#distList"); if(!w) return; w.innerHTML=t("loc.d").map(d=>`<div class="dist"><span class="name">${I.pin}${d[0]}</span><span class="val">${d[1]}</span></div>`).join(""); }
 
   /* ── DİL ── */
   function applyLang(){
     document.documentElement.lang=LANG;
     $$("[data-i18n]").forEach(el=>{ el.textContent=t(el.dataset.i18n); });
     $$(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===LANG));
-    gList = PHOTOS.slice(); // dil değişince "Tümü"ye dön
-    gIdx  = 0;
-    renderFilters();
-    renderGallery();
-    renderAmenities();
-    renderDistances();
-    renderCal();
-    renderVideoGallery();
+    gList = PHOTOS.slice(); gIdx = 0;
+    renderFilters(); renderGallery(); renderAmenities(); renderDistances(); renderCal(); renderVideoGallery();
   }
   function setLang(l){ LANG=l; localStorage.setItem("vp_lang",l); applyLang(); }
 
-  /* ── NAV ── */
+  /* ── NAV + ANCHOR SCROLL → postMessage ── */
+  function scrollToAnchor(anchorId) {
+    const target = document.getElementById(anchorId);
+    if (!target) return;
+    const offset = target.getBoundingClientRect().top + window.scrollY;
+    // Önce kendi sayfada scroll et (overflow:hidden olmasa çalışır)
+    target.scrollIntoView({ behavior: 'smooth' });
+    // Wix parent'a mesaj gönder
+    window.parent.postMessage({ type: 'scrollTo', anchor: anchorId, offset: offset }, '*');
+  }
+
   function initNav(){
     const burgerOpen  = $("#burger-open");
     const burgerClose = $("#burger-close");
@@ -1362,51 +1125,37 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     document.addEventListener("click", e => {
       if(document.body.classList.contains("menu-open") && !links.contains(e.target) && e.target !== burgerOpen && !burgerOpen.contains(e.target)) closeMenu();
     });
+
+    // Tüm data-anchor linklerine tıklama ekle
+    $$("[data-anchor]").forEach(el => {
+      el.addEventListener("click", e => {
+        const anchorId = el.dataset.anchor;
+        if (!anchorId) return;
+        e.preventDefault();
+        scrollToAnchor(anchorId);
+      });
+    });
   }
 
-  /* ── REVEAL ── */
   function initReveal(){
     const io=new IntersectionObserver(es=>{es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);} });},{threshold:.1});
     $$(".reveal").forEach(el=>io.observe(el));
   }
-
-  /* ── FORM ── */
-  function initForm(){
-    const f=$("#cform"); if(!f) return;
-    f.addEventListener("submit",e=>{e.preventDefault();f.classList.add("sent");f.reset();});
-  }
-
-  /* ── LIGHTBOX INIT ── */
+  function initForm(){ const f=$("#cform"); if(!f) return; f.addEventListener("submit",e=>{e.preventDefault();f.classList.add("sent");f.reset();}); }
   function initLB(){
     $("#lbClose").innerHTML=I.x; $("#lbPrev").innerHTML=I.chevL; $("#lbNext").innerHTML=I.chevR;
     $("#lbClose").onclick=closeLB;
     $("#lbPrev").onclick=()=>stepLB(-1);
     $("#lbNext").onclick=()=>stepLB(1);
     $("#lb").addEventListener("click",e=>{ if(e.target.id==="lb") closeLB(); });
-    document.addEventListener("keydown",e=>{
-      if(!$("#lb").classList.contains("open")) return;
-      if(e.key==="Escape") closeLB();
-      if(e.key==="ArrowLeft")  stepLB(-1);
-      if(e.key==="ArrowRight") stepLB(1);
-    });
+    document.addEventListener("keydown",e=>{ if(!$("#lb").classList.contains("open")) return; if(e.key==="Escape") closeLB(); if(e.key==="ArrowLeft") stepLB(-1); if(e.key==="ArrowRight") stepLB(1); });
   }
-
-  /* ── VİDEO MODAL INIT ── */
   function initVideo(){
     $("#vmodalClose").onclick=closeVModal;
     $("#vmodal").addEventListener("click",e=>{ if(e.target.id==="vmodal") closeVModal(); });
-    document.addEventListener("keydown",e=>{
-      if(!$("#vmodal").classList.contains("open")) return;
-      if(e.key==="Escape") closeVModal();
-      if(e.key==="ArrowLeft"){  vgIndex=(vgIndex-1+VIDEOS.length)%VIDEOS.length; openVModal(vgIndex); }
-      if(e.key==="ArrowRight"){ vgIndex=(vgIndex+1)%VIDEOS.length; openVModal(vgIndex); }
-    });
+    document.addEventListener("keydown",e=>{ if(!$("#vmodal").classList.contains("open")) return; if(e.key==="Escape") closeVModal(); });
   }
-
-  /* ── İKON INJECT ── */
-  function injectIcons(){
-    $$("[data-ic]").forEach(el=>{ el.innerHTML=I[el.dataset.ic]||""; });
-  }
+  function injectIcons(){ $$("[data-ic]").forEach(el=>{ el.innerHTML=I[el.dataset.ic]||""; }); }
 
   /* ── BOOT ── */
   document.addEventListener("DOMContentLoaded", () => {
@@ -1418,7 +1167,6 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     initVideo();
     $$(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.l)));
 
-    // photos.json + settings.json paralel çek
     Promise.all([
       fetch(PHOTOS_URL).then(r => { if(!r.ok) throw new Error("photos " + r.status); return r.json(); }),
       fetch(SETTINGS_URL).then(r => { if(!r.ok) throw new Error("settings " + r.status); return r.json(); }).catch(() => ({}))
@@ -1426,29 +1174,17 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     .then(([photos, settings]) => {
       PHOTOS = photos;
       gList  = PHOTOS.slice();
-
-      // Hero görseli — settings.json'daki "hero" alanı
       const heroSrc = settingSrc(settings.hero, 2000, 1200);
       if (heroSrc) $("#heroImg").src = heroSrc;
-      else {
-        const heroP = PHOTOS.find(p => p.category === "havuz") || PHOTOS[0];
-        if (heroP) $("#heroImg").src = photoSrc(heroP, 2000, 1200);
-      }
-
-      // Hakkında görseli — settings.json'daki "about" alanı
+      else { const heroP = PHOTOS.find(p => p.category === "havuz") || PHOTOS[0]; if (heroP) $("#heroImg").src = photoSrc(heroP, 2000, 1200); }
       const aboutSrc = settingSrc(settings.about, 900, 1125);
       if (aboutSrc) $("#aboutImg").src = aboutSrc;
-      else {
-        const aboutP = PHOTOS.find(p => p.category === "dis_gorunum") || PHOTOS[2] || PHOTOS[0];
-        if (aboutP) $("#aboutImg").src = photoSrc(aboutP, 900, 1125);
-      }
-
+      else { const aboutP = PHOTOS.find(p => p.category === "dis_gorunum") || PHOTOS[2] || PHOTOS[0]; if (aboutP) $("#aboutImg").src = photoSrc(aboutP, 900, 1125); }
       applyLang();
     })
     .catch(err => {
       console.warn("JSON yüklenemedi:", err);
-      PHOTOS = [];
-      gList  = [];
+      PHOTOS = []; gList = [];
       applyLang();
     });
   });
