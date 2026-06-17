@@ -879,8 +879,16 @@ function photoSrc(p, w, h) {
    category değerleri: havuz | bahce | ic_mekan | dis_gorunum
    ──────────────────────────────────────────────────────────── */
 
-// photos.json URL — GitHub Pages'de index.html ile aynı klasörde olmalı
-const PHOTOS_URL = "photos.json";
+// JSON dosyaları — index.html ile aynı klasörde olmalı
+const PHOTOS_URL   = "photos.json";
+const SETTINGS_URL = "settings.json";
+
+// settings.json değerini src'ye çevir: tam URL ise direkt, Wix ID ise CDN'den
+function settingSrc(val, w, h) {
+  if (!val) return "";
+  if (val.startsWith("http")) return val;
+  return photoSrc({ id: val }, w, h);
+}
 
 // Kategori slug → okunabilir etiket (TR / EN)
 const CAT_LABELS = {
@@ -1410,32 +1418,39 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     initVideo();
     $$(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.l)));
 
-    // photos.json'dan fotoğrafları çek, sonra her şeyi başlat
-    fetch(PHOTOS_URL)
-      .then(r => {
-        if (!r.ok) throw new Error("HTTP " + r.status);
-        return r.json();
-      })
-      .then(data => {
-        PHOTOS = data;
-        gList  = PHOTOS.slice();
+    // photos.json + settings.json paralel çek
+    Promise.all([
+      fetch(PHOTOS_URL).then(r => { if(!r.ok) throw new Error("photos " + r.status); return r.json(); }),
+      fetch(SETTINGS_URL).then(r => { if(!r.ok) throw new Error("settings " + r.status); return r.json(); }).catch(() => ({}))
+    ])
+    .then(([photos, settings]) => {
+      PHOTOS = photos;
+      gList  = PHOTOS.slice();
 
-        // Hero: category="havuz" olan ilk fotoğraf
+      // Hero görseli — settings.json'daki "hero" alanı
+      const heroSrc = settingSrc(settings.hero, 2000, 1200);
+      if (heroSrc) $("#heroImg").src = heroSrc;
+      else {
         const heroP = PHOTOS.find(p => p.category === "havuz") || PHOTOS[0];
         if (heroP) $("#heroImg").src = photoSrc(heroP, 2000, 1200);
+      }
 
-        // Hakkında: category="dis_gorunum" olan ilk fotoğraf, yoksa index 2
+      // Hakkında görseli — settings.json'daki "about" alanı
+      const aboutSrc = settingSrc(settings.about, 900, 1125);
+      if (aboutSrc) $("#aboutImg").src = aboutSrc;
+      else {
         const aboutP = PHOTOS.find(p => p.category === "dis_gorunum") || PHOTOS[2] || PHOTOS[0];
         if (aboutP) $("#aboutImg").src = photoSrc(aboutP, 900, 1125);
+      }
 
-        applyLang(); // galeri, filtreler, video, takvim, dil
-      })
-      .catch(err => {
-        console.warn("photos.json yüklenemedi:", err);
-        PHOTOS = [];
-        gList  = [];
-        applyLang();
-      });
+      applyLang();
+    })
+    .catch(err => {
+      console.warn("JSON yüklenemedi:", err);
+      PHOTOS = [];
+      gList  = [];
+      applyLang();
+    });
   });
 })();
 </script>
