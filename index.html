@@ -1112,6 +1112,13 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     // Wix parent'a mesaj gönder
     window.parent.postMessage({ type: 'scrollTo', anchor: anchorId, offset: offset }, '*');
   }
+  // Mouse wheel ile Wix'e scroll mesajı gönder
+let scrollY = 0;
+window.addEventListener('wheel', (e) => {
+  scrollY += e.deltaY;
+  scrollY = Math.max(0, scrollY);
+  window.parent.postMessage({ type: 'scrollTo', offset: scrollY }, '*');
+}, { passive: true });
 
   function initNav(){
     const burgerOpen  = $("#burger-open");
