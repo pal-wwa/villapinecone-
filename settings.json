@@ -1,7 +1,7 @@
 {
   "hero": {
-    "urlDesktop": "",
-    "urlMobile": "",
+    "urlDesktop": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782028475136_20210116_150051_001.jpg",
+    "urlMobile": "https://pub-0944ca5b59df4a32b3fc893f6e1a855b.r2.dev/1781720889723_cardakresim.jpeg",
     "posX": 50,
     "posY": 40,
     "scale": 1,
@@ -10,6 +10,6 @@
     "mobScale": 1.15
   },
   "about": {
-    "url": ""
+    "url": "https://pub-0944ca5b59df4a32b3fc893f6e1a855b.r2.dev/1781720889723_cardakresim.jpeg"
   }
 }
