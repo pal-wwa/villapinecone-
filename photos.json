@@ -89,5 +89,12 @@
     "en": "Pergola",
     "cls": "wide",
     "category": "dis_gorunum"
+  },
+  {
+    "url": "https://pub-0944ca5b59df4a32b3fc893f6e1a855b.r2.dev/1782010217497_20210116_150051_001.jpg",
+    "tr": "tesd",
+    "en": "tset",
+    "category": "genel",
+    "cls": ""
   }
 ]
