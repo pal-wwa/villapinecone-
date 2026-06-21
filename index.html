@@ -768,8 +768,23 @@ const PHOTOS_URL   = "photos.json";
 const SETTINGS_URL = "settings.json";
 function settingSrc(val, w, h) {
   if (!val) return "";
-  if (val.startsWith("http")) return val;
-  return photoSrc({ id: val }, w, h);
+  if (typeof val === "string") {
+    if (val.startsWith("http")) return val;
+    return photoSrc({ id: val }, w, h);
+  }
+  if (val.url) return val.url;
+  return "";
+}
+
+function applyHeroPosition(hero) {
+  if (!hero || typeof hero === "string") return;
+  const root = document.documentElement.style;
+  if (hero.posX != null) root.setProperty("--hero-pos-x", hero.posX + "%");
+  if (hero.posY != null) root.setProperty("--hero-pos-y", hero.posY + "%");
+  if (hero.scale != null) root.setProperty("--hero-scale", hero.scale);
+  if (hero.mobPosX != null) root.setProperty("--hero-mob-pos-x", hero.mobPosX + "%");
+  if (hero.mobPosY != null) root.setProperty("--hero-mob-pos-y", hero.mobPosY + "%");
+  if (hero.mobScale != null) root.setProperty("--hero-mob-scale", hero.mobScale);
 }
 const CAT_LABELS = {
   tr: { havuz:"Havuz", bahce:"Bahçe", ic_mekan:"İç Mekan", dis_gorunum:"Dış Görünüm" },
@@ -1174,6 +1189,7 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
       const heroSrc = settingSrc(settings.hero, 2000, 1200);
       if (heroSrc) $("#heroImg").src = heroSrc;
       else { const heroP = PHOTOS.find(p => p.category === "havuz") || PHOTOS[0]; if (heroP) $("#heroImg").src = photoSrc(heroP, 2000, 1200); }
+      applyHeroPosition(settings.hero);
       const aboutSrc = settingSrc(settings.about, 900, 1125);
       if (aboutSrc) $("#aboutImg").src = aboutSrc;
       else { const aboutP = PHOTOS.find(p => p.category === "dis_gorunum") || PHOTOS[2] || PHOTOS[0]; if (aboutP) $("#aboutImg").src = photoSrc(aboutP, 900, 1125); }
