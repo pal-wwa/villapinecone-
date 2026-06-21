@@ -173,6 +173,11 @@ p { margin:0; }
   transform: scale(var(--hero-scale));
   transform-origin: var(--hero-pos-x) var(--hero-pos-y);
 }
+.hero-bg img.hero-img-mobile { display: none; }
+@media (max-width:600px) {
+  .hero-bg img.hero-img-desktop { display: none; }
+  .hero-bg img.hero-img-mobile { display: block; }
+}
 .hero-bg::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,12,10,.35) 0%, rgba(10,12,10,.05) 40%, rgba(10,12,10,.65) 100%); }
 .hero-inner { position:relative; z-index:2; width:100%; padding-top:60px; padding-bottom:100px; }
 .hero .eyebrow {
@@ -518,7 +523,10 @@ iframe, img, video, table { max-width:100%; }
 </header>
 
 <section class="hero" id="top">
-  <div class="hero-bg"><img id="heroImg" alt="Villa Pinecone"></div>
+  <div class="hero-bg">
+    <img id="heroImgDesktop" class="hero-img-desktop" alt="Villa Pinecone">
+    <img id="heroImgMobile" class="hero-img-mobile" alt="Villa Pinecone">
+  </div>
   <div class="hero-inner wrap">
     <p class="eyebrow" data-i18n="hero.eyebrow">Fethiye · Üzümlü — Kızılbel</p>
     <h1 data-i18n="hero.title">Çam ağaçlarının arasında, size özel bir huzur</h1>
@@ -774,6 +782,14 @@ function settingSrc(val, w, h) {
   }
   if (val.url) return val.url;
   return "";
+}
+
+function heroUrl(hero, which) {
+  // which: 'desktop' | 'mobile'
+  if (!hero) return "";
+  if (typeof hero === "string") return settingSrc(hero, 2000, 1200);
+  const key = which === "mobile" ? "urlMobile" : "urlDesktop";
+  return hero[key] || hero.url || "";
 }
 
 function applyHeroPosition(hero) {
@@ -1186,10 +1202,14 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     .then(([photos, settings]) => {
       PHOTOS = photos;
       gList  = PHOTOS.slice();
-      const heroSrc = settingSrc(settings.hero, 2000, 1200);
-      if (heroSrc) $("#heroImg").src = heroSrc;
-      else { const heroP = PHOTOS.find(p => p.category === "havuz") || PHOTOS[0]; if (heroP) $("#heroImg").src = photoSrc(heroP, 2000, 1200); }
+
+      const fallbackHero = PHOTOS.find(p => p.category === "havuz") || PHOTOS[0];
+      const dSrc = heroUrl(settings.hero, "desktop") || (fallbackHero ? photoSrc(fallbackHero, 2000, 1200) : "");
+      const mSrc = heroUrl(settings.hero, "mobile")  || dSrc;
+      if (dSrc) $("#heroImgDesktop").src = dSrc;
+      if (mSrc) $("#heroImgMobile").src = mSrc;
       applyHeroPosition(settings.hero);
+
       const aboutSrc = settingSrc(settings.about, 900, 1125);
       if (aboutSrc) $("#aboutImg").src = aboutSrc;
       else { const aboutP = PHOTOS.find(p => p.category === "dis_gorunum") || PHOTOS[2] || PHOTOS[0]; if (aboutP) $("#aboutImg").src = photoSrc(aboutP, 900, 1125); }
