@@ -159,5 +159,75 @@
     "en": "",
     "category": "ic_mekan",
     "cls": "tall"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782291172292_27.JPG",
+    "tr": "Teras",
+    "en": "",
+    "category": "dis_gorunum",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782291189378_25a.JPG",
+    "tr": "Mutfak",
+    "en": "",
+    "category": "ic_mekan",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782291221516_46.JPG",
+    "tr": "Bahçe",
+    "en": "",
+    "category": "bahce",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782291239796_45.JPG",
+    "tr": "Akşam",
+    "en": "",
+    "category": "dis_gorunum",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782291291524_v2__1_.jpeg",
+    "tr": "Banyo",
+    "en": "",
+    "category": "ic_mekan",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782291305205_v2__2_.jpeg",
+    "tr": "Banyo",
+    "en": "",
+    "category": "ic_mekan",
+    "cls": "tall"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782291322276_1.JPG",
+    "tr": "Genel",
+    "en": "",
+    "category": "genel",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782291347671_WhatsApp_Image_2022-05-09_at_18.02.49.jpeg",
+    "tr": "Genell",
+    "en": "",
+    "category": "genel",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782291370155_24.JPG",
+    "tr": "Mutfak",
+    "en": "",
+    "category": "ic_mekan",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782291430986_IMG_3233.JPG",
+    "tr": "Havuz",
+    "en": "",
+    "category": "havuz",
+    "cls": "wide"
   }
 ]
