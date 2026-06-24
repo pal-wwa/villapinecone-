@@ -1,121 +1,142 @@
 [
   {
-    "url": "https://pub-0944ca5b59df4a32b3fc893f6e1a855b.r2.dev/1781720889723_cardakresim.jpeg",
-    "tr": "",
-    "en": "",
-    "cls": "wide",
-    "category": "dis_gorunum"
-  },
-  {
-    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782035897914_dikey.jpeg",
-    "tr": "",
-    "en": "",
-    "category": "dis_gorunum",
-    "cls": "tall"
-  },
-  {
-    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782035958692_WhatsApp_Image_2026-06-18_at_21.59.23.jpeg",
-    "tr": "",
-    "en": "",
-    "category": "havuz",
-    "cls": "wide"
-  },
-  {
-    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782035966184_WhatsApp_Image_2026-06-14_at_19.22.11.jpeg",
-    "tr": "",
-    "en": "",
-    "category": "bahce",
-    "cls": "tall"
-  },
-  {
-    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782035988105_WhatsApp_Image_2026-06-18_at_21.59.18.jpeg",
-    "tr": "",
-    "en": "",
-    "category": "bahce",
-    "cls": "wide"
-  },
-  {
-    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782035996179_WhatsApp_Image_2026-06-18_at_21.59.14.jpeg",
-    "tr": "",
-    "en": "",
-    "category": "havuz",
-    "cls": "wide"
-  },
-  {
-    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782036003840_WhatsApp_Image_2026-06-18_at_21.59.13.jpeg",
-    "tr": "",
-    "en": "",
-    "category": "dis_gorunum",
-    "cls": "wide"
-  },
-  {
-    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782036011701_WhatsApp_Image_2026-06-18_at_21.59.11.jpeg",
-    "tr": "",
-    "en": "",
-    "category": "bahce",
-    "cls": "wide"
-  },
-  {
-    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782036022911_WhatsApp_Image_2026-06-18_at_21.59.09.jpeg",
-    "tr": "",
-    "en": "",
-    "category": "bahce",
-    "cls": "tall"
-  },
-  {
-    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782036030528_WhatsApp_Image_2026-06-14_at_19.23.jpeg",
-    "tr": "",
-    "en": "",
-    "category": "bahce",
-    "cls": "wide"
-  },
-  {
-    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782036036592_WhatsApp_Image_2026-06-14_at_19.22.57.jpeg",
-    "tr": "",
-    "en": "",
-    "category": "bahce",
-    "cls": "wide"
-  },
-  {
-    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782036044602_WhatsApp_Image_2026-06-14_at_19.22.56.jpeg",
-    "tr": "",
-    "en": "",
-    "category": "dis_gorunum",
-    "cls": "wide"
-  },
-  {
-    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782036058111_WhatsApp_Image_2026-06-14_at_19.21.38.jpeg",
-    "tr": "",
-    "en": "",
-    "category": "bahce",
-    "cls": "wide"
-  },
-  {
-    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782036064053_WhatsApp_Image_2026-06-14_at_19.21.37.jpeg",
-    "tr": "",
-    "en": "",
-    "category": "havuz",
-    "cls": "wide"
-  },
-  {
-    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782036070023_WhatsApp_Image_2026-06-14_at_19.20.49.jpeg",
-    "tr": "",
-    "en": "",
-    "category": "bahce",
-    "cls": "wide"
-  },
-  {
-    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782036079051_WhatsApp_Image_2026-06-14_at_.jpeg",
-    "tr": "",
-    "en": "",
-    "category": "havuz",
-    "cls": "wide"
-  },
-  {
     "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782036084158_dikey.jpeg",
     "tr": "",
     "en": "",
     "category": "dis_gorunum",
     "cls": "tall"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290631726_havuz_1.jpeg",
+    "tr": "",
+    "en": "",
+    "category": "havuz",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290651522_havuz_2.jpeg",
+    "tr": "",
+    "en": "",
+    "category": "havuz",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290682992_havuz_3.jpeg",
+    "tr": "",
+    "en": "",
+    "category": "havuz",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290703832_havuz_5.jpeg",
+    "tr": "",
+    "en": "",
+    "category": "havuz",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290717515_bah_e_1.jpeg",
+    "tr": "",
+    "en": "",
+    "category": "dis_gorunum",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290729673_bah_e_2.jpeg",
+    "tr": "Kamelya",
+    "en": "",
+    "category": "dis_gorunum",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290756016_kamelya_11.jpeg",
+    "tr": "Kamelya",
+    "en": "",
+    "category": "dis_gorunum",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290778071_kamelya_14.jpeg",
+    "tr": "Kamelya",
+    "en": "",
+    "category": "dis_gorunum",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290800092_hamak_1.jpeg",
+    "tr": "Hamak",
+    "en": "",
+    "category": "dis_gorunum",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290822521_kamelya_12.jpeg",
+    "tr": "Kamelya",
+    "en": "",
+    "category": "dis_gorunum",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290839239_ebv_oda_1.jpeg",
+    "tr": "Oda 1",
+    "en": "",
+    "category": "ic_mekan",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290857045_ebv_oda2.jpeg",
+    "tr": "Oda 1",
+    "en": "",
+    "category": "ic_mekan",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290874101_ebv_oda4.jpeg",
+    "tr": "Oda 1",
+    "en": "",
+    "category": "ic_mekan",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290895124_oda_1.jpeg",
+    "tr": "Oda 2",
+    "en": "",
+    "category": "ic_mekan",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290914811_oda_2.jpeg",
+    "tr": "Oda 2",
+    "en": "",
+    "category": "ic_mekan",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290937352_barbek__2.jpeg",
+    "tr": "Barbekü",
+    "en": "",
+    "category": "bahce",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290958728_mutfak_1.jpeg",
+    "tr": "Mutfak",
+    "en": "",
+    "category": "ic_mekan",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290980756_mutfak_2.jpeg",
+    "tr": "Mutfak",
+    "en": "",
+    "category": "ic_mekan",
+    "cls": "wide"
+  },
+  {
+    "url": "https://pub-883a539870b342139f8cd6ab68dcef65.r2.dev/1782290997907_Oturma_1.jpeg",
+    "tr": "Oturma",
+    "en": "",
+    "category": "ic_mekan",
+    "cls": "wide"
   }
 ]
