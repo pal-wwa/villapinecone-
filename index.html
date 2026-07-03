@@ -965,10 +965,7 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
   /* ── GALERİ ── */
   let gList = [];
   let gIdx  = 0;
-
-  function preload(arr) {
-    arr.forEach(p => { const i = new Image(); i.src = photoSrc(p, 200, 150); });
-  }
+  let gPhotosLoaded = false;
 
   function gSet(n) {
     if (!gList.length) return;
@@ -979,10 +976,10 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     if (!img || !rail) return;
     img.style.opacity = "0.55";
     img.style.filter  = "blur(10px)";
-    img.src = photoSrc(p, 200, 150);
+    img.src = p.url;
     const big = new Image();
-    big.src = photoSrc(p, 1200, 820);
-    big.onload = () => { img.src = big.src; img.style.opacity = "1"; img.style.filter = "none"; };
+    big.src = p.url;
+    big.onload = () => { img.src = p.url; img.style.opacity = "1"; img.style.filter = "none"; };
     img.alt = p[LANG] || p.tr || "";
     $(".g-counter").textContent = (gIdx + 1) + " / " + gList.length;
     $(".g-main-info .meta .v").textContent = p[LANG] || p.tr || "";
@@ -992,8 +989,24 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     if (act) rail.scrollTo({ top: act.offsetTop - 30, left: act.offsetLeft - 30, behavior: "smooth" });
     [-1, 1].forEach(d => {
       const nx = gList[(gIdx + d + gList.length) % gList.length];
-      if (nx) { const pre = new Image(); pre.src = photoSrc(nx, 1200, 820); }
+      if (nx && nx.url) { const pre = new Image(); pre.src = nx.url; }
     });
+  }
+
+  function lazyLoadRailImages(rail) {
+    const imgs = $$("img[data-src]", rail);
+    if (!imgs.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const img = e.target;
+          img.src = img.dataset.src;
+          img.removeAttribute("data-src");
+          io.unobserve(img);
+        }
+      });
+    }, { root: rail, rootMargin: "100px" });
+    imgs.forEach(img => io.observe(img));
   }
 
   function renderGallery() {
@@ -1007,7 +1020,7 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     wrap.innerHTML = `
       <div class="g-stage">
         <div class="g-main" id="gMain">
-          <img class="g-main-img" src="${photoSrc(p, 200, 150)}" alt="${p[LANG] || p.tr || ""}">
+          <img class="g-main-img" src="${p.url}" alt="${p[LANG] || p.tr || ""}">
           <div class="g-counter">${gIdx + 1} / ${gList.length}</div>
           <span class="g-cat-badge">${CAT_LABELS[LANG]?.[p.category] || p.category || ""}</span>
           <div class="g-main-info">
@@ -1020,7 +1033,7 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
         <div class="g-rail" id="gRail">
           ${gList.map((ph, i) => `
             <button class="g-thumb${i === gIdx ? " on" : ""}" data-i="${i}">
-              <div class="g-thumb-img"><img loading="lazy" src="${photoSrc(ph, 160, 120)}" alt="${ph[LANG] || ph.tr || ""}"></div>
+              <div class="g-thumb-img"><img data-src="${ph.url}" alt="${ph[LANG] || ph.tr || ""}"></div>
               <div class="g-thumb-info">
                 <div class="tt">${ph[LANG] || ph.tr || ""}</div>
                 <div class="tn">${i + 1} / ${gList.length}</div>
@@ -1030,6 +1043,8 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
         </div>
       </div>
     `;
+    const rail = $("#gRail");
+    lazyLoadRailImages(rail);
     gSet(gIdx);
     $("#gMain").addEventListener("click", e => {
       if (e.target.closest(".g-arr") || e.target.closest(".g-main-expand")) return;
@@ -1038,8 +1053,7 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     $("#gExpand").onclick = e => { e.stopPropagation(); openLB(gIdx); };
     $("#gPrev").onclick   = e => { e.stopPropagation(); gSet(gIdx - 1); };
     $("#gNext").onclick   = e => { e.stopPropagation(); gSet(gIdx + 1); };
-    $$(".g-thumb", $("#gRail")).forEach(el => el.addEventListener("click", () => gSet(+el.dataset.i)));
-    preload(gList);
+    $$(".g-thumb", rail).forEach(el => el.addEventListener("click", () => gSet(+el.dataset.i)));
   }
 
   function renderFilters() {
@@ -1064,7 +1078,7 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
   function openLB(i) {
     gIdx = i;
     const p = gList[i];
-    $("#lbImg").src = photoSrc(p, 1920, 1280);
+    $("#lbImg").src = p.url;
     $("#lbTitle").textContent = p[LANG] || p.tr || "";
     $("#lbCount").textContent = `${i + 1} / ${gList.length}`;
     $("#lb").classList.add("open");
@@ -1215,31 +1229,63 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     initVideo();
     $$(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.l)));
 
-    Promise.all([
-      fetch(PHOTOS_URL).then(r => { if(!r.ok) throw new Error("photos " + r.status); return r.json(); }),
-      fetch(SETTINGS_URL).then(r => { if(!r.ok) throw new Error("settings " + r.status); return r.json(); }).catch(() => ({}))
-    ])
-    .then(([photos, settings]) => {
-      PHOTOS = photos;
-      gList  = PHOTOS.slice();
+    // Önce sadece settings çek — hero ve about için (kritik, hemen)
+    fetch(SETTINGS_URL)
+      .then(r => r.ok ? r.json() : {})
+      .catch(() => ({}))
+      .then(settings => {
+        window._vpSettings = settings;
+        const dSrc = heroUrl(settings.hero, "desktop");
+        const mSrc = heroUrl(settings.hero, "mobile") || dSrc;
+        if (dSrc) { $("#heroImgDesktop").src = dSrc; }
+        if (mSrc) { $("#heroImgMobile").src = mSrc; }
+        applyHeroPosition(settings.hero);
+        if (settingSrc(settings.about, 900, 1125)) {
+          $("#aboutImg").src = settingSrc(settings.about, 900, 1125);
+        }
+        applyLang();
+      });
 
-      const fallbackHero = PHOTOS.find(p => p.category === "havuz") || PHOTOS[0];
-      const dSrc = heroUrl(settings.hero, "desktop") || (fallbackHero ? photoSrc(fallbackHero, 2000, 1200) : "");
-      const mSrc = heroUrl(settings.hero, "mobile")  || dSrc;
-      if (dSrc) $("#heroImgDesktop").src = dSrc;
-      if (mSrc) $("#heroImgMobile").src = mSrc;
-      applyHeroPosition(settings.hero);
+    // photos.json'u galeri bölümüne scroll edilince çek
+    function loadPhotosAndRender() {
+      if (gPhotosLoaded) return;
+      gPhotosLoaded = true;
+      fetch(PHOTOS_URL)
+        .then(r => { if (!r.ok) throw new Error("photos " + r.status); return r.json(); })
+        .then(photos => {
+          PHOTOS = photos;
+          gList  = PHOTOS.slice();
+          const settings = window._vpSettings || {};
+          if (!$("#heroImgDesktop").src) {
+            const fallback = PHOTOS.find(p => p.category === "havuz") || PHOTOS[0];
+            if (fallback) { $("#heroImgDesktop").src = fallback.url; $("#heroImgMobile").src = fallback.url; }
+          }
+          if (!$("#aboutImg").src || $("#aboutImg").src === window.location.href) {
+            const aboutP = PHOTOS.find(p => p.category === "dis_gorunum") || PHOTOS[2] || PHOTOS[0];
+            if (aboutP) $("#aboutImg").src = aboutP.url;
+          }
+          renderFilters();
+          renderGallery();
+        })
+        .catch(err => {
+          console.warn("Fotoğraflar yüklenemedi:", err);
+          PHOTOS = []; gList = [];
+          renderFilters();
+          renderGallery();
+        });
+    }
 
-      const aboutSrc = settingSrc(settings.about, 900, 1125);
-      if (aboutSrc) $("#aboutImg").src = aboutSrc;
-      else { const aboutP = PHOTOS.find(p => p.category === "dis_gorunum") || PHOTOS[2] || PHOTOS[0]; if (aboutP) $("#aboutImg").src = photoSrc(aboutP, 900, 1125); }
-      applyLang();
-    })
-    .catch(err => {
-      console.warn("JSON yüklenemedi:", err);
-      PHOTOS = []; gList = [];
-      applyLang();
-    });
+    // Galeri bölümü viewport'a girinceye kadar bekle
+    const galeriSection = document.getElementById("galeri");
+    if (galeriSection && "IntersectionObserver" in window) {
+      const io = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) { io.disconnect(); loadPhotosAndRender(); }
+      }, { rootMargin: "300px" });
+      io.observe(galeriSection);
+    } else {
+      // IntersectionObserver yoksa hemen yükle (eski tarayıcılar)
+      loadPhotosAndRender();
+    }
   });
 })();
 </script>
