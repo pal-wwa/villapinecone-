@@ -1257,28 +1257,40 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     initVideo();
     $$(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.l)));
 
-    Promise.all([
-      fetch(SETTINGS_URL).then(r => r.ok ? r.json() : {}).catch(() => ({})),
-      fetch(PHOTOS_URL).then(r => r.ok ? r.json() : []).catch(() => [])
-    ]).then(([settings, photos]) => {
-      PHOTOS = photos;
-      gList  = PHOTOS.slice();
-
-      const fallbackHero = PHOTOS.find(p => p.category === "havuz") || PHOTOS[0];
-      const dSrc = heroUrl(settings.hero, "desktop") || (fallbackHero ? fallbackHero.url : "");
+    // Önce sadece settings + hero/about yükle (hızlı, kritik)
+    fetch(SETTINGS_URL).then(r => r.ok ? r.json() : {}).catch(() => ({}))
+    .then(settings => {
+      window._vpSettings = settings;
+      const dSrc = heroUrl(settings.hero, "desktop");
       const mSrc = heroUrl(settings.hero, "mobile") || dSrc;
       if (dSrc) $("#heroImgDesktop").src = dSrc;
       if (mSrc) $("#heroImgMobile").src  = mSrc;
       applyHeroPosition(settings.hero);
-
       const aboutSrc = settingSrc(settings.about, 900, 1125);
       if (aboutSrc) $("#aboutImg").src = aboutSrc;
-      else {
-        const aboutP = PHOTOS.find(p => p.category === "dis_gorunum") || PHOTOS[2] || PHOTOS[0];
-        if (aboutP) $("#aboutImg").src = aboutP.url;
-      }
       applyLang();
     });
+
+    // Galeri fotoğraflarını 5 saniye sonra arka planda çek
+    setTimeout(() => {
+      fetch(PHOTOS_URL).then(r => r.ok ? r.json() : []).catch(() => [])
+      .then(photos => {
+        PHOTOS = photos;
+        gList  = PHOTOS.slice();
+
+        const settings = window._vpSettings || {};
+        if (!$("#heroImgDesktop").src || $("#heroImgDesktop").src === window.location.href) {
+          const fb = PHOTOS.find(p => p.category === "havuz") || PHOTOS[0];
+          if (fb) { $("#heroImgDesktop").src = fb.url; $("#heroImgMobile").src = fb.url; }
+        }
+        if (!$("#aboutImg").src || $("#aboutImg").src === window.location.href) {
+          const ap = PHOTOS.find(p => p.category === "dis_gorunum") || PHOTOS[2] || PHOTOS[0];
+          if (ap) $("#aboutImg").src = ap.url;
+        }
+        renderFilters();
+        renderGallery();
+      });
+    }, 5000);
   });
 })();
 </script>
