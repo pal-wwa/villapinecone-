@@ -822,6 +822,13 @@ function photoSrc(p, w, h) {
 }
 const PHOTOS_URL   = "photos.json";
 const SETTINGS_URL = "settings.json";
+
+// R2'deki 480px önizleme: .../dosya.jpg → .../thumbs/dosya.jpg
+function thumbUrl(p) {
+  if (!p || !p.url) return "";
+  const i = p.url.lastIndexOf("/");
+  return p.url.slice(0, i) + "/thumbs" + p.url.slice(i);
+}
 function settingSrc(val, w, h) {
   if (!val) return "";
   if (typeof val === "string") {
@@ -1002,8 +1009,10 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     const img = $(".g-main-img");
     const rail = $("#gRail");
     if (!img || !rail) return;
+    // Önce küçük thumb'ı anında göster (blur'lu), tam boy arkada insin
     img.classList.add("loading");
     img.classList.remove("loaded");
+    img.src = thumbUrl(p);
     const big = new Image();
     big.onload = () => { img.src = big.src; img.classList.remove("loading"); img.classList.add("loaded"); };
     big.onerror = () => { img.classList.remove("loading"); };
@@ -1061,7 +1070,7 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
         <div class="g-rail" id="gRail">
           ${gList.map((ph, i) => `
             <button class="g-thumb${i === gIdx ? " on" : ""}" data-i="${i}">
-              <div class="g-thumb-img"><img data-src="${ph.url}" alt="${ph[LANG] || ph.tr || ""}"></div>
+              <div class="g-thumb-img"><img data-src="${thumbUrl(ph)}" alt="${ph[LANG] || ph.tr || ""}" onerror="this.onerror=null;this.src='${ph.url}'"></div>
               <div class="g-thumb-info">
                 <div class="tt">${ph[LANG] || ph.tr || ""}</div>
                 <div class="tn">${i + 1} / ${gList.length}</div>
