@@ -1271,13 +1271,15 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
       applyLang();
     });
 
-    // Galeri fotoğraflarını 5 saniye sonra arka planda çek
-    setTimeout(() => {
+    // Galeri fotoğraflarını yükle (bir kez çalışır)
+    let gPhotosLoaded = false;
+    function loadPhotosAndRender() {
+      if (gPhotosLoaded) return;
+      gPhotosLoaded = true;
       fetch(PHOTOS_URL).then(r => r.ok ? r.json() : []).catch(() => [])
       .then(photos => {
         PHOTOS = photos;
         gList  = PHOTOS.slice();
-
         const settings = window._vpSettings || {};
         if (!$("#heroImgDesktop").src || $("#heroImgDesktop").src === window.location.href) {
           const fb = PHOTOS.find(p => p.category === "havuz") || PHOTOS[0];
@@ -1290,7 +1292,21 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
         renderFilters();
         renderGallery();
       });
-    }, 5000);
+    }
+
+    // "Galeriyi Gör" butonuna tıklanınca hemen yükle
+    $$('[data-anchor="galeri"]').forEach(el => el.addEventListener("click", loadPhotosAndRender));
+
+    // Galeri bölümüne 500px yaklaşınca da tetikle
+    const galeriSection = document.getElementById("galeri");
+    if (galeriSection && "IntersectionObserver" in window) {
+      const io = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) { io.disconnect(); loadPhotosAndRender(); }
+      }, { rootMargin: "500px" });
+      io.observe(galeriSection);
+    } else {
+      loadPhotosAndRender();
+    }
   });
 })();
 </script>
