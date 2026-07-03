@@ -344,8 +344,8 @@ p { margin:0; }
 
 .g-empty { padding:48px 24px; text-align:center; color:var(--ink-soft); font-family:var(--font-accent); font-style:italic; font-size:17px; grid-column:1/-1; }
 
-/* LIGHTBOX */
-.lb { position:fixed; inset:0; z-index:200; background:rgba(8,8,6,.94); display:none; align-items:center; justify-content:center; }
+/* LIGHTBOX — iframe içinde çalıştığı için absolute + JS ile konumlanır */
+.lb { position:absolute; left:0; right:0; top:0; height:100vh; z-index:200; background:rgba(8,8,6,.94); display:none; align-items:center; justify-content:center; }
 .lb.open { display:flex; }
 .lb img { max-width:92vw; max-height:86vh; object-fit:contain; border-radius:6px; box-shadow:0 30px 80px rgba(0,0,0,.6); }
 .lb-close, .lb-nav { position:absolute; border:1px solid rgba(255,255,255,.25); background:rgba(255,255,255,.12); color:#fff; cursor:pointer; border-radius:50%; display:grid; place-items:center; transition:.2s; }
@@ -390,8 +390,8 @@ p { margin:0; }
 @keyframes pulse { 0%{ box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%, transparent);} 70%{ box-shadow:0 0 0 26px transparent;} 100%{ box-shadow:0 0 0 0 transparent;} }
 @media (max-width:720px){ .video-gallery { grid-template-columns:1fr; } .vg-main { min-height:240px; } .vg-list { flex-direction:row; overflow-x:auto; overflow-y:hidden; max-height:none; } .vg-item { min-width:160px; } .video-gallery.single .vg-list { display:none; } }
 
-/* VIDEO MODAL */
-.vmodal { position:fixed; inset:0; z-index:220; background:rgba(8,8,6,.94); display:none; align-items:center; justify-content:center; padding:24px; }
+/* VIDEO MODAL — iframe içinde çalıştığı için absolute + JS ile konumlanır */
+.vmodal { position:absolute; left:0; right:0; top:0; height:100vh; z-index:220; background:rgba(8,8,6,.94); display:none; align-items:center; justify-content:center; padding:24px; }
 .vmodal.open { display:flex; }
 .vmodal-inner { position:relative; width:min(1100px,100%); background:#000; border-radius:12px; overflow:hidden; box-shadow:0 30px 90px rgba(0,0,0,.6); max-height:calc(100vh - 100px); aspect-ratio:16/9; }
 .vmodal-inner iframe, .vmodal-inner video { position:absolute; top:0; left:0; width:100%; height:100%; border:0; display:block; background:#000; }
@@ -444,7 +444,7 @@ p { margin:0; }
 @media (max-width:480px){ .resv { padding:20px 14px; } .cal { padding:16px 10px; } .cal-grid { gap:3px; } .cal-grid .dow { font-size:9px; } .cal-day { font-size:12px; } .cal-head .m { font-size:16px; } }
 
 /* CONTACT */
-.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; }
+.contact-grid { display:grid; grid-template-columns:1fr; gap:56px; max-width:640px; }
 .contact-card .ci { display:flex; align-items:center; gap:16px; padding:18px 0; border-bottom:1px solid var(--line); }
 .contact-card .ci .ic { width:46px; height:46px; border-radius:50%; background:var(--surface-2); color:var(--accent); display:grid; place-items:center; flex:none; }
 .contact-card .ci .ic svg { width:20px; height:20px; }
@@ -749,18 +749,6 @@ iframe, img, video, table { max-width:100%; }
           <a href="https://wa.me/905323506828" target="_blank" rel="noopener" aria-label="WhatsApp" data-ic="wa"></a>
         </div>
       </div>
-      <form class="cform reveal" id="cform">
-        <div class="row">
-          <div><label data-i18n="form.name">Adınız</label><input type="text" required></div>
-          <div><label data-i18n="form.email">E-posta</label><input type="email" required></div>
-        </div>
-        <div><label data-i18n="form.subject">Konu</label><input type="text"></div>
-        <div><label data-i18n="form.msg">Mesajınız</label><textarea required></textarea></div>
-        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
-          <button class="btn lg" type="submit"><span data-i18n="form.send">Gönder</span><span data-ic="arrow"></span></button>
-          <span class="ok" data-i18n="form.ok"></span>
-        </div>
-      </form>
     </div>
   </div>
 </section>
@@ -1023,7 +1011,7 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     $(".g-cat-badge").textContent = CAT_LABELS[LANG]?.[p.category] || p.category || "";
     $$(".g-thumb", rail).forEach((el, i) => el.classList.toggle("on", i === gIdx));
     const act = $$(".g-thumb", rail)[gIdx];
-    if (act) rail.scrollTo({ top: act.offsetTop - 30, left: act.offsetLeft - 30, behavior: "smooth" });
+    if (act) rail.scrollTo({ top: act.offsetTop - rail.offsetTop - 30, left: act.offsetLeft - rail.offsetLeft - 30, behavior: "smooth" });
     [-1, 1].forEach(d => {
       const nx = gList[(gIdx + d + gList.length) % gList.length];
       if (nx && nx.url) { const pre = new Image(); pre.src = nx.url; }
@@ -1070,7 +1058,7 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
         <div class="g-rail" id="gRail">
           ${gList.map((ph, i) => `
             <button class="g-thumb${i === gIdx ? " on" : ""}" data-i="${i}">
-              <div class="g-thumb-img"><img data-src="${thumbUrl(ph)}" alt="${ph[LANG] || ph.tr || ""}" onerror="this.onerror=null;this.src='${ph.url}'"></div>
+              <div class="g-thumb-img"><img data-src="${thumbUrl(ph)}" decoding="async" alt="${ph[LANG] || ph.tr || ""}" onerror="this.onerror=null;this.src='${ph.url}'"></div>
               <div class="g-thumb-info">
                 <div class="tt">${ph[LANG] || ph.tr || ""}</div>
                 <div class="tn">${i + 1} / ${gList.length}</div>
@@ -1112,9 +1100,24 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
   }
 
   /* ── LIGHTBOX ── */
+  const EMBED = (() => { try { return window.self !== window.top; } catch(e) { return true; } })();
+
+  // Modalı tıklanan bölümün hizasına yerleştir; Wix iframe'indeysek üst sayfayı oraya kaydır
+  function focusOverlay(el, anchorSel, anchorId) {
+    const anchor = $(anchorSel);
+    const y = Math.max(0, (anchor ? anchor.getBoundingClientRect().top + (window.scrollY || 0) : 0) - 40);
+    const h = EMBED ? Math.min(Math.round(screen.height * 0.85), 820) : window.innerHeight;
+    el.style.top = y + "px";
+    el.style.height = h + "px";
+    if (EMBED) window.parent.postMessage({ type: "scrollTo", anchor: anchorId, offset: y }, "*");
+    return h;
+  }
+
   function openLB(i) {
     gIdx = i;
     const p = gList[i];
+    const h = focusOverlay($("#lb"), "#gMain", "galeri");
+    $("#lbImg").style.maxHeight = (h - 130) + "px";
     $("#lbImg").src = p.url;
     $("#lbTitle").textContent = p[LANG] || p.tr || "";
     $("#lbCount").textContent = `${i + 1} / ${gList.length}`;
@@ -1166,11 +1169,11 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     if(v.type==="vimeo") return `<iframe src="https://player.vimeo.com/video/${v.src}?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
     return `<video src="${v.src}" controls autoplay playsinline style="width:100%;height:100%;background:#000"></video>`;
   }
-  function openVModal(i){ vgIndex=i; $("#vmodalSlot").innerHTML=vModalEmbedHTML(i); $("#vmodal").classList.add("open"); document.body.style.overflow="hidden"; }
+  function openVModal(i){ vgIndex=i; focusOverlay($("#vmodal"), "#vgMain", "video"); $("#vmodalSlot").innerHTML=vModalEmbedHTML(i); $("#vmodal").classList.add("open"); document.body.style.overflow="hidden"; }
   function closeVModal(){ $("#vmodal").classList.remove("open"); $("#vmodalSlot").innerHTML=""; document.body.style.overflow=""; }
 
   /* ── TAKVİM ── */
-  let calBase = new Date(2026,5,1);
+  let calBase = (() => { const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), 1); })();
   function renderCal(){
     const host=$("#cal"); if(!host) return;
     const y=calBase.getFullYear(), m=calBase.getMonth();
@@ -1303,19 +1306,11 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
       });
     }
 
-    // "Galeriyi Gör" butonuna tıklanınca hemen yükle
+    // "Galeriyi Gör" tıklanırsa hemen, yoksa hero çizildikten hemen sonra yükle.
+    // (Wix iframe'i içinde IntersectionObserver güvenilir çalışmıyor;
+    //  galeri artık 480px thumb kullandığı için erken yüklemek sorun değil.)
     $$('[data-anchor="galeri"]').forEach(el => el.addEventListener("click", loadPhotosAndRender));
-
-    // Galeri bölümüne 500px yaklaşınca da tetikle
-    const galeriSection = document.getElementById("galeri");
-    if (galeriSection && "IntersectionObserver" in window) {
-      const io = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting) { io.disconnect(); loadPhotosAndRender(); }
-      }, { rootMargin: "500px" });
-      io.observe(galeriSection);
-    } else {
-      loadPhotosAndRender();
-    }
+    setTimeout(loadPhotosAndRender, 600);
   });
 })();
 </script>
