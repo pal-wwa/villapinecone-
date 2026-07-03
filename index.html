@@ -504,6 +504,34 @@ iframe, img, video, table { max-width:100%; }
   .video-gallery { min-height:180px; } .vg-main { min-height:180px; }
   .g-main { min-height:200px; }
 }
+
+/* ── MOBİL TAKVİM & REZERVASYON DÜZELTMELERİ ── */
+@media (max-width:520px){
+  /* Rezervasyon butonları alt alta, tam genişlik */
+  .resv-cta { flex-direction:column; }
+  .resv-cta .btn { width:100%; justify-content:center; font-size:13px; padding:13px 16px; }
+  /* Takvim taşma koruması */
+  .cal { overflow-x:hidden; min-width:0; }
+  .cal-head { gap:6px; }
+  .cal-head .m { font-size:14px; letter-spacing:0; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .cal-grid { gap:2px; }
+  .cal-grid .dow { font-size:8px; letter-spacing:0; padding-bottom:4px; }
+  .cal-day { font-size:11px; border-radius:5px; }
+  .cal-legend { gap:10px; font-size:11px; }
+}
+
+/* ── GALERİ YÜKLENİYOR DURUMU ── */
+.g-main-img { background:var(--surface-2); }
+.g-main-img.loading {
+  opacity:0.3;
+  filter:blur(8px);
+  transition:opacity .35s, filter .35s;
+}
+.g-main-img.loaded {
+  opacity:1;
+  filter:none;
+  transition:opacity .35s, filter .35s;
+}
 </style>
 </head>
 <body>
@@ -974,12 +1002,12 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     const img = $(".g-main-img");
     const rail = $("#gRail");
     if (!img || !rail) return;
-    img.style.opacity = "0.55";
-    img.style.filter  = "blur(10px)";
-    img.src = p.url;
+    img.classList.add("loading");
+    img.classList.remove("loaded");
     const big = new Image();
+    big.onload = () => { img.src = big.src; img.classList.remove("loading"); img.classList.add("loaded"); };
+    big.onerror = () => { img.classList.remove("loading"); };
     big.src = p.url;
-    big.onload = () => { img.src = p.url; img.style.opacity = "1"; img.style.filter = "none"; };
     img.alt = p[LANG] || p.tr || "";
     $(".g-counter").textContent = (gIdx + 1) + " / " + gList.length;
     $(".g-main-info .meta .v").textContent = p[LANG] || p.tr || "";
@@ -1020,7 +1048,7 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     wrap.innerHTML = `
       <div class="g-stage">
         <div class="g-main" id="gMain">
-          <img class="g-main-img" src="${p.url}" alt="${p[LANG] || p.tr || ""}">
+          <img class="g-main-img loading" src="" alt="${p[LANG] || p.tr || ""}">
           <div class="g-counter">${gIdx + 1} / ${gList.length}</div>
           <span class="g-cat-badge">${CAT_LABELS[LANG]?.[p.category] || p.category || ""}</span>
           <div class="g-main-info">
@@ -1229,63 +1257,28 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     initVideo();
     $$(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.l)));
 
-    // Önce sadece settings çek — hero ve about için (kritik, hemen)
-    fetch(SETTINGS_URL)
-      .then(r => r.ok ? r.json() : {})
-      .catch(() => ({}))
-      .then(settings => {
-        window._vpSettings = settings;
-        const dSrc = heroUrl(settings.hero, "desktop");
-        const mSrc = heroUrl(settings.hero, "mobile") || dSrc;
-        if (dSrc) { $("#heroImgDesktop").src = dSrc; }
-        if (mSrc) { $("#heroImgMobile").src = mSrc; }
-        applyHeroPosition(settings.hero);
-        if (settingSrc(settings.about, 900, 1125)) {
-          $("#aboutImg").src = settingSrc(settings.about, 900, 1125);
-        }
-        applyLang();
-      });
+    Promise.all([
+      fetch(SETTINGS_URL).then(r => r.ok ? r.json() : {}).catch(() => ({})),
+      fetch(PHOTOS_URL).then(r => r.ok ? r.json() : []).catch(() => [])
+    ]).then(([settings, photos]) => {
+      PHOTOS = photos;
+      gList  = PHOTOS.slice();
 
-    // photos.json'u galeri bölümüne scroll edilince çek
-    function loadPhotosAndRender() {
-      if (gPhotosLoaded) return;
-      gPhotosLoaded = true;
-      fetch(PHOTOS_URL)
-        .then(r => { if (!r.ok) throw new Error("photos " + r.status); return r.json(); })
-        .then(photos => {
-          PHOTOS = photos;
-          gList  = PHOTOS.slice();
-          const settings = window._vpSettings || {};
-          if (!$("#heroImgDesktop").src) {
-            const fallback = PHOTOS.find(p => p.category === "havuz") || PHOTOS[0];
-            if (fallback) { $("#heroImgDesktop").src = fallback.url; $("#heroImgMobile").src = fallback.url; }
-          }
-          if (!$("#aboutImg").src || $("#aboutImg").src === window.location.href) {
-            const aboutP = PHOTOS.find(p => p.category === "dis_gorunum") || PHOTOS[2] || PHOTOS[0];
-            if (aboutP) $("#aboutImg").src = aboutP.url;
-          }
-          renderFilters();
-          renderGallery();
-        })
-        .catch(err => {
-          console.warn("Fotoğraflar yüklenemedi:", err);
-          PHOTOS = []; gList = [];
-          renderFilters();
-          renderGallery();
-        });
-    }
+      const fallbackHero = PHOTOS.find(p => p.category === "havuz") || PHOTOS[0];
+      const dSrc = heroUrl(settings.hero, "desktop") || (fallbackHero ? fallbackHero.url : "");
+      const mSrc = heroUrl(settings.hero, "mobile") || dSrc;
+      if (dSrc) $("#heroImgDesktop").src = dSrc;
+      if (mSrc) $("#heroImgMobile").src  = mSrc;
+      applyHeroPosition(settings.hero);
 
-    // Galeri bölümü viewport'a girinceye kadar bekle
-    const galeriSection = document.getElementById("galeri");
-    if (galeriSection && "IntersectionObserver" in window) {
-      const io = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting) { io.disconnect(); loadPhotosAndRender(); }
-      }, { rootMargin: "300px" });
-      io.observe(galeriSection);
-    } else {
-      // IntersectionObserver yoksa hemen yükle (eski tarayıcılar)
-      loadPhotosAndRender();
-    }
+      const aboutSrc = settingSrc(settings.about, 900, 1125);
+      if (aboutSrc) $("#aboutImg").src = aboutSrc;
+      else {
+        const aboutP = PHOTOS.find(p => p.category === "dis_gorunum") || PHOTOS[2] || PHOTOS[0];
+        if (aboutP) $("#aboutImg").src = aboutP.url;
+      }
+      applyLang();
+    });
   });
 })();
 </script>
