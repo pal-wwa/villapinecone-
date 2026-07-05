@@ -856,7 +856,9 @@ const VIDEOS = [
   { type:"youtube", src:"x0fIj8cUnZM", tr:"Villa turu", en:"Villa tour", dur:"2:34" },
 ];
 
-const BOOKED = [
+// Doluluk artık settings.json'daki "booked" listesinden gelir (admin panelden yönetilir).
+// Aşağıdaki liste yalnızca settings.json'a ulaşılamazsa yedek olarak kullanılır.
+let BOOKED = [
   "2026-6-7","2026-6-8","2026-6-9","2026-6-10",
   "2026-6-20","2026-6-21","2026-6-22",
   "2026-7-3","2026-7-4","2026-7-5","2026-7-6","2026-7-7",
@@ -1293,6 +1295,7 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     fetch(SETTINGS_URL + BUST).then(r => r.ok ? r.json() : {}).catch(() => ({}))
     .then(settings => {
       window._vpSettings = settings;
+      if (Array.isArray(settings.booked)) BOOKED = settings.booked;
       const dSrc = heroUrl(settings.hero, "desktop");
       const mSrc = heroUrl(settings.hero, "mobile") || dSrc;
       if (dSrc) $("#heroImgDesktop").src = dSrc;
