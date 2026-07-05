@@ -1,7 +1,7 @@
 {
   "hero": {
-    "urlDesktop": "https://pub-0944ca5b59df4a32b3fc893f6e1a855b.r2.dev/1782291322276_1.JPG",
-    "urlMobile": "https://pub-0944ca5b59df4a32b3fc893f6e1a855b.r2.dev/1782292186466_2.JPG",
+    "urlDesktop": "https://villapinecone.pages.dev/img/1782291322276_1.JPG",
+    "urlMobile": "https://villapinecone.pages.dev/img/1782292186466_2.JPG",
     "posX": 50,
     "posY": 40,
     "scale": 1,
@@ -10,6 +10,6 @@
     "mobScale": 1.15
   },
   "about": {
-    "url": "https://pub-0944ca5b59df4a32b3fc893f6e1a855b.r2.dev/1782291239796_45.JPG"
+    "url": "https://villapinecone.pages.dev/img/1782291239796_45.JPG"
   }
 }
