@@ -1270,7 +1270,9 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     $$(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.l)));
 
     // Önce sadece settings + hero/about yükle (hızlı, kritik)
-    fetch(SETTINGS_URL).then(r => r.ok ? r.json() : {}).catch(() => ({}))
+    // ?v= cache-buster: json'lar küçük, her zaman taze gelsin (10dk bayat cache sorunu olmasın)
+    const BUST = "?v=" + Math.floor(Date.now() / 60000);
+    fetch(SETTINGS_URL + BUST).then(r => r.ok ? r.json() : {}).catch(() => ({}))
     .then(settings => {
       window._vpSettings = settings;
       const dSrc = heroUrl(settings.hero, "desktop");
@@ -1288,7 +1290,7 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     function loadPhotosAndRender() {
       if (gPhotosLoaded) return;
       gPhotosLoaded = true;
-      fetch(PHOTOS_URL).then(r => r.ok ? r.json() : []).catch(() => [])
+      fetch(PHOTOS_URL + BUST).then(r => r.ok ? r.json() : []).catch(() => [])
       .then(photos => {
         PHOTOS = photos;
         gList  = PHOTOS.slice();
