@@ -1219,8 +1219,21 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     const burgerOpen  = $("#burger-open");
     const burgerClose = $("#burger-close");
     const links       = $("#navLinks");
-    function openMenu(){ links.classList.add("open"); document.body.classList.add("menu-open"); }
-    function closeMenu(){ links.classList.remove("open"); document.body.classList.remove("menu-open"); }
+    function openMenu(){
+      // Mobil sidebar'ı butonun bulunduğu noktaya sabitle (iframe içinde fixed çalışmıyor)
+      if (window.matchMedia("(max-width:980px)").matches) {
+        const y = Math.max(0, burgerOpen.getBoundingClientRect().top + (window.scrollY || 0) - 14);
+        const h = EMBED ? Math.min(Math.round(screen.height * 0.9), 780) : window.innerHeight;
+        links.style.top = y + "px";
+        links.style.height = h + "px";
+        links.style.bottom = "auto";
+      }
+      links.classList.add("open"); document.body.classList.add("menu-open");
+    }
+    function closeMenu(){
+      links.classList.remove("open"); document.body.classList.remove("menu-open");
+      links.style.top = ""; links.style.height = ""; links.style.bottom = "";
+    }
     burgerOpen.addEventListener("click", openMenu);
     burgerClose.addEventListener("click", closeMenu);
     $$("#navLinks a").forEach(a => a.addEventListener("click", closeMenu));
