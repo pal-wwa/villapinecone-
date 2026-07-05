@@ -136,7 +136,7 @@ p { margin:0; }
 @media (max-width:980px){
   .nav-links {
     position:fixed; inset:0 0 0 auto; width:min(84vw,360px);
-    flex-direction:column; align-items:flex-start; justify-content:center;
+    flex-direction:column; align-items:flex-start; justify-content:flex-start;
     gap:22px; padding:80px 36px 40px;
     background:var(--surface);
     transform:translateX(100%);
@@ -1240,6 +1240,11 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     document.addEventListener("click", e => {
       if(document.body.classList.contains("menu-open") && !links.contains(e.target) && e.target !== burgerOpen && !burgerOpen.contains(e.target)) closeMenu();
     });
+    // Menü açıkken panel dışında kaydırma yapılırsa menüyü kapat
+    // (iframe içinde sayfa kaydırınca menü yerinde kalamıyor, en temizi kapatmak)
+    document.addEventListener("touchmove", e => {
+      if (document.body.classList.contains("menu-open") && !links.contains(e.target)) closeMenu();
+    }, { passive: true });
 
     // Tüm data-anchor linklerine tıklama ekle
     $$("[data-anchor]").forEach(el => {
