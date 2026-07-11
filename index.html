@@ -421,7 +421,20 @@ p { margin:0; }
 .resv-info p { color:var(--ink-soft); margin-top:18px; font-size:15px; line-height:1.7; }
 .partner { display:inline-flex; align-items:center; gap:10px; margin-top:22px; font-size:14px; color:var(--ink-soft); }
 .partner b { color:var(--ink); font-weight:700; }
-.resv-cta { margin-top:30px; display:flex; gap:14px; flex-wrap:wrap; }
+.resv-notice {
+  margin-top:24px; padding:16px 18px; display:flex; align-items:flex-start; gap:12px;
+  background:color-mix(in srgb, var(--accent) 10%, var(--surface));
+  border:1px solid color-mix(in srgb, var(--accent) 30%, var(--line));
+  border-radius:var(--radius);
+}
+.resv-notice-ic {
+  flex:none; width:34px; height:34px; border-radius:50%; display:grid; place-items:center;
+  background:var(--accent); color:var(--on-accent); margin-top:1px;
+}
+.resv-notice-ic svg { width:16px; height:16px; }
+.resv-notice p { margin:0; font-size:14.5px; line-height:1.6; color:var(--ink); font-weight:500; }
+.resv-notice p a { color:var(--accent-ink); font-weight:700; text-decoration:underline; text-underline-offset:2px; }
+.resv-cta { margin-top:24px; display:flex; gap:14px; flex-wrap:wrap; }
 .cal { background:var(--surface-2); border:1px solid var(--line); border-radius:var(--radius); padding:24px; }
 .cal-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
 .cal-head .m { font-family:var(--font-head); font-size:19px; }
@@ -720,6 +733,10 @@ iframe, img, video, table { max-width:100%; }
         <p class="eyebrow" data-i18n="resv.eyebrow">Rezervasyon &amp; müsaitlik</p>
         <h2 data-i18n="resv.title">Tarihlerinizi şimdi ayırtın</h2>
         <p data-i18n="resv.p"></p>
+        <div class="resv-notice">
+          <span class="resv-notice-ic" data-ic="phone"></span>
+          <p><span data-i18n="resv.notice">Aşağıdaki numara ile iletişime geçerek rezervasyon yapabilir veya tarihinizi ayırtabilirsiniz:</span> <a href="tel:+905323506828">0 532 350 68 28</a></p>
+        </div>
         <div class="resv-cta">
           <a class="btn lg" href="https://www.villasepeti.com/home/fethiye/villa-pinecone" target="_blank" rel="noopener"><span data-i18n="resv.cta1">Rezervasyon Yap</span><span data-ic="ext"></span></a>
           <a class="btn lg ghost" href="https://wa.me/905323506828" target="_blank" rel="noopener" data-i18n="resv.cta2">WhatsApp ile Sor</a>
@@ -898,6 +915,7 @@ const I18N = {
     "loc.d":[["Fethiye merkez","20 km"],["Dalaman Havalimanı","70 km"],["En yakın plaj (Kumsal-Çakıl)","25 km"],["En yakın restoran","5,5 km"],["En yakın market","5,5 km"],["En yakın dolmuş durağı","4,5 km"]],
     "resv.eyebrow":"Rezervasyon & müsaitlik","resv.title":"Tarihlerinizi şimdi ayırtın",
     "resv.p":"Aşağıdaki takvim güncel duruma göre işaretlenmiştir. Tarihlerinizi ayırtmak veya sorularınız için bizimle iletişime geçin.",
+    "resv.notice":"Aşağıdaki numara ile iletişime geçerek rezervasyon yapabilir veya tarihinizi ayırtabilirsiniz:",
     "resv.partner":"Rezervasyon ortağımız","resv.cta1":"Rezervasyon Yap","resv.cta2":"WhatsApp ile Sor","resv.legendfree":"Müsait","resv.legendbooked":"Dolu",
     "contact.eyebrow":"İletişim","contact.title":"Bize ulaşın","contact.sub":"Sorularınız için telefon, e-posta veya formdan yazabilirsiniz.",
     "contact.phonek":"Telefon","contact.emailk":"E-posta","contact.addrk":"Adres","contact.addrv":"Kızılbel, Merkez Sok No:130 B, 48350 Fethiye / Muğla",
@@ -936,6 +954,7 @@ const I18N = {
     "loc.d":[["Fethiye centre","20 km"],["Dalaman Airport","70 km"],["Nearest beach (Kumsal-Çakıl)","25 km"],["Nearest restaurant","5.5 km"],["Nearest grocery","5.5 km"],["Nearest minibus stop","4.5 km"]],
     "resv.eyebrow":"Booking & availability","resv.title":"Reserve your dates now",
     "resv.p":"The calendar below reflects the current status. Get in touch to reserve your dates or for any questions.",
+    "resv.notice":"You can make a reservation or book your dates by contacting the number below:",
     "resv.partner":"Our booking partner","resv.cta1":"Book Now","resv.cta2":"Ask via WhatsApp","resv.legendfree":"Available","resv.legendbooked":"Booked",
     "contact.eyebrow":"Contact","contact.title":"Get in touch","contact.sub":"Reach us by phone, email or the form for any questions.",
     "contact.phonek":"Phone","contact.emailk":"Email","contact.addrk":"Address","contact.addrv":"Kızılbel, Merkez Sok No:130 B, 48350 Fethiye / Muğla",
