@@ -435,6 +435,7 @@ p { margin:0; }
 .resv-notice p { margin:0; font-size:14.5px; line-height:1.6; color:var(--ink); font-weight:500; }
 .resv-notice p a { color:var(--accent-ink); font-weight:700; text-decoration:underline; text-underline-offset:2px; }
 .resv-cta { margin-top:24px; display:flex; gap:14px; flex-wrap:wrap; }
+.resv-cta-single { justify-content:center; }
 .cal { background:var(--surface-2); border:1px solid var(--line); border-radius:var(--radius); padding:24px; }
 .cal-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
 .cal-head .m { font-family:var(--font-head); font-size:19px; }
@@ -457,7 +458,11 @@ p { margin:0; }
 @media (max-width:480px){ .resv { padding:20px 14px; } .cal { padding:16px 10px; } .cal-grid { gap:3px; } .cal-grid .dow { font-size:9px; } .cal-day { font-size:12px; } .cal-head .m { font-size:16px; } }
 
 /* CONTACT */
-.contact-grid { display:grid; grid-template-columns:1fr; gap:56px; max-width:640px; }
+.contact-grid { display:grid; grid-template-columns:1fr; gap:56px; max-width:480px; margin:0 auto; text-align:center; }
+.contact-card .ci { justify-content:center; }
+.contact-card .socials { justify-content:center; }
+#iletisim .section-head { max-width:640px; margin-left:auto; margin-right:auto; text-align:center; }
+#iletisim .section-head .eyebrow { justify-content:center; }
 .contact-card .ci { display:flex; align-items:center; gap:16px; padding:18px 0; border-bottom:1px solid var(--line); }
 .contact-card .ci .ic { width:46px; height:46px; border-radius:50%; background:var(--surface-2); color:var(--accent); display:grid; place-items:center; flex:none; }
 .contact-card .ci .ic svg { width:20px; height:20px; }
@@ -737,9 +742,8 @@ iframe, img, video, table { max-width:100%; }
           <span class="resv-notice-ic" data-ic="phone"></span>
           <p><span data-i18n="resv.notice">Aşağıdaki numara ile iletişime geçerek rezervasyon yapabilir veya tarihinizi ayırtabilirsiniz:</span> <a href="tel:+905323506828">0 532 350 68 28</a></p>
         </div>
-        <div class="resv-cta">
-          <a class="btn lg" href="https://www.villasepeti.com/home/fethiye/villa-pinecone" target="_blank" rel="noopener"><span data-i18n="resv.cta1">Rezervasyon Yap</span><span data-ic="ext"></span></a>
-          <a class="btn lg ghost" href="https://wa.me/905323506828" target="_blank" rel="noopener" data-i18n="resv.cta2">WhatsApp ile Sor</a>
+        <div class="resv-cta resv-cta-single">
+          <a class="btn lg" href="https://wa.me/905323506828" target="_blank" rel="noopener" data-i18n="resv.cta2">WhatsApp ile Sor</a>
         </div>
       </div>
       <div class="cal" id="cal"></div>
