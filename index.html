@@ -579,6 +579,16 @@ iframe, img, video, table { max-width:100%; }
 .rev-text { color:var(--ink-soft); font-size:15px; line-height:1.65; white-space:pre-line; }
 .rev-src { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--accent); }
 .rev-more { text-align:center; margin-top:26px; }
+
+.revmodal { position:absolute; left:0; right:0; top:0; height:100vh; z-index:220; background:rgba(8,8,6,.94); display:none; align-items:center; justify-content:center; padding:24px; }
+.revmodal.open { display:flex; }
+.revmodal-inner { position:relative; width:min(720px,100%); max-height:calc(100vh - 100px); background:var(--surface); border-radius:12px; box-shadow:0 30px 90px rgba(0,0,0,.6); display:flex; flex-direction:column; overflow:hidden; }
+.revmodal-head { display:flex; align-items:center; justify-content:space-between; padding:20px 24px; border-bottom:1px solid var(--line); flex:none; }
+.revmodal-head h3 { margin:0; font-size:20px; }
+.revmodal-body { overflow-y:auto; padding:4px 24px 24px; flex:1 1 auto; -webkit-overflow-scrolling:touch; }
+.revmodal-close { width:38px; height:38px; border-radius:50%; background:var(--surface-2); border:1px solid var(--line); color:var(--ink); cursor:pointer; display:grid; place-items:center; transition:.2s; flex:none; }
+.revmodal-close:hover { background:var(--line); }
+.revmodal-close svg { width:18px; height:18px; }
 </style>
 </head>
 <body>
@@ -850,6 +860,16 @@ iframe, img, video, table { max-width:100%; }
     </div>
   </div>
 </footer>
+
+<div class="revmodal" id="revModal">
+  <div class="revmodal-inner">
+    <div class="revmodal-head">
+      <h3>Tüm Yorumlar</h3>
+      <button class="revmodal-close" id="revModalClose" data-ic="x"></button>
+    </div>
+    <div class="revmodal-body" id="revModalBody"></div>
+  </div>
+</div>
 
 <div class="lb" id="lb">
   <button class="lb-close" id="lbClose" data-ic="x"></button>
@@ -1352,7 +1372,7 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
 
   /* ── YORUMLAR ── */
   let REVIEWS = [];
-  let revShown = 6;
+  const REV_PREVIEW = 3;
   const STAR_SVG = '<svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7L12 2z"/></svg>';
   function fmtDate(iso){
     const [y,m,d] = (iso||"").split("-").map(Number);
@@ -1360,17 +1380,17 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     const aylar = ["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"];
     return `${String(d).padStart(2,"0")} ${aylar[m-1]||""} ${y}`;
   }
-  function renderReviews(){
+  function sortedReviews(){
     const approved = REVIEWS.filter(r => r.status === "approved");
     const sortMode = $("#revSort") ? $("#revSort").value : "rating";
-    const sorted = approved.slice().sort((a,b) => {
+    return approved.slice().sort((a,b) => {
       if (sortMode === "new") return (b.date||"").localeCompare(a.date||"");
       if (b.rating !== a.rating) return b.rating - a.rating;
       return (b.date||"").localeCompare(a.date||"");
     });
-    $("#revCount").textContent = `${approved.length} yorum gösteriliyor.`;
-    const visible = sorted.slice(0, revShown);
-    $("#revList").innerHTML = visible.map(r => `
+  }
+  function revCardHTML(r){
+    return `
       <div class="rev-item">
         <div class="rev-item-head">
           <span class="rev-star">${STAR_SVG} ${r.rating}</span>
@@ -1378,16 +1398,37 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
           <span class="rev-date">${fmtDate(r.date)}</span>
         </div>
         <div class="rev-text">${(r.text||"").replace(/</g,"&lt;")}</div>
-      </div>
-    `).join("");
+      </div>`;
+  }
+  function renderReviews(){
+    const sorted = sortedReviews();
+    $("#revCount").textContent = `${sorted.length} yorum gösteriliyor.`;
+    $("#revList").innerHTML = sorted.slice(0, REV_PREVIEW).map(revCardHTML).join("");
     const wrap = $("#revMoreWrap");
-    if (wrap) wrap.style.display = sorted.length > revShown ? "" : "none";
+    if (wrap) wrap.style.display = sorted.length > REV_PREVIEW ? "" : "none";
+    if ($("#revModal").classList.contains("open")) renderRevModalBody();
+  }
+  function renderRevModalBody(){
+    $("#revModalBody").innerHTML = sortedReviews().map(revCardHTML).join("");
+  }
+  function openRevModal(){
+    focusOverlay($("#revModal"), "#revList", "yorumlar");
+    renderRevModalBody();
+    $("#revModal").classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+  function closeRevModal(){
+    $("#revModal").classList.remove("open");
+    document.body.style.overflow = "";
   }
   function initReviews(){
     const sortEl = $("#revSort");
     if (sortEl) sortEl.addEventListener("change", renderReviews);
     const moreBtn = $("#revMoreBtn");
-    if (moreBtn) moreBtn.addEventListener("click", () => { revShown += 8; renderReviews(); });
+    if (moreBtn) moreBtn.addEventListener("click", openRevModal);
+    $("#revModalClose").onclick = closeRevModal;
+    $("#revModal").addEventListener("click", e => { if (e.target.id === "revModal") closeRevModal(); });
+    document.addEventListener("keydown", e => { if (!$("#revModal").classList.contains("open")) return; if (e.key === "Escape") closeRevModal(); });
     fetch(REVIEWS_URL + "?v=" + Math.floor(Date.now()/60000)).then(r => r.ok ? r.json() : {reviews:[]}).catch(() => ({reviews:[]}))
     .then(data => { REVIEWS = Array.isArray(data.reviews) ? data.reviews : []; renderReviews(); });
   }
