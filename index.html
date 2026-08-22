@@ -606,13 +606,12 @@ iframe, img, video, table { max-width:100%; }
   font-size:11px; color:var(--ink-soft); pointer-events:none;
 }
 .rev-count { color:var(--ink-soft); font-size:14px; margin:6px 0 22px; }
-.rev-list { display:flex; flex-direction:column; }
-.rev-item { padding:22px 0; border-top:1px solid var(--line); }
-.rev-item:last-child { border-bottom:1px solid var(--line); }
+.rev-list { display:flex; flex-direction:column; gap:14px; }
+.rev-item { padding:20px 22px; border-radius:12px; background:var(--surface-2); }
 .rev-item-head { display:flex; align-items:center; gap:10px; margin-bottom:8px; flex-wrap:wrap; }
 .rev-star {
   display:inline-flex; align-items:center; gap:4px; font-weight:800; font-size:13px;
-  color:var(--accent-ink); background:var(--surface-2); border-radius:8px; padding:3px 9px;
+  color:var(--accent-ink); background:var(--surface); border-radius:8px; padding:3px 9px;
 }
 .rev-star svg { width:13px; height:13px; fill:var(--accent); }
 .rev-name { font-weight:700; }
@@ -814,7 +813,7 @@ iframe, img, video, table { max-width:100%; }
 <section class="section" id="yorumlar" style="background:var(--surface)">
   <div class="wrap">
     <div class="rev-head reveal">
-      <h2 data-i18n="rev.title">Yorumlar</h2>
+      <h2>Yorumlar</h2>
       <div class="rev-sort">
         <select id="revSort">
           <option value="rating">En yüksek puan</option>
