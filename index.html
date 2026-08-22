@@ -550,6 +550,35 @@ iframe, img, video, table { max-width:100%; }
   filter:none;
   transition:opacity .35s, filter .35s;
 }
+
+/* ── YORUMLAR ── */
+.rev-head { display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+.rev-head h2 { margin:0; }
+.rev-sort { position:relative; }
+.rev-sort select {
+  font:inherit; font-size:13px; font-weight:700; color:var(--accent-ink);
+  background:var(--surface); border:1px solid var(--line); border-radius:999px;
+  padding:9px 34px 9px 16px; cursor:pointer; appearance:none; -webkit-appearance:none;
+}
+.rev-sort::after {
+  content:"▾"; position:absolute; right:14px; top:50%; transform:translateY(-50%);
+  font-size:11px; color:var(--ink-soft); pointer-events:none;
+}
+.rev-count { color:var(--ink-soft); font-size:14px; margin:6px 0 22px; }
+.rev-list { display:flex; flex-direction:column; }
+.rev-item { padding:22px 0; border-top:1px solid var(--line); }
+.rev-item:last-child { border-bottom:1px solid var(--line); }
+.rev-item-head { display:flex; align-items:center; gap:10px; margin-bottom:8px; flex-wrap:wrap; }
+.rev-star {
+  display:inline-flex; align-items:center; gap:4px; font-weight:800; font-size:13px;
+  color:var(--accent-ink); background:var(--surface-2); border-radius:8px; padding:3px 9px;
+}
+.rev-star svg { width:13px; height:13px; fill:var(--accent); }
+.rev-name { font-weight:700; }
+.rev-date { color:var(--ink-soft); font-size:13px; }
+.rev-text { color:var(--ink-soft); font-size:15px; line-height:1.65; white-space:pre-line; }
+.rev-src { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--accent); }
+.rev-more { text-align:center; margin-top:26px; }
 </style>
 </head>
 <body>
@@ -731,6 +760,25 @@ iframe, img, video, table { max-width:100%; }
   </div>
 </section>
 
+<section class="section" id="yorumlar" style="background:var(--surface)">
+  <div class="wrap">
+    <div class="rev-head reveal">
+      <h2 data-i18n="rev.title">Yorumlar</h2>
+      <div class="rev-sort">
+        <select id="revSort">
+          <option value="rating">En yüksek puan</option>
+          <option value="new">En yeni</option>
+        </select>
+      </div>
+    </div>
+    <p class="rev-count" id="revCount"></p>
+    <div class="rev-list" id="revList"></div>
+    <div class="rev-more" id="revMoreWrap" style="display:none">
+      <button class="btn ghost" id="revMoreBtn">Daha fazla göster</button>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="rezervasyon" style="background:var(--surface)">
   <div class="wrap">
     <div class="resv reveal">
@@ -830,6 +878,7 @@ function photoSrc(p, w, h) {
 }
 const PHOTOS_URL   = "photos.json";
 const SETTINGS_URL = "settings.json";
+const REVIEWS_URL  = "reviews.json";
 
 // R2'deki 480px önizleme: .../dosya.jpg → .../thumbs/dosya.jpg
 function thumbUrl(p) {
@@ -1301,6 +1350,48 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
   }
   function injectIcons(){ $$("[data-ic]").forEach(el=>{ el.innerHTML=I[el.dataset.ic]||""; }); }
 
+  /* ── YORUMLAR ── */
+  let REVIEWS = [];
+  let revShown = 6;
+  const STAR_SVG = '<svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7L12 2z"/></svg>';
+  function fmtDate(iso){
+    const [y,m,d] = (iso||"").split("-").map(Number);
+    if (!y) return "";
+    const aylar = ["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"];
+    return `${String(d).padStart(2,"0")} ${aylar[m-1]||""} ${y}`;
+  }
+  function renderReviews(){
+    const approved = REVIEWS.filter(r => r.status === "approved");
+    const sortMode = $("#revSort") ? $("#revSort").value : "rating";
+    const sorted = approved.slice().sort((a,b) => {
+      if (sortMode === "new") return (b.date||"").localeCompare(a.date||"");
+      if (b.rating !== a.rating) return b.rating - a.rating;
+      return (b.date||"").localeCompare(a.date||"");
+    });
+    $("#revCount").textContent = `${approved.length} yorum gösteriliyor.`;
+    const visible = sorted.slice(0, revShown);
+    $("#revList").innerHTML = visible.map(r => `
+      <div class="rev-item">
+        <div class="rev-item-head">
+          <span class="rev-star">${STAR_SVG} ${r.rating}</span>
+          <span class="rev-name">${r.name||""}</span>
+          <span class="rev-date">${fmtDate(r.date)}</span>
+        </div>
+        <div class="rev-text">${(r.text||"").replace(/</g,"&lt;")}</div>
+      </div>
+    `).join("");
+    const wrap = $("#revMoreWrap");
+    if (wrap) wrap.style.display = sorted.length > revShown ? "" : "none";
+  }
+  function initReviews(){
+    const sortEl = $("#revSort");
+    if (sortEl) sortEl.addEventListener("change", renderReviews);
+    const moreBtn = $("#revMoreBtn");
+    if (moreBtn) moreBtn.addEventListener("click", () => { revShown += 8; renderReviews(); });
+    fetch(REVIEWS_URL + "?v=" + Math.floor(Date.now()/60000)).then(r => r.ok ? r.json() : {reviews:[]}).catch(() => ({reviews:[]}))
+    .then(data => { REVIEWS = Array.isArray(data.reviews) ? data.reviews : []; renderReviews(); });
+  }
+
   /* ── BOOT ── */
   document.addEventListener("DOMContentLoaded", () => {
     injectIcons();
@@ -1309,6 +1400,7 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     initForm();
     initLB();
     initVideo();
+    initReviews();
     $$(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.l)));
 
     // Önce sadece settings + hero/about yükle (hızlı, kritik)
