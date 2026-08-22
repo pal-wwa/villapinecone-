@@ -620,9 +620,9 @@ iframe, img, video, table { max-width:100%; }
 .rev-src { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--accent); }
 .rev-more { text-align:center; margin-top:26px; }
 
-.revmodal { position:absolute; left:0; right:0; top:0; height:100vh; z-index:220; background:rgba(8,8,6,.94); display:none; align-items:center; justify-content:center; padding:24px; }
+.revmodal { position:absolute; left:0; right:0; top:0; height:100vh; z-index:220; background:rgba(8,8,6,.72); display:none; align-items:center; justify-content:center; padding:20px; }
 .revmodal.open { display:flex; }
-.revmodal-inner { position:relative; width:min(720px,100%); max-height:calc(100vh - 100px); background:var(--surface); border-radius:12px; box-shadow:0 30px 90px rgba(0,0,0,.6); display:flex; flex-direction:column; overflow:hidden; }
+.revmodal-inner { position:relative; width:min(560px,100%); height:min(520px,82vh); background:var(--surface); border-radius:12px; box-shadow:0 30px 90px rgba(0,0,0,.5); display:flex; flex-direction:column; overflow:hidden; flex:none; }
 .revmodal-head { display:flex; align-items:center; justify-content:space-between; padding:20px 24px; border-bottom:1px solid var(--line); flex:none; }
 .revmodal-head h3 { margin:0; font-size:20px; }
 .revmodal-body { overflow-y:auto; padding:4px 24px 24px; flex:1 1 auto; -webkit-overflow-scrolling:touch; }
@@ -1452,7 +1452,12 @@ const DOW = { tr:["Pt","Sa","Ça","Pe","Cu","Ct","Pz"], en:["Mo","Tu","We","Th",
     $("#revModalBody").innerHTML = sortedReviews().map(revCardHTML).join("");
   }
   function openRevModal(){
-    focusOverlay($("#revModal"), "#revList", "yorumlar");
+    const anchor = $("#revList");
+    const y = Math.max(0, (anchor ? anchor.getBoundingClientRect().top + (window.scrollY || 0) : 0) - 40);
+    const h = EMBED ? Math.round(screen.height * 0.98) : window.innerHeight;
+    $("#revModal").style.top = y + "px";
+    $("#revModal").style.height = h + "px";
+    if (EMBED) window.parent.postMessage({ type: "scrollTo", anchor: "yorumlar", offset: y }, "*");
     renderRevModalBody();
     $("#revModal").classList.add("open");
     document.body.style.overflow = "hidden";
